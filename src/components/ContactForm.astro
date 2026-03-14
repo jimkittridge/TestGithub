@@ -4,6 +4,7 @@ interface Props {
   cityName?: string;
 }
 
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const { citySlug = 'general', cityName } = Astro.props;
 const formTitle = cityName
   ? `Check Availability in ${cityName}`
@@ -119,7 +120,7 @@ const formTitle = cityName
           <button type="submit" class="btn btn-primary btn-lg">
             Check Availability & Get Rates
           </button>
-          <a href="/contact/" class="btn btn-secondary btn-lg">
+          <a href={`${base}contact/`} class="btn btn-secondary btn-lg">
             Start Application
           </a>
         </div>

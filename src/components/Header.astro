@@ -1,19 +1,20 @@
 ---
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const currentPath = Astro.url.pathname;
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/asheville-nc/', label: 'Asheville' },
-  { href: '/durham-nc/', label: 'Durham' },
-  { href: '/columbia-sc/', label: 'Columbia' },
-  { href: '/about/', label: 'About' },
-  { href: '/faq/', label: 'FAQ' },
-  { href: '/contact/', label: 'Contact' },
+  { href: base, label: 'Home' },
+  { href: `${base}asheville-nc/`, label: 'Asheville' },
+  { href: `${base}durham-nc/`, label: 'Durham' },
+  { href: `${base}columbia-sc/`, label: 'Columbia' },
+  { href: `${base}about/`, label: 'About' },
+  { href: `${base}faq/`, label: 'FAQ' },
+  { href: `${base}contact/`, label: 'Contact' },
 ];
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/" class="logo" aria-label="GetFlexSpace Home">
+    <a href={base} class="logo" aria-label="GetFlexSpace Home">
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="32" height="32" rx="4" fill="var(--orange)"/>
         <path d="M6 8h20v4H10v4h12v4H10v8H6V8z" fill="white"/>

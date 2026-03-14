@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Build with Astro
-        run: npx astro build --site "https://jimkittridge.github.io" --base "/TestGithub"
+        run: npx astro build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
