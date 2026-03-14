@@ -1,0 +1,144 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="footer-logo" aria-label="GetFlexSpace Home">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="4" fill="var(--orange)"/>
+            <path d="M6 8h20v4H10v4h12v4H10v8H6V8z" fill="white"/>
+          </svg>
+          <span>GetFlexSpace</span>
+        </a>
+        <p class="footer-desc">Premium small bay flex space in the Carolinas. 1,000–3,000 sq. ft. suites designed for contractors, e-commerce, and creative businesses.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Locations</h4>
+        <ul class="footer-links">
+          <li><a href="/asheville-nc/">Asheville, NC</a></li>
+          <li><a href="/durham-nc/">Durham, NC</a></li>
+          <li><a href="/columbia-sc/">Columbia, SC</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Company</h4>
+        <ul class="footer-links">
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Contact</h4>
+        <ul class="footer-links">
+          <li>
+            <a href="tel:+18285551234">(828) 555-1234</a>
+          </li>
+          <li>
+            <a href="mailto:leasing@getflexspace.com">leasing@getflexspace.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {year} GetFlexSpace. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--dark);
+    color: rgba(255, 255, 255, 0.7);
+    padding: var(--space-12) 0 var(--space-6);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+  }
+
+  @media (min-width: 640px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--white);
+    font-weight: 800;
+    font-size: var(--font-size-lg);
+    text-decoration: none;
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-logo:hover {
+    color: var(--orange);
+  }
+
+  .footer-desc {
+    font-size: var(--font-size-sm);
+    line-height: 1.7;
+  }
+
+  .footer-heading {
+    color: var(--white);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-4);
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  @media (min-width: 768px) {
+    .footer-links a {
+      min-height: auto;
+    }
+  }
+
+  .footer-links a:hover {
+    color: var(--orange);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: var(--space-6);
+    font-size: var(--font-size-xs);
+    text-align: center;
+  }
+</style>

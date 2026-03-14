@@ -1,0 +1,196 @@
+---
+interface Props {
+  citySlug?: string;
+  cityName?: string;
+}
+
+const { citySlug = 'general', cityName } = Astro.props;
+const formTitle = cityName
+  ? `Check Availability in ${cityName}`
+  : 'Check Availability & Get Rates';
+---
+
+<section class="section form-section" id="contact-form">
+  <div class="container">
+    <div class="form-wrapper">
+      <div class="form-header">
+        <h2>{formTitle}</h2>
+        <p class="form-subtitle">Our small bays move fast. Submit your requirements to be first in line when a unit matching your needs opens up.</p>
+      </div>
+
+      <form
+        name={`contact-${citySlug}`}
+        method="POST"
+        data-netlify="true"
+        class="lead-form"
+      >
+        <input type="hidden" name="form-name" value={`contact-${citySlug}`} />
+        <input type="hidden" name="city" value={citySlug} />
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="business-name" class="form-label">Business Name *</label>
+            <input
+              type="text"
+              id="business-name"
+              name="business-name"
+              class="form-input"
+              placeholder="Your Company LLC"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="contact-name" class="form-label">Contact Name *</label>
+            <input
+              type="text"
+              id="contact-name"
+              name="contact-name"
+              class="form-input"
+              placeholder="John Smith"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone *</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="form-input"
+              placeholder="(555) 555-1234"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="john@company.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="sq-footage" class="form-label">Desired Square Footage</label>
+            <select id="sq-footage" name="sq-footage" class="form-select">
+              <option value="">Select size...</option>
+              <option value="1000">~1,000 sq ft</option>
+              <option value="1500">~1,500 sq ft</option>
+              <option value="2000">~2,000 sq ft</option>
+              <option value="2500">~2,500 sq ft</option>
+              <option value="3000">~3,000 sq ft</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="use-case" class="form-label">Intended Use</label>
+            <select id="use-case" name="use-case" class="form-select">
+              <option value="">Select use case...</option>
+              <option value="ecommerce">E-Commerce / Fulfillment</option>
+              <option value="contractor">Contractor / Trades</option>
+              <option value="manufacturing">Light Manufacturing</option>
+              <option value="creative">Creative Studio</option>
+              <option value="brewery">Brewery / Food Production</option>
+              <option value="fitness">Fitness / Gym</option>
+              <option value="warehouse">General Warehouse</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="website" class="form-label">Website URL (optional)</label>
+          <input
+            type="url"
+            id="website"
+            name="website"
+            class="form-input"
+            placeholder="https://www.yourcompany.com"
+          />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-lg">
+            Check Availability & Get Rates
+          </button>
+          <a href="/contact/" class="btn btn-secondary btn-lg">
+            Start Application
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .form-section {
+    background: var(--light-grey);
+  }
+
+  .form-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 768px) {
+    .form-wrapper {
+      padding: var(--space-10);
+    }
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .form-header h2 {
+    margin-bottom: var(--space-3);
+  }
+
+  .form-subtitle {
+    color: var(--slate);
+    font-size: var(--font-size-base);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  @media (min-width: 640px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 var(--space-4);
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .form-actions {
+      flex-direction: row;
+    }
+
+    .form-actions .btn {
+      flex: 1;
+    }
+  }
+</style>

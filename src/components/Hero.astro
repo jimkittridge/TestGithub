@@ -1,0 +1,96 @@
+---
+interface Props {
+  headline: string;
+  subheadline?: string;
+  ctaButtons?: { label: string; href: string; variant?: 'primary' | 'white' }[];
+  gradient?: string;
+}
+
+const {
+  headline,
+  subheadline,
+  ctaButtons = [],
+  gradient = 'linear-gradient(135deg, #1B2A4A 0%, #243556 50%, #0F1A2E 100%)',
+} = Astro.props;
+---
+
+<section class="hero" style={`background: ${gradient};`}>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <h1 class="hero-headline">{headline}</h1>
+    {subheadline && <p class="hero-subheadline">{subheadline}</p>}
+    {ctaButtons.length > 0 && (
+      <div class="hero-ctas">
+        {ctaButtons.map(btn => (
+          <a
+            href={btn.href}
+            class:list={['btn', 'btn-lg', btn.variant === 'white' ? 'btn-white' : 'btn-primary']}
+          >
+            {btn.label}
+          </a>
+        ))}
+      </div>
+    )}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: var(--space-16) 0;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding: var(--space-20) 0;
+    }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(232, 98, 42, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .hero-headline {
+    color: var(--white);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-subheadline {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  @media (min-width: 640px) {
+    .hero-ctas {
+      flex-direction: row;
+      justify-content: center;
+      gap: var(--space-4);
+    }
+  }
+</style>

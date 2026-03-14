@@ -1,0 +1,92 @@
+---
+import type { CitySpecs } from '../data/cities';
+
+interface Props {
+  specs: CitySpecs;
+}
+
+const { specs } = Astro.props;
+
+const rows = [
+  { label: 'Suite Sizes', value: specs.suiteRange },
+  { label: 'Ceiling Height', value: specs.ceilingHeight },
+  { label: 'Electrical', value: specs.power },
+  { label: 'Drive-In Doors', value: specs.doorSize },
+  { label: 'Climate Control', value: specs.hvac },
+];
+---
+
+<section class="section specs-section">
+  <div class="container">
+    <h2 class="text-center">Property Specifications</h2>
+    <div class="specs-table-wrapper">
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Specification</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(row => (
+            <tr>
+              <td class="spec-label">{row.label}</td>
+              <td class="spec-value">{row.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .specs-section h2 {
+    margin-bottom: var(--space-8);
+  }
+
+  .specs-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    min-width: 320px;
+  }
+
+  .specs-table th {
+    background: var(--navy);
+    color: var(--white);
+    padding: var(--space-4) var(--space-6);
+    text-align: left;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .specs-table td {
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--font-size-base);
+    border-bottom: 1px solid var(--light-grey);
+  }
+
+  .specs-table tbody tr:nth-child(even) {
+    background: var(--light-grey);
+  }
+
+  .spec-label {
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .spec-value {
+    color: var(--slate);
+  }
+</style>

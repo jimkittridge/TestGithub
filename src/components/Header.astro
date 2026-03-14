@@ -1,0 +1,196 @@
+---
+const currentPath = Astro.url.pathname;
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/asheville-nc/', label: 'Asheville' },
+  { href: '/durham-nc/', label: 'Durham' },
+  { href: '/columbia-sc/', label: 'Columbia' },
+  { href: '/about/', label: 'About' },
+  { href: '/faq/', label: 'FAQ' },
+  { href: '/contact/', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="GetFlexSpace Home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="4" fill="var(--orange)"/>
+        <path d="M6 8h20v4H10v4h12v4H10v8H6V8z" fill="white"/>
+      </svg>
+      <span class="logo-text">GetFlexSpace</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Main navigation">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={['nav-link', { active: currentPath === link.href }]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <details class="nav-mobile">
+      <summary class="hamburger" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </summary>
+      <nav class="mobile-menu" aria-label="Mobile navigation">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class:list={['mobile-nav-link', { active: currentPath === link.href }]}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: var(--font-size-lg);
+  }
+
+  .logo:hover {
+    color: var(--orange);
+  }
+
+  .logo-text {
+    letter-spacing: -0.02em;
+  }
+
+  /* Desktop nav */
+  .nav-desktop {
+    display: none;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .nav-link {
+    padding: var(--space-2) var(--space-3);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-link.active {
+    color: var(--orange);
+  }
+
+  @media (min-width: 768px) {
+    .nav-desktop {
+      display: flex;
+    }
+    .nav-mobile {
+      display: none;
+    }
+  }
+
+  /* Mobile nav */
+  .nav-mobile {
+    position: relative;
+  }
+
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--white);
+    cursor: pointer;
+    list-style: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .hamburger:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .hamburger::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+    background: var(--navy);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    min-width: 200px;
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link.active {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-nav-link.active {
+    color: var(--orange);
+  }
+
+  @media (min-width: 768px) {
+    .nav-mobile {
+      display: none;
+    }
+  }
+</style>

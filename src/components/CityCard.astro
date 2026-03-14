@@ -1,0 +1,130 @@
+---
+interface Props {
+  name: string;
+  state: string;
+  slug: string;
+  tagline: string;
+  availability: 'available' | 'full';
+}
+
+const { name, state, slug, tagline, availability } = Astro.props;
+---
+
+<a href={`/${slug}/`} class="city-card">
+  <div class="card-visual">
+    <div class="card-icon">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="16" width="16" height="28" rx="2" fill="currentColor" opacity="0.3"/>
+        <rect x="24" y="8" width="20" height="36" rx="2" fill="currentColor" opacity="0.5"/>
+        <rect x="8" y="20" width="4" height="4" rx="1" fill="currentColor"/>
+        <rect x="8" y="28" width="4" height="4" rx="1" fill="currentColor"/>
+        <rect x="28" y="12" width="4" height="4" rx="1" fill="currentColor"/>
+        <rect x="36" y="12" width="4" height="4" rx="1" fill="currentColor"/>
+        <rect x="28" y="20" width="4" height="4" rx="1" fill="currentColor"/>
+        <rect x="36" y="20" width="4" height="4" rx="1" fill="currentColor"/>
+        <rect x="28" y="28" width="4" height="4" rx="1" fill="currentColor"/>
+        <rect x="36" y="28" width="4" height="4" rx="1" fill="currentColor"/>
+        <rect x="30" y="36" width="8" height="8" rx="1" fill="currentColor"/>
+      </svg>
+    </div>
+    <span class:list={['badge', availability === 'available' ? 'badge-available' : 'badge-full']}>
+      {availability === 'available' ? 'Space Available' : 'Fully Leased'}
+    </span>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">{name}, {state}</h3>
+    <p class="card-tagline">{tagline}</p>
+    <span class="card-cta">
+      View Details
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 3l5 5-5 5"/>
+      </svg>
+    </span>
+  </div>
+</a>
+
+<style>
+  .city-card {
+    display: block;
+    background: var(--white);
+    border: 2px solid var(--light-grey);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .city-card:hover {
+    border-color: var(--orange);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .card-visual {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    padding: var(--space-8) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    color: var(--orange);
+  }
+
+  .card-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    padding: var(--space-1) var(--space-3);
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-available {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10B981;
+  }
+
+  .badge-full {
+    background: rgba(245, 158, 11, 0.15);
+    color: #F59E0B;
+  }
+
+  .card-body {
+    padding: var(--space-6);
+  }
+
+  .card-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-2);
+    color: var(--navy);
+  }
+
+  .card-tagline {
+    font-size: var(--font-size-sm);
+    color: var(--slate);
+    margin-bottom: var(--space-4);
+    line-height: 1.5;
+  }
+
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--orange);
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    transition: gap 0.2s ease;
+  }
+
+  .city-card:hover .card-cta {
+    gap: var(--space-2);
+  }
+</style>

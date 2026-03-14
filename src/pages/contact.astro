@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const title = 'Contact Us | GetFlexSpace | Small Bay Flex Space Leasing';
+const description = 'Get in touch with GetFlexSpace to check availability, schedule a tour, or start your application for small bay industrial flex space in the Carolinas.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Hero
+    headline="Let's Find Your Space."
+    subheadline="Check availability, schedule a tour, or start your application. Our leasing team responds within one business day."
+  />
+
+  <ContactForm />
+
+  <section class="section contact-info-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 6h20a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z"/>
+              <path d="M26 8l-12 7L2 8"/>
+            </svg>
+          </div>
+          <h3>Email</h3>
+          <a href="mailto:leasing@getflexspace.com">leasing@getflexspace.com</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 17.5v2.5a2 2 0 01-2.18 2A18 18 0 014 6.18 2 2 0 016 4h2.5a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L9.09 12.3a16 16 0 006.6 6.6l1.66-1.66a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 17.5z"/>
+            </svg>
+          </div>
+          <h3>Phone</h3>
+          <a href="tel:+18285551234">(828) 555-1234</a>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="14" cy="14" r="10"/>
+              <path d="M14 8v6l4 2"/>
+            </svg>
+          </div>
+          <h3>Office Hours</h3>
+          <p>Mon–Fri: 8am–6pm EST</p>
+          <p class="text-slate" style="font-size: var(--font-size-xs);">Tenant access: 24/7/365</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .contact-card {
+    text-align: center;
+    padding: var(--space-6);
+    background: var(--light-grey);
+    border-radius: var(--radius-lg);
+  }
+
+  .contact-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--space-4);
+    background: rgba(232, 98, 42, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange);
+  }
+
+  .contact-card h3 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-2);
+  }
+
+  .contact-card a {
+    font-size: var(--font-size-base);
+    color: var(--orange);
+    font-weight: 600;
+  }
+
+  .contact-card p {
+    font-size: var(--font-size-base);
+    color: var(--navy);
+  }
+</style>

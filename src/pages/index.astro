@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CityCard from '../components/CityCard.astro';
+import WhyUsSection from '../components/WhyUsSection.astro';
+import SocialProof from '../components/SocialProof.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import { cities } from '../data/cities';
+
+const title = 'Premium Small Bay Flex Space in the Carolinas | GetFlexSpace';
+const description = 'Lease 1,000–3,000 sq ft small bay industrial flex space in Asheville NC, Durham NC, and Columbia SC. Drive-in doors, high ceilings, 24/7 access. Built for contractors, e-commerce, and creative businesses.';
+
+const orgSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'GetFlexSpace',
+  url: 'https://getflexspace.com',
+  logo: 'https://getflexspace.com/favicon.svg',
+  description,
+  contactPoint: { '@type': 'ContactPoint', telephone: '+18285551234', contactType: 'leasing' },
+  areaServed: [
+    { '@type': 'City', name: 'Asheville', containedInPlace: { '@type': 'State', name: 'North Carolina' } },
+    { '@type': 'City', name: 'Durham', containedInPlace: { '@type': 'State', name: 'North Carolina' } },
+    { '@type': 'City', name: 'Columbia', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
+  ],
+});
+
+const cityTaglines: Record<string, string> = {
+  'asheville-nc': 'Western NC\'s creative and craft hub. 18–24 ft ceilings, I-26 & I-40 access.',
+  'durham-nc': 'Heart of the Research Triangle. 3-phase power, minutes from RTP & RDU.',
+  'columbia-sc': 'Crossroads of I-26, I-77 & I-20. Southeast distribution made easy.',
+};
+---
+
+<BaseLayout title={title} description={description} schemaMarkup={orgSchema}>
+  <Hero
+    headline="Premium Small Bay Flex Space in the Carolinas."
+    subheadline="1,000–3,000 sq. ft. suites designed for contractors, e-commerce, and creative businesses."
+    ctaButtons={cities.map(city => ({
+      label: city.name,
+      href: `/${city.slug}/`,
+      variant: 'white' as const,
+    }))}
+  />
+
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: var(--space-2);">Our Locations</h2>
+      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10);">Find your perfect flex space across the Carolinas.</p>
+      <div class="grid grid-3">
+        {cities.map(city => (
+          <CityCard
+            name={city.name}
+            state={city.state}
+            slug={city.slug}
+            tagline={cityTaglines[city.slug] || ''}
+            availability={city.availability}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <WhyUsSection />
+
+  <SocialProof />
+
+  <section class="section cta-section">
+    <div class="container text-center">
+      <h2 class="text-white" style="margin-bottom: var(--space-4);">Ready to Find Your Space?</h2>
+      <p style="color: rgba(255,255,255,0.85); font-size: var(--font-size-lg); margin-bottom: var(--space-8); max-width: 500px; margin-left: auto; margin-right: auto;">
+        Our small bays move fast. Get in touch today to check availability and secure your suite.
+      </p>
+      <a href="/contact/" class="btn btn-primary btn-lg">Contact Us</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+  }
+</style>
