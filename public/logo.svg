@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Stylized X with curved green strokes -->
+  <!-- Upper-left to lower-right curve -->
+  <path d="M25 20 Q60 55 95 100" stroke="#4ADE4A" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <!-- Lower-left to upper-right curve -->
+  <path d="M25 100 Q45 70 60 60 Q75 50 95 20" stroke="#4ADE4A" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <!-- Center line accent -->
+  <path d="M45 40 L75 80" stroke="#1a1a2e" stroke-width="4" stroke-linecap="round"/>
+</svg>
