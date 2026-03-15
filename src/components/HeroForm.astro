@@ -1,0 +1,187 @@
+---
+interface Props {
+  citySlug?: string;
+  cityName?: string;
+}
+
+const { citySlug = 'general', cityName } = Astro.props;
+---
+
+<div class="hero-form-card">
+  <h3 class="hero-form-title">Check Availability</h3>
+  <form
+    name={`hero-${citySlug}`}
+    method="POST"
+    data-netlify="true"
+    class="hero-form"
+  >
+    <input type="hidden" name="form-name" value={`hero-${citySlug}`} />
+    <input type="hidden" name="city" value={citySlug} />
+
+    <div class="hf-group">
+      <input
+        type="text"
+        name="contact-name"
+        class="hf-input"
+        placeholder="Your Name *"
+        required
+      />
+    </div>
+
+    <div class="hf-group">
+      <input
+        type="text"
+        name="business-name"
+        class="hf-input"
+        placeholder="Business Name *"
+        required
+      />
+    </div>
+
+    <div class="hf-row">
+      <div class="hf-group">
+        <input
+          type="email"
+          name="email"
+          class="hf-input"
+          placeholder="Email *"
+          required
+        />
+      </div>
+      <div class="hf-group">
+        <input
+          type="tel"
+          name="phone"
+          class="hf-input"
+          placeholder="Phone *"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="hf-row">
+      <div class="hf-group">
+        <select name="sq-footage" class="hf-select">
+          <option value="">Size needed...</option>
+          <option value="1000">~1,000 SF</option>
+          <option value="1500">~1,500 SF</option>
+          <option value="2000">~2,000 SF</option>
+          <option value="2500">~2,500 SF</option>
+          <option value="3000">~3,000 SF</option>
+        </select>
+      </div>
+      <div class="hf-group">
+        <select name="move-in-timing" class="hf-select">
+          <option value="">Move-in timing...</option>
+          <option value="immediately">Immediately</option>
+          <option value="30-60">30–60 Days</option>
+          <option value="60-120">60–120 Days</option>
+          <option value="120+">120+ Days</option>
+          <option value="exploring">Just Exploring</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="hf-submit">
+      Get Availability & Pricing
+    </button>
+
+    <p class="hf-micro">No obligation. Response within 1 business day.</p>
+  </form>
+</div>
+
+<style>
+  .hero-form-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .hero-form-title {
+    color: var(--navy);
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+    margin-bottom: var(--space-4);
+    text-align: center;
+  }
+
+  .hero-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .hf-group {
+    margin-bottom: var(--space-3);
+  }
+
+  .hf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .hf-row .hf-group {
+    margin-bottom: var(--space-3);
+  }
+
+  .hf-input,
+  .hf-select {
+    display: block;
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    border: 2px solid #D1D5DB;
+    border-radius: var(--radius-md);
+    background: var(--white);
+    color: var(--navy);
+    min-height: 42px;
+    transition: border-color 0.2s ease;
+  }
+
+  .hf-input:focus,
+  .hf-select:focus {
+    outline: none;
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(232, 98, 42, 0.15);
+  }
+
+  .hf-input::placeholder {
+    color: var(--slate);
+  }
+
+  .hf-submit {
+    display: block;
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--white);
+    background: var(--orange);
+    border: 2px solid var(--orange);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 48px;
+    margin-top: var(--space-1);
+  }
+
+  .hf-submit:hover {
+    background: var(--orange-hover);
+    border-color: var(--orange-hover);
+  }
+
+  .hf-micro {
+    text-align: center;
+    font-size: var(--font-size-xs);
+    color: var(--slate);
+    margin-top: var(--space-2);
+    line-height: 1.4;
+  }
+</style>

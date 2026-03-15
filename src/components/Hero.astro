@@ -4,6 +4,7 @@ interface Props {
   subheadline?: string;
   ctaButtons?: { label: string; href: string; variant?: 'primary' | 'white' }[];
   gradient?: string;
+  layout?: 'center' | 'split';
 }
 
 const {
@@ -11,27 +12,38 @@ const {
   subheadline,
   ctaButtons = [],
   gradient = 'linear-gradient(135deg, #1B2A4A 0%, #243556 50%, #0F1A2E 100%)',
+  layout = 'center',
 } = Astro.props;
+
+const isSplit = layout === 'split';
 ---
 
-<section class="hero" style={`background: ${gradient};`}>
+<section class:list={['hero', { 'hero--split': isSplit }]} style={`background: ${gradient};`}>
   <div class="hero-overlay"></div>
-  <div class="container hero-content">
-    <h1 class="hero-headline">{headline}</h1>
-    {subheadline && <p class="hero-subheadline">{subheadline}</p>}
-    {ctaButtons.length > 0 && (
-      <div class="hero-ctas">
-        {ctaButtons.map(btn => (
-          <a
-            href={btn.href}
-            class:list={['btn', 'btn-lg', btn.variant === 'white' ? 'btn-white' : 'btn-primary']}
-          >
-            {btn.label}
-          </a>
-        ))}
+  <div class:list={['container', 'hero-container', { 'hero-container--split': isSplit }]}>
+    <div class="hero-copy">
+      <h1 class="hero-headline">{headline}</h1>
+      {subheadline && <p class="hero-subheadline">{subheadline}</p>}
+      {ctaButtons.length > 0 && !isSplit && (
+        <div class="hero-ctas">
+          {ctaButtons.map(btn => (
+            <a
+              href={btn.href}
+              class:list={['btn', 'btn-lg', btn.variant === 'white' ? 'btn-white' : 'btn-primary']}
+            >
+              {btn.label}
+            </a>
+          ))}
+        </div>
+      )}
+      <slot name="copy" />
+    </div>
+    {isSplit && (
+      <div class="hero-form-col">
+        <slot />
       </div>
     )}
-    <slot />
+    {!isSplit && <slot />}
   </div>
 </section>
 
@@ -57,11 +69,48 @@ const {
     pointer-events: none;
   }
 
-  .hero-content {
+  .hero-container {
     position: relative;
     z-index: 1;
+  }
+
+  /* Center layout (default) */
+  .hero-container:not(.hero-container--split) {
     text-align: center;
     max-width: 800px;
+  }
+
+  .hero-container:not(.hero-container--split) .hero-subheadline {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Split layout */
+  .hero-container--split {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    align-items: center;
+    max-width: 1200px;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-container--split {
+      flex-direction: row;
+      gap: var(--space-12);
+      align-items: center;
+    }
+
+    .hero-container--split .hero-copy {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-container--split .hero-form-col {
+      flex: 0 0 auto;
+      width: 420px;
+    }
   }
 
   .hero-headline {
@@ -73,10 +122,7 @@ const {
     color: rgba(255, 255, 255, 0.85);
     font-size: var(--font-size-lg);
     line-height: 1.6;
-    margin-bottom: var(--space-8);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: var(--space-6);
   }
 
   .hero-ctas {
@@ -92,5 +138,47 @@ const {
       justify-content: center;
       gap: var(--space-4);
     }
+  }
+
+  /* Split layout copy adjustments */
+  .hero-container--split .hero-ctas {
+    justify-content: flex-start;
+  }
+
+  .hero-form-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Hero bullets (used via slots) */
+  .hero-copy :global(.hero-bullets) {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-top: var(--space-2);
+  }
+
+  .hero-container:not(.hero-container--split) :global(.hero-bullets) {
+    justify-content: center;
+  }
+
+  .hero-copy :global(.hero-bullets li) {
+    position: relative;
+    padding-left: var(--space-4);
+  }
+
+  .hero-copy :global(.hero-bullets li::before) {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
   }
 </style>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import HeroForm from '../../components/HeroForm.astro';
 import AvailabilityBadge from '../../components/AvailabilityBadge.astro';
 import PropertySpecs from '../../components/PropertySpecs.astro';
 import GoogleMap from '../../components/GoogleMap.astro';
@@ -64,21 +65,18 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
   <!-- Hero -->
   <Hero
     headline={`Small Bay Flex Space for Lease in ${city.fullName}`}
-    subheadline={`${city.specs.suiteRange} suites with drive-in doors, ${city.specs.ceilingHeight.toLowerCase()} ceilings, HVAC, and 24/7 access for contractors, warehouse, and light industrial users.`}
-    ctaButtons={[
-      { label: 'Get Availability & Pricing', href: '#contact-form', variant: 'primary' },
-      { label: 'View Suite Features', href: '#specs', variant: 'white' },
-    ]}
+    subheadline={`${city.specs.suiteRange} suites with drive-in doors, ${city.specs.ceilingHeight.toLowerCase()} ceilings, HVAC, and 24/7 access.`}
+    layout="split"
   >
-    <div class="hero-trust">
-      <p class="hero-scarcity">Suites lease quickly in {city.name}. Tell us your size, use, and timing, and we'll send current matches and upcoming openings.</p>
+    <Fragment slot="copy">
       <ul class="hero-bullets">
         <li>Typical suites: {city.specs.suiteRange}</li>
-        <li>Best for contractors, e-commerce, and light industrial</li>
-        <li>Direct to leasing</li>
-        <li>Fast response</li>
+        <li>Ceilings: {city.specs.ceilingHeight}</li>
+        <li>Drive-in doors & 24/7 access</li>
+        <li>Response within 1 business day</li>
       </ul>
-    </div>
+    </Fragment>
+    <HeroForm citySlug={city.slug} cityName={city.name} />
   </Hero>
 
   <AvailabilityBadge availability={city.availability} availableUnits={city.availableUnits} cityName={city.name} />
@@ -249,45 +247,6 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
 </BaseLayout>
 
 <style>
-  .hero-trust {
-    margin-top: var(--space-8);
-  }
-
-  .hero-scarcity {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: var(--font-size-base);
-    max-width: 560px;
-    margin: 0 auto var(--space-6);
-    line-height: 1.6;
-  }
-
-  .hero-bullets {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-2) var(--space-6);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-  }
-
-  .hero-bullets li {
-    position: relative;
-    padding-left: var(--space-4);
-  }
-
-  .hero-bullets li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 7px;
-    width: 6px;
-    height: 6px;
-    background: var(--orange);
-    border-radius: 50%;
-  }
-
   .best-for {
     background: var(--light-grey);
   }
