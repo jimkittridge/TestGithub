@@ -14,6 +14,10 @@ const description = 'GetFlexSpace provides premium small bay industrial flex spa
 
   <section class="section">
     <div class="container about-content">
+      <div class="about-hero-img">
+        <img src={`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}images/exterior-full.jpg`} alt="GetFlexSpace property — small bay flex space with roll-up doors and dedicated parking" loading="lazy" width="800" height="400" />
+      </div>
+
       <h2>Our Story</h2>
       <p>
         GetFlexSpace was founded on a simple observation: small businesses in the Carolinas were being underserved by the commercial real estate market. Traditional warehouse leases required too much space, too much commitment, and came with too little flexibility.
@@ -56,12 +60,26 @@ const description = 'GetFlexSpace provides premium small bay industrial flex spa
     max-width: 800px;
   }
 
+  .about-hero-img {
+    margin-bottom: var(--space-10);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .about-hero-img img {
+    width: 100%;
+    aspect-ratio: 2.5 / 1;
+    object-fit: cover;
+    display: block;
+  }
+
   .about-content h2 {
     margin-bottom: var(--space-4);
     margin-top: var(--space-10);
   }
 
-  .about-content h2:first-child {
+  .about-content h2:first-of-type {
     margin-top: 0;
   }
 
