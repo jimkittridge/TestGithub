@@ -143,18 +143,31 @@ const homeFaq = [
     </div>
   </section>
 
-  <!-- Property Image Strip -->
-  <section class="section property-strip">
+  <!-- Property Highlights -->
+  <section class="section property-highlights">
     <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">What Our Spaces Look Like</h2>
-      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">Brick-and-metal construction. Individual roll-up doors. Dedicated parking. Built for real operators.</p>
-      <div class="image-strip">
-        <img src={`${base}images/exterior-closeup.svg`} alt="Small bay flex space suite with roll-up door and glass entry" loading="lazy" width="400" height="267" />
-        <img src={`${base}images/exterior-angle.svg`} alt="Flex space building exterior with drive-in access" loading="lazy" width="400" height="267" />
-        <img src={`${base}images/exterior-wide.svg`} alt="Multiple flex space bays with individual doors and parking" loading="lazy" width="400" height="267" />
+      <h2 class="text-center" style="margin-bottom: var(--space-2);">What You Get</h2>
+      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10);">Brick-and-metal construction. Individual roll-up doors. Dedicated parking. Built for real operators.</p>
+      <div class="highlights-grid">
+        <div class="highlight-item">
+          <div class="highlight-number">18–24 ft</div>
+          <div class="highlight-label">Clear ceiling height</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-number">12'–14'</div>
+          <div class="highlight-label">Grade-level drive-in doors</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-number">24/7</div>
+          <div class="highlight-label">Secure key card access</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-number">1–3 yr</div>
+          <div class="highlight-label">Flexible lease terms</div>
+        </div>
       </div>
-      <div class="text-center" style="margin-top: var(--space-8);">
-        <a href={`${base}locations/`} class="btn btn-secondary">Browse Locations</a>
+      <div class="text-center" style="margin-top: var(--space-10);">
+        <a href={`${base}locations/`} class="btn btn-primary btn-lg">Browse Locations</a>
       </div>
     </div>
   </section>
@@ -253,6 +266,13 @@ const homeFaq = [
     padding: var(--space-6);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
+    border: 1px solid #E5E7EB;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .use-case-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
   }
 
   .uc-icon {
@@ -327,29 +347,55 @@ const homeFaq = [
 
   .lead-strip {
     background: var(--light-grey);
+    border-top: 1px solid #E5E7EB;
+    border-bottom: 1px solid #E5E7EB;
   }
 
   .final-cta {
     background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
   }
 
-  .image-strip {
+  .property-highlights {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+  }
+
+  .property-highlights h2 {
+    color: var(--white);
+  }
+
+  .highlights-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-4);
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   @media (min-width: 768px) {
-    .image-strip {
-      grid-template-columns: repeat(3, 1fr);
+    .highlights-grid {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 
-  .image-strip img {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
+  .highlight-item {
+    text-align: center;
+    padding: var(--space-6);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+  }
+
+  .highlight-number {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+  }
+
+  .highlight-label {
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
   }
 </style>
