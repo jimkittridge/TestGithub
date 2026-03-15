@@ -2,9 +2,10 @@
 interface Props {
   availability: 'available' | 'full';
   availableUnits?: string;
+  occupancyMessage?: string;
 }
 
-const { availability, availableUnits } = Astro.props;
+const { availability, availableUnits, occupancyMessage } = Astro.props;
 ---
 
 <div class:list={['availability-banner', availability === 'available' ? 'available' : 'full']}>
@@ -12,13 +13,13 @@ const { availability, availableUnits } = Astro.props;
     <span class="status-dot"></span>
     {availability === 'available' ? (
       <div>
-        <span class="status-label">Current Status: Space Available</span>
+        <span class="status-label">Space Available</span>
         {availableUnits && <span class="status-detail">{availableUnits}</span>}
       </div>
     ) : (
       <div>
-        <span class="status-label">Current Status: 100% Leased</span>
-        <span class="status-detail">Get Priority Alerts for Upcoming Openings</span>
+        <span class="status-label">Currently Full</span>
+        <span class="status-detail">{occupancyMessage || 'Tell us your size and use, and we\'ll match you with current or upcoming openings.'}</span>
       </div>
     )}
   </div>

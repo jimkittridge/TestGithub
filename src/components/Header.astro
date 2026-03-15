@@ -3,9 +3,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const currentPath = Astro.url.pathname;
 const navLinks = [
   { href: base, label: 'Home' },
-  { href: `${base}asheville-nc/`, label: 'Asheville' },
-  { href: `${base}durham-nc/`, label: 'Durham' },
-  { href: `${base}columbia-sc/`, label: 'Columbia' },
+  { href: `${base}locations/`, label: 'Locations' },
   { href: `${base}about/`, label: 'About' },
   { href: `${base}faq/`, label: 'FAQ' },
   { href: `${base}contact/`, label: 'Contact' },
@@ -26,7 +24,7 @@ const navLinks = [
       {navLinks.map(link => (
         <a
           href={link.href}
-          class:list={['nav-link', { active: currentPath === link.href }]}
+          class:list={['nav-link', { active: currentPath === link.href || (link.href !== base && currentPath.startsWith(link.href)) }]}
         >
           {link.label}
         </a>
@@ -45,7 +43,7 @@ const navLinks = [
         {navLinks.map(link => (
           <a
             href={link.href}
-            class:list={['mobile-nav-link', { active: currentPath === link.href }]}
+            class:list={['mobile-nav-link', { active: currentPath === link.href || (link.href !== base && currentPath.startsWith(link.href)) }]}
           >
             {link.label}
           </a>
@@ -89,7 +87,6 @@ const navLinks = [
     letter-spacing: -0.02em;
   }
 
-  /* Desktop nav */
   .nav-desktop {
     display: none;
     align-items: center;
@@ -128,7 +125,6 @@ const navLinks = [
     }
   }
 
-  /* Mobile nav */
   .nav-mobile {
     position: relative;
   }

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import CityCard from '../../components/CityCard.astro';
+import { cities } from '../../data/cities';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const title = 'Flex Space Locations in NC & SC | GetFlexSpace';
+const description = 'Find small bay flex space for lease in Asheville NC, Durham NC, and Columbia SC. 1,000–3,000 SF suites with drive-in doors, high ceilings, and 24/7 access.';
+
+const cityTaglines: Record<string, string> = {
+  'asheville-nc': 'Western NC\'s creative and craft hub. 18–24 ft ceilings, I-26 & I-40 access.',
+  'durham-nc': 'Heart of the Research Triangle. 400A 3-phase power, minutes from RTP & RDU.',
+  'columbia-sc': 'Crossroads of I-26, I-77 & I-20. Southeast distribution made easy.',
+};
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `https://jimkittridge.github.io/TestGithub/` },
+    { '@type': 'ListItem', position: 2, name: 'Locations' },
+  ],
+});
+---
+
+<BaseLayout title={title} description={description} schemaMarkup={breadcrumbSchema}>
+  <Hero
+    headline="Our Locations"
+    subheadline="Small bay flex space for lease across the Carolinas. Find the right market for your business."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        {cities.map(city => (
+          <CityCard
+            name={city.name}
+            state={city.state}
+            slug={city.slug}
+            tagline={cityTaglines[city.slug] || ''}
+            availability={city.availability}
+            specs={`${city.specs.suiteRange} | ${city.specs.ceilingHeight}`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container text-center">
+      <h2 class="text-white" style="margin-bottom: var(--space-4);">Not Sure Which Location?</h2>
+      <p style="color: rgba(255,255,255,0.85); font-size: var(--font-size-lg); margin-bottom: var(--space-8); max-width: 500px; margin-left: auto; margin-right: auto;">
+        Tell us what you need. We'll match you with the best suite across all three markets.
+      </p>
+      <a href={`${base}contact/`} class="btn btn-primary btn-lg">Request Info</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+  }
+</style>

@@ -7,8 +7,11 @@ interface Props {
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const { citySlug = 'general', cityName } = Astro.props;
 const formTitle = cityName
-  ? `Check Availability in ${cityName}`
-  : 'Check Availability & Get Rates';
+  ? `Request Openings in ${cityName}`
+  : 'Request Current & Upcoming Openings';
+const formSubtitle = cityName
+  ? `Tell us what you need and we'll match you with current or upcoming suites in ${cityName}.`
+  : 'Tell us what you need. We\'ll match you with current and upcoming openings across all locations.';
 ---
 
 <section class="section form-section" id="contact-form">
@@ -16,7 +19,7 @@ const formTitle = cityName
     <div class="form-wrapper">
       <div class="form-header">
         <h2>{formTitle}</h2>
-        <p class="form-subtitle">Our small bays move fast. Submit your requirements to be first in line when a unit matching your needs opens up.</p>
+        <p class="form-subtitle">{formSubtitle}</p>
       </div>
 
       <form
@@ -30,6 +33,18 @@ const formTitle = cityName
 
         <div class="form-grid">
           <div class="form-group">
+            <label for="contact-name" class="form-label">Name *</label>
+            <input
+              type="text"
+              id="contact-name"
+              name="contact-name"
+              class="form-input"
+              placeholder="John Smith"
+              required
+            />
+          </div>
+
+          <div class="form-group">
             <label for="business-name" class="form-label">Business Name *</label>
             <input
               type="text"
@@ -37,18 +52,6 @@ const formTitle = cityName
               name="business-name"
               class="form-input"
               placeholder="Your Company LLC"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="contact-name" class="form-label">Contact Name *</label>
-            <input
-              type="text"
-              id="contact-name"
-              name="contact-name"
-              class="form-input"
-              placeholder="John Smith"
               required
             />
           </div>
@@ -78,7 +81,7 @@ const formTitle = cityName
           </div>
 
           <div class="form-group">
-            <label for="sq-footage" class="form-label">Desired Square Footage</label>
+            <label for="sq-footage" class="form-label">Needed Size Range</label>
             <select id="sq-footage" name="sq-footage" class="form-select">
               <option value="">Select size...</option>
               <option value="1000">~1,000 sq ft</option>
@@ -93,11 +96,11 @@ const formTitle = cityName
             <label for="use-case" class="form-label">Intended Use</label>
             <select id="use-case" name="use-case" class="form-select">
               <option value="">Select use case...</option>
-              <option value="ecommerce">E-Commerce / Fulfillment</option>
               <option value="contractor">Contractor / Trades</option>
+              <option value="ecommerce">E-Commerce / Fulfillment</option>
               <option value="manufacturing">Light Manufacturing</option>
-              <option value="creative">Creative Studio</option>
               <option value="brewery">Brewery / Food Production</option>
+              <option value="creative">Creative Studio / Showroom</option>
               <option value="fitness">Fitness / Gym</option>
               <option value="warehouse">General Warehouse</option>
               <option value="other">Other</option>
@@ -105,25 +108,13 @@ const formTitle = cityName
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="website" class="form-label">Website URL (optional)</label>
-          <input
-            type="url"
-            id="website"
-            name="website"
-            class="form-input"
-            placeholder="https://www.yourcompany.com"
-          />
-        </div>
-
         <div class="form-actions">
           <button type="submit" class="btn btn-primary btn-lg">
-            Check Availability & Get Rates
+            See Openings & Rates
           </button>
-          <a href={`${base}contact/`} class="btn btn-secondary btn-lg">
-            Start Application
-          </a>
         </div>
+
+        <p class="form-microcopy">No obligation. We respond within one business day. Best for businesses seeking 1,000–3,000 SF.</p>
       </form>
     </div>
   </div>
@@ -179,19 +170,26 @@ const formTitle = cityName
   }
 
   .form-actions {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
     margin-top: var(--space-6);
+    text-align: center;
+  }
+
+  .form-actions .btn {
+    width: 100%;
   }
 
   @media (min-width: 640px) {
-    .form-actions {
-      flex-direction: row;
-    }
-
     .form-actions .btn {
-      flex: 1;
+      width: auto;
+      min-width: 280px;
     }
+  }
+
+  .form-microcopy {
+    text-align: center;
+    font-size: var(--font-size-xs);
+    color: var(--slate);
+    margin-top: var(--space-3);
+    line-height: 1.5;
   }
 </style>

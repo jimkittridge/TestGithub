@@ -5,13 +5,14 @@ interface Props {
   slug: string;
   tagline: string;
   availability: 'available' | 'full';
+  specs?: string;
 }
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
-const { name, state, slug, tagline, availability } = Astro.props;
+const { name, state, slug, tagline, availability, specs } = Astro.props;
 ---
 
-<a href={`${base}${slug}/`} class="city-card">
+<a href={`${base}locations/${slug}/`} class="city-card">
   <div class="card-visual">
     <div class="card-icon">
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,6 +36,7 @@ const { name, state, slug, tagline, availability } = Astro.props;
   <div class="card-body">
     <h3 class="card-title">{name}, {state}</h3>
     <p class="card-tagline">{tagline}</p>
+    {specs && <p class="card-specs">{specs}</p>}
     <span class="card-cta">
       View Details
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
@@ -111,8 +113,15 @@ const { name, state, slug, tagline, availability } = Astro.props;
   .card-tagline {
     font-size: var(--font-size-sm);
     color: var(--slate);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-2);
     line-height: 1.5;
+  }
+
+  .card-specs {
+    font-size: var(--font-size-xs);
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
   }
 
   .card-cta {
