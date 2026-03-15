@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 267" width="400" height="267">
+  <defs>
+    <linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5B9BD5"/>
+      <stop offset="60%" stop-color="#89BDE8"/>
+      <stop offset="100%" stop-color="#B8D4F0"/>
+    </linearGradient>
+  </defs>
+  <!-- Sky -->
+  <rect width="400" height="267" fill="url(#sky3)"/>
+  <!-- Clouds -->
+  <ellipse cx="80" cy="40" rx="50" ry="18" fill="white" opacity="0.6"/>
+  <ellipse cx="300" cy="50" rx="60" ry="20" fill="white" opacity="0.5"/>
+  <!-- Ground -->
+  <rect x="0" y="180" width="400" height="87" fill="#868E96"/>
+  <!-- Wide building - panoramic view with 5 bays -->
+  <rect x="15" y="70" width="370" height="115" fill="#C8B898" rx="3"/>
+  <!-- Metal fascia -->
+  <rect x="10" y="62" width="380" height="12" fill="#3D5060" rx="2"/>
+  <!-- Brick lines -->
+  <g opacity="0.1">
+    <line x1="15" y1="90" x2="385" y2="90" stroke="#7A6040"/>
+    <line x1="15" y1="110" x2="385" y2="110" stroke="#7A6040"/>
+    <line x1="15" y1="130" x2="385" y2="130" stroke="#7A6040"/>
+    <line x1="15" y1="150" x2="385" y2="150" stroke="#7A6040"/>
+  </g>
+  <!-- 5 roll-up doors -->
+  <rect x="25" y="105" width="55" height="75" fill="#7B8C9C" rx="2"/>
+  <rect x="95" y="105" width="55" height="75" fill="#7B8C9C" rx="2"/>
+  <rect x="165" y="105" width="55" height="75" fill="#7B8C9C" rx="2"/>
+  <rect x="250" y="105" width="55" height="75" fill="#7B8C9C" rx="2"/>
+  <rect x="320" y="105" width="55" height="75" fill="#7B8C9C" rx="2"/>
+  <!-- Door panel lines -->
+  <g opacity="0.2">
+    <line x1="25" y1="120" x2="80" y2="120" stroke="#4A5568"/>
+    <line x1="25" y1="135" x2="80" y2="135" stroke="#4A5568"/>
+    <line x1="25" y1="150" x2="80" y2="150" stroke="#4A5568"/>
+    <line x1="25" y1="165" x2="80" y2="165" stroke="#4A5568"/>
+    <line x1="95" y1="120" x2="150" y2="120" stroke="#4A5568"/>
+    <line x1="95" y1="135" x2="150" y2="135" stroke="#4A5568"/>
+    <line x1="95" y1="150" x2="150" y2="150" stroke="#4A5568"/>
+    <line x1="95" y1="165" x2="150" y2="165" stroke="#4A5568"/>
+    <line x1="165" y1="120" x2="220" y2="120" stroke="#4A5568"/>
+    <line x1="165" y1="135" x2="220" y2="135" stroke="#4A5568"/>
+    <line x1="165" y1="150" x2="220" y2="150" stroke="#4A5568"/>
+    <line x1="165" y1="165" x2="220" y2="165" stroke="#4A5568"/>
+    <line x1="250" y1="120" x2="305" y2="120" stroke="#4A5568"/>
+    <line x1="250" y1="135" x2="305" y2="135" stroke="#4A5568"/>
+    <line x1="250" y1="150" x2="305" y2="150" stroke="#4A5568"/>
+    <line x1="250" y1="165" x2="305" y2="165" stroke="#4A5568"/>
+    <line x1="320" y1="120" x2="375" y2="120" stroke="#4A5568"/>
+    <line x1="320" y1="135" x2="375" y2="135" stroke="#4A5568"/>
+    <line x1="320" y1="150" x2="375" y2="150" stroke="#4A5568"/>
+    <line x1="320" y1="165" x2="375" y2="165" stroke="#4A5568"/>
+  </g>
+  <!-- Glass entries between doors -->
+  <rect x="83" y="130" width="10" height="50" fill="#A8D8EA" opacity="0.8" rx="1"/>
+  <rect x="223" y="130" width="10" height="50" fill="#A8D8EA" opacity="0.8" rx="1"/>
+  <!-- Suite numbers -->
+  <rect x="38" y="85" width="30" height="14" fill="#1B2A4A" rx="2"/>
+  <text x="53" y="96" font-family="Arial" font-size="8" fill="white" text-anchor="middle" font-weight="bold">101</text>
+  <rect x="108" y="85" width="30" height="14" fill="#1B2A4A" rx="2"/>
+  <text x="123" y="96" font-family="Arial" font-size="8" fill="white" text-anchor="middle" font-weight="bold">102</text>
+  <rect x="178" y="85" width="30" height="14" fill="#1B2A4A" rx="2"/>
+  <text x="193" y="96" font-family="Arial" font-size="8" fill="white" text-anchor="middle" font-weight="bold">103</text>
+  <rect x="263" y="85" width="30" height="14" fill="#1B2A4A" rx="2"/>
+  <text x="278" y="96" font-family="Arial" font-size="8" fill="white" text-anchor="middle" font-weight="bold">104</text>
+  <rect x="333" y="85" width="30" height="14" fill="#1B2A4A" rx="2"/>
+  <text x="348" y="96" font-family="Arial" font-size="8" fill="white" text-anchor="middle" font-weight="bold">105</text>
+  <!-- Curb -->
+  <rect x="0" y="178" width="400" height="5" fill="#A0A0A0"/>
+  <!-- Parking lines -->
+  <rect x="50" y="200" width="2" height="35" fill="#C0C8D0"/>
+  <rect x="100" y="200" width="2" height="35" fill="#C0C8D0"/>
+  <rect x="150" y="200" width="2" height="35" fill="#C0C8D0"/>
+  <rect x="200" y="200" width="2" height="35" fill="#C0C8D0"/>
+  <rect x="250" y="200" width="2" height="35" fill="#C0C8D0"/>
+  <rect x="300" y="200" width="2" height="35" fill="#C0C8D0"/>
+  <rect x="350" y="200" width="2" height="35" fill="#C0C8D0"/>
+  <!-- Pickup truck -->
+  <rect x="115" y="205" width="30" height="16" fill="#3B82F6" rx="3"/>
+  <rect x="135" y="200" width="20" height="12" fill="#60A5FA" rx="2"/>
+  <circle cx="122" cy="223" r="4" fill="#2D3748"/>
+  <circle cx="142" cy="223" r="4" fill="#2D3748"/>
+  <!-- Van -->
+  <rect x="265" y="202" width="28" height="18" fill="#F5F5F5" rx="3"/>
+  <circle cx="272" cy="222" r="4" fill="#2D3748"/>
+  <circle cx="290" cy="222" r="4" fill="#2D3748"/>
+</svg>

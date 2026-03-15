@@ -5,6 +5,7 @@ interface Props {
   ctaButtons?: { label: string; href: string; variant?: 'primary' | 'white' }[];
   gradient?: string;
   layout?: 'center' | 'split';
+  backgroundImage?: string;
 }
 
 const {
@@ -13,12 +14,16 @@ const {
   ctaButtons = [],
   gradient = 'linear-gradient(135deg, #1B2A4A 0%, #243556 50%, #0F1A2E 100%)',
   layout = 'center',
+  backgroundImage,
 } = Astro.props;
 
 const isSplit = layout === 'split';
+const bgStyle = backgroundImage
+  ? `background: ${gradient}; background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`
+  : `background: ${gradient};`;
 ---
 
-<section class:list={['hero', { 'hero--split': isSplit }]} style={`background: ${gradient};`}>
+<section class:list={['hero', { 'hero--split': isSplit }]} style={bgStyle}>
   <div class="hero-overlay"></div>
   <div class:list={['container', 'hero-container', { 'hero-container--split': isSplit }]}>
     <div class="hero-copy">

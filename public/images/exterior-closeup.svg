@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 534" width="800" height="534">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="100%" stop-color="#B8DFF0"/>
+    </linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D4C4A8"/>
+      <stop offset="100%" stop-color="#C4B494"/>
+    </linearGradient>
+    <linearGradient id="door" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B9EB0"/>
+      <stop offset="100%" stop-color="#6B7E90"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#A8D8EA" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#72B4D4" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <!-- Sky -->
+  <rect width="800" height="534" fill="url(#sky)"/>
+  <!-- Clouds -->
+  <ellipse cx="200" cy="80" rx="80" ry="30" fill="white" opacity="0.7"/>
+  <ellipse cx="250" cy="75" rx="60" ry="25" fill="white" opacity="0.6"/>
+  <ellipse cx="600" cy="100" rx="90" ry="28" fill="white" opacity="0.5"/>
+  <!-- Ground / Parking -->
+  <rect x="0" y="380" width="800" height="154" fill="#9CA3AF"/>
+  <!-- Parking lines -->
+  <rect x="120" y="420" width="4" height="60" fill="#D1D5DB" rx="1"/>
+  <rect x="200" y="420" width="4" height="60" fill="#D1D5DB" rx="1"/>
+  <rect x="280" y="420" width="4" height="60" fill="#D1D5DB" rx="1"/>
+  <rect x="520" y="420" width="4" height="60" fill="#D1D5DB" rx="1"/>
+  <rect x="600" y="420" width="4" height="60" fill="#D1D5DB" rx="1"/>
+  <rect x="680" y="420" width="4" height="60" fill="#D1D5DB" rx="1"/>
+  <!-- Main building -->
+  <rect x="40" y="140" width="720" height="240" fill="url(#wall)" rx="4"/>
+  <!-- Brick texture rows -->
+  <g opacity="0.15">
+    <line x1="40" y1="160" x2="760" y2="160" stroke="#8B7355" stroke-width="1"/>
+    <line x1="40" y1="180" x2="760" y2="180" stroke="#8B7355" stroke-width="1"/>
+    <line x1="40" y1="200" x2="760" y2="200" stroke="#8B7355" stroke-width="1"/>
+    <line x1="40" y1="220" x2="760" y2="220" stroke="#8B7355" stroke-width="1"/>
+    <line x1="40" y1="240" x2="760" y2="240" stroke="#8B7355" stroke-width="1"/>
+    <line x1="40" y1="260" x2="760" y2="260" stroke="#8B7355" stroke-width="1"/>
+  </g>
+  <!-- Roll-up door 1 -->
+  <rect x="80" y="220" width="140" height="160" fill="url(#door)" rx="3"/>
+  <g opacity="0.3">
+    <line x1="80" y1="240" x2="220" y2="240" stroke="#4A5568"/>
+    <line x1="80" y1="260" x2="220" y2="260" stroke="#4A5568"/>
+    <line x1="80" y1="280" x2="220" y2="280" stroke="#4A5568"/>
+    <line x1="80" y1="300" x2="220" y2="300" stroke="#4A5568"/>
+    <line x1="80" y1="320" x2="220" y2="320" stroke="#4A5568"/>
+    <line x1="80" y1="340" x2="220" y2="340" stroke="#4A5568"/>
+    <line x1="80" y1="360" x2="220" y2="360" stroke="#4A5568"/>
+  </g>
+  <!-- Glass entry door -->
+  <rect x="260" y="260" width="80" height="120" fill="url(#glass)" rx="2"/>
+  <rect x="298" y="260" width="4" height="120" fill="#5A7A8A"/>
+  <circle cx="330" cy="320" r="4" fill="#C0A060"/>
+  <!-- Roll-up door 2 -->
+  <rect x="380" y="220" width="140" height="160" fill="url(#door)" rx="3"/>
+  <g opacity="0.3">
+    <line x1="380" y1="240" x2="520" y2="240" stroke="#4A5568"/>
+    <line x1="380" y1="260" x2="520" y2="260" stroke="#4A5568"/>
+    <line x1="380" y1="280" x2="520" y2="280" stroke="#4A5568"/>
+    <line x1="380" y1="300" x2="520" y2="300" stroke="#4A5568"/>
+    <line x1="380" y1="320" x2="520" y2="320" stroke="#4A5568"/>
+    <line x1="380" y1="340" x2="520" y2="340" stroke="#4A5568"/>
+    <line x1="380" y1="360" x2="520" y2="360" stroke="#4A5568"/>
+  </g>
+  <!-- Glass entry door 2 -->
+  <rect x="560" y="260" width="80" height="120" fill="url(#glass)" rx="2"/>
+  <rect x="598" y="260" width="4" height="120" fill="#5A7A8A"/>
+  <circle cx="630" cy="320" r="4" fill="#C0A060"/>
+  <!-- Roof line / fascia -->
+  <rect x="30" y="130" width="740" height="15" fill="#3D5060" rx="2"/>
+  <!-- Suite numbers -->
+  <rect x="130" y="175" width="60" height="25" fill="#1B2A4A" rx="3"/>
+  <text x="160" y="193" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">101</text>
+  <rect x="430" y="175" width="60" height="25" fill="#1B2A4A" rx="3"/>
+  <text x="460" y="193" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">102</text>
+  <!-- Concrete curb -->
+  <rect x="0" y="375" width="800" height="8" fill="#B8B8B8"/>
+  <!-- Landscaping -->
+  <circle cx="350" cy="390" r="15" fill="#4CAF50" opacity="0.7"/>
+  <circle cx="345" cy="385" r="12" fill="#66BB6A" opacity="0.8"/>
+  <rect x="348" y="390" width="4" height="20" fill="#795548"/>
+  <circle cx="500" cy="388" r="12" fill="#4CAF50" opacity="0.7"/>
+  <circle cx="496" cy="384" r="10" fill="#66BB6A" opacity="0.8"/>
+  <rect x="498" y="388" width="4" height="18" fill="#795548"/>
+</svg>
