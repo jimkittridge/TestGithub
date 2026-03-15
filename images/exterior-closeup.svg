@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="534" viewBox="0 0 800 534">
+  <rect width="800" height="534" fill="#e8e0d8"/>
+  <rect x="100" y="120" width="600" height="280" rx="4" fill="#b5876a" opacity="0.3"/>
+  <rect x="150" y="200" width="120" height="180" rx="2" fill="#d4c5b5"/>
+  <rect x="300" y="200" width="80" height="150" rx="2" fill="#f0ebe6"/>
+  <rect x="420" y="200" width="80" height="150" rx="2" fill="#f0ebe6"/>
+  <rect x="540" y="200" width="120" height="180" rx="2" fill="#d4c5b5"/>
+  <rect x="100" y="100" width="600" height="30" fill="#8a7d6b"/>
+  <rect x="80" y="90" width="640" height="15" fill="#6b6158"/>
+  <rect x="200" y="420" width="400" height="10" fill="#555" opacity="0.2"/>
+  <text x="400" y="490" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#8a7d6b">Property Photo</text>
+</svg>
