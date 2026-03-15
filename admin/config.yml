@@ -1,0 +1,257 @@
+backend:
+  name: github
+  repo: jimkittridge/TestGithub
+  branch: claude/build-flexspace-site-dSsmL
+
+media_folder: public/images
+public_folder: /images
+
+site_url: https://jimkittridge.github.io/TestGithub
+
+collections:
+  # ─── Locations ───
+  - name: locations
+    label: Locations
+    label_singular: Location
+    folder: src/content/locations
+    create: true
+    format: frontmatter
+    slug: "{{slug}}"
+    summary: "{{name}}, {{state}}"
+    fields:
+      - { label: Name, name: name, widget: string, hint: "City name (e.g. Asheville)" }
+      - { label: State, name: state, widget: string, hint: "State abbreviation (e.g. NC)" }
+      - { label: Full Name, name: fullName, widget: string, hint: "City, State (e.g. Asheville, NC)" }
+      - { label: Slug, name: slug, widget: string, hint: "URL slug (e.g. asheville-nc)" }
+      - label: Availability
+        name: availability
+        widget: select
+        options: [available, full]
+      - { label: Available Units, name: availableUnits, widget: string, required: false, default: "" }
+      - { label: City Image, name: image, widget: image, required: false, default: "" }
+      - { label: Tagline, name: tagline, widget: string, required: false, default: "", hint: "Short tagline shown on city cards" }
+      - label: SEO
+        name: seo
+        widget: object
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+      - label: Specs
+        name: specs
+        widget: object
+        fields:
+          - { label: Ceiling Height, name: ceilingHeight, widget: string }
+          - { label: Power, name: power, widget: string }
+          - { label: Door Size, name: doorSize, widget: string }
+          - { label: HVAC, name: hvac, widget: string }
+          - { label: Suite Range, name: suiteRange, widget: string }
+      - { label: Map Embed URL, name: mapEmbedUrl, widget: string }
+      - label: Local Guide
+        name: localGuide
+        widget: object
+        fields:
+          - { label: Heading, name: heading, widget: string }
+          - { label: Nearby Highways, name: nearbyHighways, widget: list }
+          - { label: Airport, name: airport, widget: string }
+          - { label: Submarkets, name: submarkets, widget: list }
+          - { label: Demand Drivers, name: demandDrivers, widget: list }
+      - label: Tenant Profiles
+        name: tenantProfiles
+        widget: list
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+      - label: FAQ
+        name: faq
+        widget: list
+        fields:
+          - { label: Question, name: question, widget: string }
+          - { label: Answer, name: answer, widget: text }
+      - label: Schema / Address
+        name: schema
+        widget: object
+        fields:
+          - label: Address
+            name: address
+            widget: object
+            fields:
+              - { label: Street, name: street, widget: string }
+              - { label: City, name: city, widget: string }
+              - { label: State, name: state, widget: string }
+              - { label: Zip, name: zip, widget: string }
+          - label: Geo
+            name: geo
+            widget: object
+            fields:
+              - { label: Latitude, name: lat, widget: number, value_type: float }
+              - { label: Longitude, name: lng, widget: number, value_type: float }
+          - { label: Phone, name: phone, widget: string }
+      - { label: "Location Description (markdown)", name: body, widget: markdown, hint: "The 'Why this city' paragraphs shown on the location page" }
+
+  # ─── Homepage ───
+  - name: pages
+    label: Pages
+    files:
+      - label: Homepage
+        name: homepage
+        file: src/content/pages/homepage.md
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Headline, name: headline, widget: string }
+              - { label: Subheadline, name: subheadline, widget: string }
+          - label: Hero Bullets
+            name: bullets
+            widget: list
+            field: { label: Bullet, name: bullet, widget: string }
+          - label: City Section
+            name: citySection
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Subheading, name: subheading, widget: string }
+          - label: Use Cases
+            name: useCases
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Subheading, name: subheading, widget: string }
+              - label: Items
+                name: items
+                widget: list
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+                  - label: Icon
+                    name: icon
+                    widget: select
+                    options: [hammer, package, gear, beer, palette, briefcase]
+          - label: Highlights
+            name: highlights
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Subheading, name: subheading, widget: string }
+              - label: Items
+                name: items
+                widget: list
+                fields:
+                  - { label: Number/Value, name: number, widget: string }
+                  - { label: Label, name: label, widget: string }
+          - label: Process
+            name: process
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Subheading, name: subheading, widget: string }
+              - label: Steps
+                name: steps
+                widget: list
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+          - label: Lead Strip
+            name: leadStrip
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Subheading, name: subheading, widget: string }
+          - label: FAQ
+            name: faq
+            widget: list
+            fields:
+              - { label: Question, name: question, widget: string }
+              - { label: Answer, name: answer, widget: text }
+          - label: Final CTA
+            name: finalCta
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Subheading, name: subheading, widget: string }
+
+      # ─── About ───
+      - label: About
+        name: about
+        file: src/content/pages/about.md
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Headline, name: headline, widget: string }
+              - { label: Subheadline, name: subheadline, widget: string }
+          - { label: Hero Image, name: heroImage, widget: image, required: false }
+          - label: Values
+            name: values
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: CTA
+            name: cta
+            widget: object
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Subheading, name: subheading, widget: string }
+          - { label: "Story Content (markdown)", name: body, widget: markdown }
+
+      # ─── FAQ ───
+      - label: FAQ Page
+        name: faq
+        file: src/content/pages/faq.md
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Headline, name: headline, widget: string }
+              - { label: Subheadline, name: subheadline, widget: string }
+          - label: FAQ Items
+            name: items
+            widget: list
+            fields:
+              - { label: Question, name: question, widget: string }
+              - { label: Answer, name: answer, widget: text }
+
+      # ─── Contact ───
+      - label: Contact
+        name: contact
+        file: src/content/pages/contact.md
+        fields:
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Headline, name: headline, widget: string }
+              - { label: Subheadline, name: subheadline, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Phone (display), name: phone, widget: string }
+          - { label: Phone (href), name: phoneHref, widget: string }
+          - { label: Office Hours, name: officeHours, widget: string }
+          - { label: Tenant Access, name: tenantAccess, widget: string }
