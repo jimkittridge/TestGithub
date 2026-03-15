@@ -61,37 +61,56 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
 ---
 
 <BaseLayout title={city.seo.title} description={city.seo.description} schemaMarkup={schemaMarkup}>
+  <!-- Hero -->
   <Hero
     headline={`Small Bay Flex Space for Lease in ${city.fullName}`}
-    subheadline={`${city.specs.suiteRange} suites with drive-in doors, ${city.specs.ceilingHeight.toLowerCase()} ceilings, and 24/7 access for contractors, warehouse, and light industrial users.`}
+    subheadline={`${city.specs.suiteRange} suites with drive-in doors, ${city.specs.ceilingHeight.toLowerCase()} ceilings, HVAC, and 24/7 access for contractors, warehouse, and light industrial users.`}
     ctaButtons={[
-      { label: 'Request Current & Upcoming Openings', href: '#contact-form', variant: 'primary' },
+      { label: 'Get Availability & Pricing', href: '#contact-form', variant: 'primary' },
       { label: 'View Suite Features', href: '#specs', variant: 'white' },
     ]}
-  />
+  >
+    <div class="hero-trust">
+      <p class="hero-scarcity">Suites lease quickly in {city.name}. Tell us your size, use, and timing, and we'll send current matches and upcoming openings.</p>
+      <ul class="hero-bullets">
+        <li>Typical suites: {city.specs.suiteRange}</li>
+        <li>Best for contractors, e-commerce, and light industrial</li>
+        <li>Direct to leasing</li>
+        <li>Fast response</li>
+      </ul>
+    </div>
+  </Hero>
 
-  <AvailabilityBadge availability={city.availability} availableUnits={city.availableUnits} occupancyMessage={city.occupancyMessage} />
+  <AvailabilityBadge availability={city.availability} availableUnits={city.availableUnits} cityName={city.name} />
 
   <!-- Best For Section -->
   <section class="section best-for">
     <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">Best For</h2>
-      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">Who uses flex space in {city.name}?</p>
-      <div class="tenant-cards">
+      <h2 class="text-center" style="margin-bottom: var(--space-2);">A Good Fit for {city.name} Businesses That Need Practical Flex Space</h2>
+      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">These suites work well for operators who need functional small bay space with warehouse capability, flexible access, and room to grow.</p>
+      <div class="tenant-grid">
         {city.tenantProfiles.map(profile => (
           <div class="tenant-card">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="check-icon">
-              <path d="M4 10l4 4 8-8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>{profile}</span>
+            <h3 class="tenant-title">{profile.title}</h3>
+            <p class="tenant-desc">{profile.description}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
+  <!-- Suite Features -->
   <div id="specs">
-    <PropertySpecs specs={city.specs} />
+    <section class="section">
+      <div class="container">
+        <h2 class="text-center" style="margin-bottom: var(--space-2);">Suite Features</h2>
+        <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">Built for businesses that need efficient, usable industrial space without the footprint of a larger warehouse.</p>
+        <PropertySpecs specs={city.specs} />
+        <div class="text-center" style="margin-top: var(--space-8);">
+          <a href="#contact-form" class="btn btn-primary btn-lg">Get Availability & Pricing</a>
+        </div>
+      </div>
+    </section>
   </div>
 
   <!-- Why This Location -->
@@ -140,9 +159,16 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
     </div>
   </section>
 
-  <GoogleMap embedUrl={city.mapEmbedUrl} title={`GetFlexSpace ${city.fullName}`} />
+  <!-- Map -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: var(--space-2);">{city.name} Location</h2>
+      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">Conveniently positioned for businesses serving {city.name} and surrounding markets.</p>
+      <GoogleMap embedUrl={city.mapEmbedUrl} title={`GetFlexSpace ${city.fullName}`} />
+    </div>
+  </section>
 
-  <!-- Process Section -->
+  <!-- How It Works -->
   <section class="section process-section">
     <div class="container">
       <h2 class="text-center" style="margin-bottom: var(--space-2);">How It Works</h2>
@@ -150,35 +176,47 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
       <div class="process-grid">
         <div class="process-step">
           <span class="step-number">1</span>
-          <h3>Submit Requirements</h3>
-          <p>Tell us your size, use, and timing. We'll review your needs and identify matching suites.</p>
+          <h3>Tell Us What You Need</h3>
+          <p>Share your business type, size range, and move-in timing.</p>
         </div>
         <div class="process-step">
           <span class="step-number">2</span>
-          <h3>Get Matched</h3>
-          <p>We'll send you current and upcoming openings that fit your business. No obligation.</p>
+          <h3>We Match You to Suites</h3>
+          <p>We review your requirements and send current matches and likely upcoming openings.</p>
         </div>
         <div class="process-step">
           <span class="step-number">3</span>
-          <h3>Tour & Apply</h3>
-          <p>Walk the space, review the lease, and get your keys. Move-in can happen in as little as two weeks.</p>
+          <h3>Tour or Apply</h3>
+          <p>If there's a fit, we'll move to the next step quickly.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Mid-page CTA -->
+  <section class="section mid-cta">
+    <div class="container text-center">
+      <h2 style="margin-bottom: var(--space-3);">Need Flex Space in {city.name} in the Next 30–120 Days?</h2>
+      <p class="text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8); max-width: 560px; margin-left: auto; margin-right: auto;">
+        Tell us your size, use, and timing. We'll send matching current and upcoming suites.
+      </p>
+      <a href="#contact-form" class="btn btn-primary btn-lg">Get Availability & Pricing</a>
+    </div>
+  </section>
+
+  <!-- Form -->
   <ContactForm citySlug={city.slug} cityName={city.name} />
 
-  <!-- City-Specific FAQ -->
+  <!-- FAQ -->
   <section class="section" id="faq">
     <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">Frequently Asked Questions</h2>
+      <h2 class="text-center" style="margin-bottom: var(--space-2);">{city.name} Flex Space FAQ</h2>
       <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">Common questions about flex space in {city.name}.</p>
       <FAQAccordion items={city.faq} />
     </div>
   </section>
 
-  <!-- Cross-Links to Other Locations -->
+  <!-- Other Locations -->
   <section class="section cross-links">
     <div class="container text-center">
       <h2 style="margin-bottom: var(--space-2);">Other Locations</h2>
@@ -198,12 +236,12 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
   <!-- Final CTA -->
   <section class="section final-cta">
     <div class="container text-center">
-      <h2 class="text-white" style="margin-bottom: var(--space-4);">Ready to See a Space in {city.name}?</h2>
-      <p style="color: rgba(255,255,255,0.85); font-size: var(--font-size-lg); margin-bottom: var(--space-8); max-width: 500px; margin-left: auto; margin-right: auto;">
-        {city.occupancyMessage}
+      <h2 class="text-white" style="margin-bottom: var(--space-4);">Looking for Small Bay Flex Space in {city.fullName}?</h2>
+      <p style="color: rgba(255,255,255,0.85); font-size: var(--font-size-lg); margin-bottom: var(--space-8); max-width: 560px; margin-left: auto; margin-right: auto;">
+        If your business needs {city.specs.suiteRange} with warehouse functionality, tell us what you need and we'll send matching current and upcoming suites.
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center;">
-        <a href="#contact-form" class="btn btn-primary btn-lg">Request Current & Upcoming Openings</a>
+        <a href="#contact-form" class="btn btn-primary btn-lg">Get Availability & Pricing</a>
         <a href="tel:+18285551234" class="btn btn-white btn-lg">Call Leasing</a>
       </div>
     </div>
@@ -211,34 +249,87 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
 </BaseLayout>
 
 <style>
+  .hero-trust {
+    margin-top: var(--space-8);
+  }
+
+  .hero-scarcity {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: var(--font-size-base);
+    max-width: 560px;
+    margin: 0 auto var(--space-6);
+    line-height: 1.6;
+  }
+
+  .hero-bullets {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2) var(--space-6);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+
+  .hero-bullets li {
+    position: relative;
+    padding-left: var(--space-4);
+  }
+
+  .hero-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+
   .best-for {
     background: var(--light-grey);
   }
 
-  .tenant-cards {
-    max-width: 720px;
+  .tenant-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    max-width: 900px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
+  }
+
+  @media (min-width: 640px) {
+    .tenant-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .tenant-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   .tenant-card {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-3);
-    padding: var(--space-4) var(--space-6);
+    padding: var(--space-6);
     background: var(--white);
-    border-radius: var(--radius-md);
-    font-size: var(--font-size-base);
-    color: var(--navy);
-    line-height: 1.5;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
   }
 
-  .check-icon {
-    flex-shrink: 0;
-    color: #10B981;
-    margin-top: 2px;
+  .tenant-title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+    color: var(--navy);
+  }
+
+  .tenant-desc {
+    font-size: var(--font-size-sm);
+    color: var(--slate);
+    line-height: 1.6;
   }
 
   .why-content {
@@ -374,6 +465,10 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
     font-size: var(--font-size-sm);
     color: var(--slate);
     line-height: 1.6;
+  }
+
+  .mid-cta {
+    background: var(--light-grey);
   }
 
   .cross-links {

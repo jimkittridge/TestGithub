@@ -4,14 +4,13 @@ interface Props {
   cityName?: string;
 }
 
-const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const { citySlug = 'general', cityName } = Astro.props;
 const formTitle = cityName
-  ? `Request Openings in ${cityName}`
-  : 'Request Current & Upcoming Openings';
+  ? `Get ${cityName} Availability & Pricing`
+  : 'Get Availability & Pricing';
 const formSubtitle = cityName
-  ? `Tell us what you need and we'll match you with current or upcoming suites in ${cityName}.`
-  : 'Tell us what you need. We\'ll match you with current and upcoming openings across all locations.';
+  ? `Tell us what you need and we'll send matching current and upcoming suites in ${cityName}.`
+  : 'Tell us what you need. We\'ll send matching current and upcoming suites across all locations.';
 ---
 
 <section class="section form-section" id="contact-form">
@@ -81,7 +80,7 @@ const formSubtitle = cityName
           </div>
 
           <div class="form-group">
-            <label for="sq-footage" class="form-label">Needed Size Range</label>
+            <label for="sq-footage" class="form-label">Size Needed</label>
             <select id="sq-footage" name="sq-footage" class="form-select">
               <option value="">Select size...</option>
               <option value="1000">~1,000 sq ft</option>
@@ -106,15 +105,27 @@ const formSubtitle = cityName
               <option value="other">Other</option>
             </select>
           </div>
+
+          <div class="form-group form-group-full">
+            <label for="move-in-timing" class="form-label">Move-In Timing</label>
+            <select id="move-in-timing" name="move-in-timing" class="form-select">
+              <option value="">Select timing...</option>
+              <option value="immediately">Immediately</option>
+              <option value="30-60">30–60 Days</option>
+              <option value="60-120">60–120 Days</option>
+              <option value="120+">120+ Days</option>
+              <option value="exploring">Just Exploring</option>
+            </select>
+          </div>
         </div>
 
         <div class="form-actions">
           <button type="submit" class="btn btn-primary btn-lg">
-            See Openings & Rates
+            Get Availability & Pricing
           </button>
         </div>
 
-        <p class="form-microcopy">No obligation. We respond within one business day. Best for businesses seeking 1,000–3,000 SF.</p>
+        <p class="form-microcopy">No obligation. Direct to leasing. Best for businesses seeking 1,000–3,000 SF.</p>
       </form>
     </div>
   </div>
@@ -166,6 +177,10 @@ const formSubtitle = cityName
     .form-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 0 var(--space-4);
+    }
+
+    .form-group-full {
+      grid-column: 1 / -1;
     }
   }
 
