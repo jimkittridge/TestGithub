@@ -2,15 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { getEntry } from 'astro:content';
 
-const title = 'Contact Us | GetFlexSpace | Small Bay Flex Space Leasing';
-const description = 'Get in touch with GetFlexSpace to check availability, schedule a tour, or start your application for small bay industrial flex space in the Carolinas.';
+const page = await getEntry('pages', 'contact');
+const cms = page!.data;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={cms.seo.title} description={cms.seo.description}>
   <Hero
-    headline="Let's Find Your Space."
-    subheadline="Check availability, schedule a tour, or start your application. Our leasing team responds within one business day."
+    headline={cms.hero!.headline}
+    subheadline={cms.hero!.subheadline}
   />
 
   <ContactForm />
@@ -26,7 +27,7 @@ const description = 'Get in touch with GetFlexSpace to check availability, sched
             </svg>
           </div>
           <h3>Email</h3>
-          <a href="mailto:leasing@getflexspace.com">leasing@getflexspace.com</a>
+          <a href={`mailto:${cms.email}`}>{cms.email}</a>
         </div>
 
         <div class="contact-card">
@@ -36,7 +37,7 @@ const description = 'Get in touch with GetFlexSpace to check availability, sched
             </svg>
           </div>
           <h3>Phone</h3>
-          <a href="tel:+18285551234">(828) 555-1234</a>
+          <a href={`tel:${cms.phoneHref}`}>{cms.phone}</a>
         </div>
 
         <div class="contact-card">
@@ -47,8 +48,8 @@ const description = 'Get in touch with GetFlexSpace to check availability, sched
             </svg>
           </div>
           <h3>Office Hours</h3>
-          <p>Mon–Fri: 8am–6pm EST</p>
-          <p class="text-slate" style="font-size: var(--font-size-xs);">Tenant access: 24/7/365</p>
+          <p>{cms.officeHours}</p>
+          <p class="text-slate" style="font-size: var(--font-size-xs);">{cms.tenantAccess}</p>
         </div>
       </div>
     </div>

@@ -8,11 +8,23 @@ import GoogleMap from '../../components/GoogleMap.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import FAQAccordion from '../../components/FAQAccordion.astro';
 import WhyUsSection from '../../components/WhyUsSection.astro';
-import { getCityBySlug, cities } from '../../data/cities';
+import { getCollection, render } from 'astro:content';
 
-const city = getCityBySlug('asheville-nc')!;
+export async function getStaticPaths() {
+  const allLocations = await getCollection('locations');
+  return allLocations.map(location => ({
+    params: { slug: location.data.slug },
+    props: { location },
+  }));
+}
+
+const { location } = Astro.props;
+const city = location.data;
+const { Content } = await render(location);
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
-const otherCities = cities.filter(c => c.slug !== city.slug);
+
+const allLocations = await getCollection('locations');
+const otherCities = allLocations.filter(c => c.data.slug !== city.slug);
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -120,9 +132,7 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
     <div class="container">
       <div class="why-content">
         <h2>{city.localGuide.heading}</h2>
-        {city.localGuide.paragraphs.map(p => (
-          <p>{p}</p>
-        ))}
+        <div class="local-guide-prose"><Content /></div>
 
         <div class="location-details">
           <div class="detail-block">
@@ -225,9 +235,9 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
       <p class="text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">We also have flex space in these markets.</p>
       <div class="cross-link-cards">
         {otherCities.map(c => (
-          <a href={`${base}locations/${c.slug}/`} class="cross-link-card">
-            <h3>Flex Space in {c.fullName}</h3>
-            <p>{c.specs.suiteRange} suites</p>
+          <a href={`${base}locations/${c.data.slug}/`} class="cross-link-card">
+            <h3>Flex Space in {c.data.fullName}</h3>
+            <p>{c.data.specs.suiteRange} suites</p>
             <span class="card-arrow">View Details &rarr;</span>
           </a>
         ))}
@@ -316,7 +326,7 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
     margin-bottom: var(--space-6);
   }
 
-  .why-content > p {
+  .local-guide-prose :global(p) {
     color: var(--slate);
     font-size: var(--font-size-base);
     line-height: 1.8;

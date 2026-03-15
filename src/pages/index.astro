@@ -5,11 +5,13 @@ import HeroForm from '../components/HeroForm.astro';
 import CityCard from '../components/CityCard.astro';
 import WhyUsSection from '../components/WhyUsSection.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
-import { cities } from '../data/cities';
+import { getCollection, getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'homepage');
+const cms = page!.data;
+const allLocations = await getCollection('locations');
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
-const title = 'Small Bay Flex Space for Lease in NC & SC | GetFlexSpace';
-const description = 'Flexible 1,000–3,000 SF industrial and flex space suites in Asheville, Durham, and Columbia. Check availability, pricing, and upcoming openings.';
 
 const orgSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -17,72 +19,30 @@ const orgSchema = JSON.stringify({
   name: 'GetFlexSpace',
   url: `https://jimkittridge.github.io/TestGithub/`,
   logo: `https://jimkittridge.github.io/TestGithub/favicon.svg`,
-  description,
+  description: cms.seo.description,
   contactPoint: { '@type': 'ContactPoint', telephone: '+18285551234', contactType: 'leasing' },
-  areaServed: [
-    { '@type': 'City', name: 'Asheville', containedInPlace: { '@type': 'State', name: 'North Carolina' } },
-    { '@type': 'City', name: 'Durham', containedInPlace: { '@type': 'State', name: 'North Carolina' } },
-    { '@type': 'City', name: 'Columbia', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
-  ],
+  areaServed: allLocations.map(loc => ({
+    '@type': 'City',
+    name: loc.data.name,
+    containedInPlace: { '@type': 'State', name: loc.data.state === 'NC' ? 'North Carolina' : 'South Carolina' },
+  })),
 });
 
-const cityTaglines: Record<string, string> = {
-  'asheville-nc': 'Western NC\'s creative and craft hub. 18–24 ft ceilings, I-26 & I-40 access.',
-  'durham-nc': 'Heart of the Research Triangle. 400A 3-phase power, minutes from RTP & RDU.',
-  'columbia-sc': 'Crossroads of I-26, I-77 & I-20. Southeast distribution made easy.',
-};
-
-const useCases = [
-  { title: 'Contractors & Trades', desc: 'HVAC, plumbing, electrical—store your equipment, stage materials, and run your operation from a professional base.', icon: 'hammer' },
-  { title: 'E-Commerce & Fulfillment', desc: 'Pack, ship, and store inventory with drive-in access and room to grow your operation.', icon: 'package' },
-  { title: 'Light Manufacturing', desc: 'High ceilings and 3-phase power for assembly, fabrication, and production workflows.', icon: 'gear' },
-  { title: 'Brewery & Food Production', desc: 'Purpose-built bays with HVAC, plumbing access, and drive-in doors for delivery.', icon: 'beer' },
-  { title: 'Creative & Showroom', desc: 'Studios, workshops, and showrooms with the clear height and access your work demands.', icon: 'palette' },
-  { title: 'Service Businesses', desc: 'Combined warehouse and office space for service companies that need both.', icon: 'briefcase' },
-];
-
-const homeFaq = [
-  {
-    question: 'What size suites do you offer?',
-    answer: 'Our suites range from 1,000 to 3,000 square feet depending on location. We specialize in small bay flex space—the right size for businesses that need more room than an office but less than a full warehouse.',
-  },
-  {
-    question: 'What are the lease terms?',
-    answer: 'We offer 1-year, 2-year, and 3-year lease terms. Longer terms may qualify for reduced rates. Contact us to discuss what works best for your business.',
-  },
-  {
-    question: 'What utilities are included?',
-    answer: 'Water, sewer, and trash are typically included. Electricity is metered individually per suite. HVAC is included in all suites. Specific inclusions vary by location.',
-  },
-  {
-    question: 'Can I customize my suite?',
-    answer: 'Yes. Many tenants add partition walls, mezzanines, specialized lighting, or office space. We work with you on a build-out plan and can offer tenant improvement allowances on longer leases.',
-  },
-  {
-    question: 'How fast can I move in?',
-    answer: 'Once approved, you can have keys in as little as two weeks. Start by submitting your requirements and we\'ll guide you through the process.',
-  },
-  {
-    question: 'What if all suites are currently leased?',
-    answer: 'Our spaces fill up fast. Submit your information and we\'ll match you with current or upcoming openings—often before they hit the market.',
-  },
-];
+const useCases = cms.useCases!.items;
+const homeFaq = cms.faq!;
 ---
 
-<BaseLayout title={title} description={description} schemaMarkup={orgSchema}>
+<BaseLayout title={cms.seo.title} description={cms.seo.description} schemaMarkup={orgSchema}>
   <!-- Hero -->
   <Hero
-    headline="Small Bay Flex Space for Lease in the Carolinas"
-    subheadline="1,000–3,000 SF suites designed for contractors, e-commerce, light industrial, and growing businesses."
+    headline={cms.hero!.headline}
+    subheadline={cms.hero!.subheadline}
     layout="split"
     backgroundImage={`${base}images/hero-bg.svg`}
   >
     <Fragment slot="copy">
       <ul class="hero-bullets">
-        <li>3 markets: Asheville, Durham, Columbia</li>
-        <li>Drive-in doors, high ceilings, 24/7 access</li>
-        <li>Flexible 1–3 year lease terms</li>
-        <li>Response within 1 business day</li>
+        {cms.bullets?.map(b => <li>{b}</li>)}
       </ul>
     </Fragment>
     <HeroForm />
@@ -91,17 +51,17 @@ const homeFaq = [
   <!-- Three-Location Selector -->
   <section class="section">
     <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">Find Space by City</h2>
-      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10);">Three markets across the Carolinas. Each with suites built for real operators.</p>
+      <h2 class="text-center" style="margin-bottom: var(--space-2);">{cms.citySection!.heading}</h2>
+      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10);">{cms.citySection!.subheading}</p>
       <div class="grid grid-3">
-        {cities.map(city => (
+        {allLocations.map(loc => (
           <CityCard
-            name={city.name}
-            state={city.state}
-            slug={city.slug}
-            tagline={cityTaglines[city.slug] || ''}
-            availability={city.availability}
-            specs={`${city.specs.suiteRange} | ${city.specs.ceilingHeight}`}
+            name={loc.data.name}
+            state={loc.data.state}
+            slug={loc.data.slug}
+            tagline={loc.data.tagline || ''}
+            availability={loc.data.availability}
+            specs={`${loc.data.specs.suiteRange} | ${loc.data.specs.ceilingHeight}`}
           />
         ))}
       </div>
@@ -111,8 +71,8 @@ const homeFaq = [
   <!-- Who It's For -->
   <section class="section use-cases">
     <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">Who It's For</h2>
-      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10);">Our tenants run real businesses that need real space.</p>
+      <h2 class="text-center" style="margin-bottom: var(--space-2);">{cms.useCases!.heading}</h2>
+      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10);">{cms.useCases!.subheading}</p>
       <div class="use-case-grid">
         {useCases.map(uc => (
           <div class="use-case-card">
@@ -137,7 +97,7 @@ const homeFaq = [
               )}
             </div>
             <h3>{uc.title}</h3>
-            <p>{uc.desc}</p>
+            <p>{uc.description}</p>
           </div>
         ))}
       </div>
@@ -147,25 +107,15 @@ const homeFaq = [
   <!-- Property Highlights -->
   <section class="section property-highlights">
     <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">What You Get</h2>
-      <p class="text-center" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10); color: rgba(255, 255, 255, 0.85);">Brick-and-metal construction. Individual roll-up doors. Dedicated parking. Built for real operators.</p>
+      <h2 class="text-center" style="margin-bottom: var(--space-2);">{cms.highlights!.heading}</h2>
+      <p class="text-center" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10); color: rgba(255, 255, 255, 0.85);">{cms.highlights!.subheading}</p>
       <div class="highlights-grid">
-        <div class="highlight-item">
-          <div class="highlight-number">18–24 ft</div>
-          <div class="highlight-label">Clear ceiling height</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-number">12'–14'</div>
-          <div class="highlight-label">Grade-level drive-in doors</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-number">24/7</div>
-          <div class="highlight-label">Secure key card access</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-number">1–3 yr</div>
-          <div class="highlight-label">Flexible lease terms</div>
-        </div>
+        {cms.highlights!.items.map(item => (
+          <div class="highlight-item">
+            <div class="highlight-number">{item.number}</div>
+            <div class="highlight-label">{item.label}</div>
+          </div>
+        ))}
       </div>
       <div class="text-center" style="margin-top: var(--space-10);">
         <a href={`${base}locations/`} class="btn btn-primary btn-lg">Browse Locations</a>
@@ -179,24 +129,16 @@ const homeFaq = [
   <!-- How the Process Works -->
   <section class="section">
     <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">How It Works</h2>
-      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10);">Three steps to your new space.</p>
+      <h2 class="text-center" style="margin-bottom: var(--space-2);">{cms.process!.heading}</h2>
+      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10);">{cms.process!.subheading}</p>
       <div class="process-grid">
-        <div class="process-step">
-          <span class="step-number">1</span>
-          <h3>Submit Requirements</h3>
-          <p>Tell us your size, use, and timing. We'll review your needs and identify matching suites.</p>
-        </div>
-        <div class="process-step">
-          <span class="step-number">2</span>
-          <h3>Get Matched</h3>
-          <p>We'll send you current and upcoming openings that fit your business. No obligation.</p>
-        </div>
-        <div class="process-step">
-          <span class="step-number">3</span>
-          <h3>Tour & Apply</h3>
-          <p>Walk the space, review the lease, and get your keys. Move-in can happen in as little as two weeks.</p>
-        </div>
+        {cms.process!.steps.map((step, i) => (
+          <div class="process-step">
+            <span class="step-number">{i + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -204,9 +146,9 @@ const homeFaq = [
   <!-- Lead Capture Strip -->
   <section class="section lead-strip">
     <div class="container text-center">
-      <h2 style="margin-bottom: var(--space-3);">Tell Us What You Need</h2>
+      <h2 style="margin-bottom: var(--space-3);">{cms.leadStrip!.heading}</h2>
       <p class="text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8); max-width: 560px; margin-left: auto; margin-right: auto;">
-        We'll match you with current and upcoming openings across all three markets. No obligation.
+        {cms.leadStrip!.subheading}
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center;">
         <a href={`${base}contact/`} class="btn btn-primary btn-lg">Get Availability & Pricing</a>
@@ -230,9 +172,9 @@ const homeFaq = [
   <!-- Final CTA -->
   <section class="section final-cta">
     <div class="container text-center">
-      <h2 class="text-white" style="margin-bottom: var(--space-4);">Ready to Find Your Space?</h2>
+      <h2 class="text-white" style="margin-bottom: var(--space-4);">{cms.finalCta!.heading}</h2>
       <p style="color: rgba(255,255,255,0.85); font-size: var(--font-size-lg); margin-bottom: var(--space-8); max-width: 500px; margin-left: auto; margin-right: auto;">
-        Our small bays move fast. Get in touch today to check availability and pricing.
+        {cms.finalCta!.subheading}
       </p>
       <a href={`${base}contact/`} class="btn btn-primary btn-lg">Get Availability & Pricing</a>
     </div>
