@@ -1,11 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" fill="none">
-  <!-- Green stylized X -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 120" fill="none">
   <!-- Left stroke curving up-right -->
-  <path d="M30 105 C45 70, 55 50, 75 15" stroke="#4CD964" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <path d="M25 105 C40 70, 50 50, 70 15" stroke="#4CD964" stroke-width="18" stroke-linecap="round" fill="none"/>
   <!-- Right stroke curving down from top-left -->
-  <path d="M40 15 C55 50, 65 70, 80 105" stroke="#4CD964" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <path d="M35 15 C50 50, 60 70, 75 105" stroke="#4CD964" stroke-width="18" stroke-linecap="round" fill="none"/>
   <!-- Dark diagonal accent line -->
-  <path d="M42 90 L68 25" stroke="#1a2a1a" stroke-width="3" stroke-linecap="round"/>
-  <!-- GETFLEXSPACE text -->
-  <text x="110" y="78" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="48" fill="white" letter-spacing="3">GETFLEXSPACE</text>
+  <path d="M38 88 L62 25" stroke="#1B2A4A" stroke-width="3.5" stroke-linecap="round"/>
 </svg>
