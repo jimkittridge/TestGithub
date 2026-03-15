@@ -16,35 +16,26 @@ const rows = [
 ];
 ---
 
-<section class="section specs-section" style="background: var(--white);">
-  <div class="container">
-    <h2 class="text-center">Property Specifications</h2>
-    <div class="specs-table-wrapper">
-      <table class="specs-table">
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Specification</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(row => (
-            <tr>
-              <td class="spec-label">{row.label}</td>
-              <td class="spec-value">{row.value}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+<div class="specs-table-wrapper">
+  <table class="specs-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Specification</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map(row => (
+        <tr>
+          <td class="spec-label">{row.label}</td>
+          <td class="spec-value">{row.value}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
 <style>
-  .specs-section h2 {
-    margin-bottom: var(--space-8);
-  }
-
   .specs-table-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
