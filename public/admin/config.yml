@@ -2,8 +2,6 @@ backend:
   name: github
   repo: jimkittridge/TestGithub
   branch: claude/build-flexspace-site-dSsmL
-  base_url: https://decap-cms-oauth.YOUR_CF_SUBDOMAIN.workers.dev
-  auth_endpoint: /auth
 
 media_folder: public/images
 public_folder: /images
