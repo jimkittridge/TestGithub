@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
     <div class="footer-grid">
       <div class="footer-col">
         <a href={base} class="footer-logo" aria-label="GetFlexSpace Home">
-          <img src={`${base}images/logo.png`} alt="GetFlexSpace" height="30" />
+          <img src={`${base}images/logo.png`} alt="GetFlexSpace" class="footer-logo-img" />
         </a>
         <p class="footer-desc">Small bay flex space for lease in the Carolinas. 1,000–3,000 SF suites built for contractors, e-commerce, light industrial, and growing businesses.</p>
       </div>
@@ -89,6 +89,13 @@ const year = new Date().getFullYear();
 
   .footer-logo:hover {
     color: var(--orange);
+  }
+
+  .footer-logo-img {
+    height: 28px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
   }
 
   .footer-desc {
