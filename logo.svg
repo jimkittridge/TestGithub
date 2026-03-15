@@ -1,9 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
-  <!-- Stylized X with curved green strokes -->
-  <!-- Upper-left to lower-right curve -->
-  <path d="M25 20 Q60 55 95 100" stroke="#4ADE4A" stroke-width="18" stroke-linecap="round" fill="none"/>
-  <!-- Lower-left to upper-right curve -->
-  <path d="M25 100 Q45 70 60 60 Q75 50 95 20" stroke="#4ADE4A" stroke-width="18" stroke-linecap="round" fill="none"/>
-  <!-- Center line accent -->
-  <path d="M45 40 L75 80" stroke="#1a1a2e" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" fill="none">
+  <!-- Green stylized X -->
+  <!-- Left stroke curving up-right -->
+  <path d="M30 105 C45 70, 55 50, 75 15" stroke="#4CD964" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <!-- Right stroke curving down from top-left -->
+  <path d="M40 15 C55 50, 65 70, 80 105" stroke="#4CD964" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <!-- Dark diagonal accent line -->
+  <path d="M42 90 L68 25" stroke="#1a2a1a" stroke-width="3" stroke-linecap="round"/>
+  <!-- GETFLEXSPACE text -->
+  <text x="110" y="78" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="48" fill="white" letter-spacing="3">GETFLEXSPACE</text>
 </svg>
