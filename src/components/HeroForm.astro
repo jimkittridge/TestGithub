@@ -24,6 +24,7 @@ const { citySlug = 'general', cityName } = Astro.props;
         name="contact-name"
         class="hf-input"
         placeholder="Your Name *"
+        aria-label="Your name"
         required
       />
     </div>
@@ -34,6 +35,7 @@ const { citySlug = 'general', cityName } = Astro.props;
         name="business-name"
         class="hf-input"
         placeholder="Business Name *"
+        aria-label="Business name"
         required
       />
     </div>
@@ -45,6 +47,7 @@ const { citySlug = 'general', cityName } = Astro.props;
           name="email"
           class="hf-input"
           placeholder="Email *"
+          aria-label="Email address"
           required
         />
       </div>
@@ -54,6 +57,7 @@ const { citySlug = 'general', cityName } = Astro.props;
           name="phone"
           class="hf-input"
           placeholder="Phone *"
+          aria-label="Phone number"
           required
         />
       </div>
@@ -61,7 +65,7 @@ const { citySlug = 'general', cityName } = Astro.props;
 
     <div class="hf-row">
       <div class="hf-group">
-        <select name="sq-footage" class="hf-select">
+        <select name="sq-footage" class="hf-select" aria-label="Square footage needed">
           <option value="">Size needed...</option>
           <option value="1000">~1,000 SF</option>
           <option value="1500">~1,500 SF</option>
@@ -71,7 +75,7 @@ const { citySlug = 'general', cityName } = Astro.props;
         </select>
       </div>
       <div class="hf-group">
-        <select name="move-in-timing" class="hf-select">
+        <select name="move-in-timing" class="hf-select" aria-label="Move-in timing">
           <option value="">Move-in timing...</option>
           <option value="immediately">Immediately</option>
           <option value="30-60">30–60 Days</option>

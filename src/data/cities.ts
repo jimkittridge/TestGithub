@@ -109,7 +109,7 @@ export const cities: CityData[] = [
       },
       {
         question: 'How quickly can I get a response?',
-        answer: 'We aim to respond quickly to qualified inquiries.',
+        answer: 'We respond to all qualified inquiries within 1 business day, typically sooner.',
       },
       {
         question: 'Do you offer tours?',
@@ -180,7 +180,7 @@ export const cities: CityData[] = [
       },
       {
         question: 'How quickly can I get a response?',
-        answer: 'We aim to respond quickly to qualified inquiries.',
+        answer: 'We respond to all qualified inquiries within 1 business day, typically sooner.',
       },
       {
         question: 'Do you offer tours?',
@@ -250,7 +250,7 @@ export const cities: CityData[] = [
       },
       {
         question: 'How quickly can I get a response?',
-        answer: 'We aim to respond quickly to qualified inquiries.',
+        answer: 'We respond to all qualified inquiries within 1 business day, typically sooner.',
       },
       {
         question: 'Do you offer tours?',

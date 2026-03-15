@@ -244,7 +244,7 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
       </p>
       <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center;">
         <a href="#contact-form" class="btn btn-primary btn-lg">Get Availability & Pricing</a>
-        <a href="tel:+18285551234" class="btn btn-white btn-lg">Call Leasing</a>
+        <a href={`tel:${city.schema.phone}`} class="btn btn-white btn-lg">Call Leasing</a>
       </div>
     </div>
   </section>
@@ -478,7 +478,7 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
     display: block;
     padding: var(--space-6);
     background: var(--white);
-    border: 2px solid var(--light-grey);
+    border: 2px solid #E5E7EB;
     border-radius: var(--radius-lg);
     text-decoration: none;
     transition: all 0.2s ease;
