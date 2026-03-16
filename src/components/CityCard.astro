@@ -6,21 +6,24 @@ interface Props {
   tagline: string;
   availability: 'available' | 'full';
   specs?: string;
+  image?: string;
 }
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
-const { name, state, slug, tagline, availability, specs } = Astro.props;
+const { name, state, slug, tagline, availability, specs, image } = Astro.props;
 
-const cityImages: Record<string, string> = {
+const fallbackImages: Record<string, string> = {
   'asheville-nc': `${base}images/city-asheville.svg`,
   'durham-nc': `${base}images/city-durham.svg`,
   'columbia-sc': `${base}images/city-columbia.svg`,
 };
+
+const imgSrc = image ? `${base}${image.replace(/^\//, '')}` : fallbackImages[slug];
 ---
 
 <a href={`${base}locations/${slug}/`} class="city-card">
   <div class="card-visual">
-    <img src={cityImages[slug]} alt={`${name}, ${state} flex space location`} class="card-img" width="400" height="250" loading="lazy" />
+    <img src={imgSrc} alt={`${name}, ${state} flex space location`} class="card-img" width="400" height="250" loading="lazy" />
     <span class:list={['badge', availability === 'available' ? 'badge-available' : 'badge-full']}>
       {availability === 'available' ? 'Space Available' : 'Fully Leased'}
     </span>
