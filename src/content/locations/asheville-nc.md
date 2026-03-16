@@ -5,7 +5,7 @@ fullName: Asheville, NC
 slug: asheville-nc
 availability: full
 availableUnits: ''
-image: /images/ImageResource (1).jpeg
+image: /images/city-asheville-photo.jpeg
 tagline: Western NC's creative and craft hub. 18–24 ft ceilings, I-26 & I-40 access.
 seo:
   title: Flex Space for Lease in Asheville, NC | 1,000–3,000 SF | GetFlexSpace
