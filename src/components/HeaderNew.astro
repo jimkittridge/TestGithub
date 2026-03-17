@@ -1,0 +1,60 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<header class="sticky top-0 z-50 border-b border-black/8 bg-[#f7f5f1]/90 backdrop-blur-xl">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+    <a href={base} class="flex items-center gap-3 no-underline" aria-label="FlexSpace Home">
+      <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white shadow-sm">
+        <!-- Warehouse icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-black"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect width="12" height="12" x="6" y="10"/></svg>
+      </div>
+      <div>
+        <div class="text-sm font-semibold tracking-[0.16em] uppercase text-[#111]">FlexSpace</div>
+        <div class="text-xs text-black/50">Small-bay industrial in North Carolina and South Carolina</div>
+      </div>
+    </a>
+
+    <nav class="hidden items-center gap-8 text-sm text-black/68 md:flex">
+      <a href="#markets" class="transition hover:text-black no-underline text-black/68">Locations</a>
+      <a href="#use-cases" class="transition hover:text-black no-underline text-black/68">Use cases</a>
+      <a href="#why" class="transition hover:text-black no-underline text-black/68">Why FlexSpace</a>
+      <a href="#faq" class="transition hover:text-black no-underline text-black/68">FAQ</a>
+    </nav>
+
+    <div class="hidden items-center gap-3 md:flex">
+      <a href="tel:+18285551234" class="rounded-xl px-4 py-2 text-sm text-black/68 hover:bg-black/5 hover:text-black no-underline transition">
+        Call leasing
+      </a>
+      <a href={`${base}contact/`} class="rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-black/85 no-underline transition">
+        Get availability
+      </a>
+    </div>
+
+    <!-- Mobile menu -->
+    <details class="md:hidden relative">
+      <summary class="flex items-center justify-center w-11 h-11 text-black cursor-pointer list-none rounded-lg hover:bg-black/5" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </summary>
+      <nav class="absolute top-full right-0 mt-2 bg-white border border-black/10 rounded-2xl shadow-lg min-w-[220px] p-3 flex flex-col gap-1 z-50">
+        <a href="#markets" class="block px-4 py-3 text-sm text-black/70 hover:text-black hover:bg-black/5 rounded-xl no-underline">Locations</a>
+        <a href="#use-cases" class="block px-4 py-3 text-sm text-black/70 hover:text-black hover:bg-black/5 rounded-xl no-underline">Use cases</a>
+        <a href="#why" class="block px-4 py-3 text-sm text-black/70 hover:text-black hover:bg-black/5 rounded-xl no-underline">Why FlexSpace</a>
+        <a href="#faq" class="block px-4 py-3 text-sm text-black/70 hover:text-black hover:bg-black/5 rounded-xl no-underline">FAQ</a>
+        <hr class="border-black/10 my-1" />
+        <a href="tel:+18285551234" class="block px-4 py-3 text-sm text-black/70 hover:text-black hover:bg-black/5 rounded-xl no-underline">Call leasing</a>
+        <a href={`${base}contact/`} class="block px-4 py-3 text-sm font-medium text-white bg-black rounded-xl no-underline text-center">Get availability</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
