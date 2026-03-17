@@ -1,13 +1,6 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
-import HeroForm from '../../components/HeroForm.astro';
-import AvailabilityBadge from '../../components/AvailabilityBadge.astro';
-import PropertySpecs from '../../components/PropertySpecs.astro';
-import GoogleMap from '../../components/GoogleMap.astro';
-import ContactForm from '../../components/ContactForm.astro';
-import FAQAccordion from '../../components/FAQAccordion.astro';
-import WhyUsSection from '../../components/WhyUsSection.astro';
+import NewLayout from '../../layouts/NewLayout.astro';
+import LeadForm from '../../components/LeadForm.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -26,12 +19,14 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const allLocations = await getCollection('locations');
 const otherCities = allLocations.filter(c => c.data.slug !== city.slug);
 
+const isAvailable = city.availability === 'available';
+
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: `https://getflexspace.com/` },
-    { '@type': 'ListItem', position: 2, name: 'Locations', item: `https://getflexspace.com/locations/` },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://getflexspace.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://getflexspace.com/locations/' },
     { '@type': 'ListItem', position: 3, name: city.fullName },
   ],
 };
@@ -72,97 +67,224 @@ const faqSchema = {
 };
 
 const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqSchema]);
+
+/* Unsplash images per city */
+const heroImages: Record<string, string> = {
+  'durham-nc': 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2000&q=80',
+  'asheville-nc': 'https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=2000&q=80',
+  'columbia-sc': 'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=2000&q=80',
+};
+
+const warehouseImages: Record<string, string> = {
+  'durham-nc': 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1800&q=80',
+  'asheville-nc': 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1800&q=80',
+  'columbia-sc': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1800&q=80',
+};
+
+const heroImage = heroImages[city.slug] || heroImages['durham-nc'];
+const warehouseImage = warehouseImages[city.slug] || warehouseImages['durham-nc'];
+
+const specItems = [
+  ['Ceiling', city.specs.ceilingHeight],
+  ['Power', city.specs.power],
+  ['Door', city.specs.doorSize],
+  ['HVAC', city.specs.hvac],
+  ['Suites', city.specs.suiteRange],
+];
 ---
 
-<BaseLayout title={city.seo.title} description={city.seo.description} schemaMarkup={schemaMarkup}>
-  <!-- Hero -->
-  <Hero
-    headline={`Small Bay Flex Space for Lease in ${city.fullName}`}
-    subheadline={`${city.specs.suiteRange} suites with drive-in doors, ${city.specs.ceilingHeight.toLowerCase()} ceilings, HVAC, and 24/7 access.`}
-    layout="split"
-  >
-    <Fragment slot="copy">
-      <ul class="hero-bullets">
-        <li>Typical suites: {city.specs.suiteRange}</li>
-        <li>Ceilings: {city.specs.ceilingHeight}</li>
-        <li>Drive-in doors & 24/7 access</li>
-        <li>Response within 1 business day</li>
-      </ul>
-    </Fragment>
-    <HeroForm citySlug={city.slug} cityName={city.name} />
-  </Hero>
+<NewLayout title={city.seo.title} description={city.seo.description} schemaMarkup={schemaMarkup}>
 
-  <AvailabilityBadge availability={city.availability} availableUnits={city.availableUnits} cityName={city.name} />
+  <!-- ===== BREADCRUMB ===== -->
+  <div class="bg-[#f7f5f1] border-b border-black/5">
+    <div class="mx-auto max-w-7xl px-6 py-3 lg:px-8">
+      <nav class="flex items-center gap-2 text-sm text-black/45">
+        <a href={base} class="no-underline text-black/45 hover:text-black transition">Home</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        <a href={`${base}locations/`} class="no-underline text-black/45 hover:text-black transition">Locations</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        <span class="text-black/70 font-medium">{city.fullName}</span>
+      </nav>
+    </div>
+  </div>
 
-  <!-- Best For Section -->
-  <section class="section best-for">
-    <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">A Good Fit for {city.name} Businesses That Need Practical Flex Space</h2>
-      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">These suites work well for operators who need functional small bay space with warehouse capability, flexible access, and room to grow.</p>
-      <div class="tenant-grid">
-        {city.tenantProfiles.map(profile => (
-          <div class="tenant-card">
-            <h3 class="tenant-title">{profile.title}</h3>
-            <p class="tenant-desc">{profile.description}</p>
+  <!-- ===== HERO ===== -->
+  <section class="relative overflow-hidden bg-black text-white">
+    <div class="absolute inset-0">
+      <img src={heroImage} alt={`Flex warehouse space in ${city.fullName}`} class="h-full w-full object-cover" loading="eager" />
+      <div class="absolute inset-0 bg-black/60"></div>
+    </div>
+    <div class="relative mx-auto max-w-7xl px-6 pb-24 pt-14 lg:px-8 lg:pb-32 lg:pt-20">
+      <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div>
+          <div class="flex flex-wrap items-center gap-3 mb-6">
+            <span class:list={[
+              'rounded-full px-3 py-1 text-xs font-medium',
+              isAvailable
+                ? 'bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-400/30'
+                : 'bg-white/10 text-white/70 ring-1 ring-white/20'
+            ]}>
+              {isAvailable ? 'Available now' : 'Waitlist open'}
+            </span>
+            {city.availableUnits && (
+              <span class="text-sm text-white/60">{city.availableUnits}</span>
+            )}
+          </div>
+          <h1 class="text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl" style="color: white;">
+            Flex warehouse space in {city.fullName}
+          </h1>
+          <p class="mt-6 max-w-xl text-lg leading-8 text-white/75">
+            {city.tagline}
+          </p>
+          <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            {specItems.map(([label, value]) => (
+              <div class="rounded-2xl border border-white/10 bg-white/5 px-3 py-3">
+                <div class="text-[11px] uppercase tracking-[0.14em] text-white/40">{label}</div>
+                <div class="mt-1 text-sm font-medium text-white/90">{value}</div>
+              </div>
+            ))}
+          </div>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="#lead-form" class="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-medium text-black no-underline hover:bg-white/90 transition">
+              Get availability &amp; pricing
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href={`tel:${city.schema.phone}`} class="inline-flex items-center rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white no-underline hover:bg-white/15 transition">
+              Call leasing
+            </a>
+          </div>
+        </div>
+        <!-- Hero Lead Form -->
+        <div class="rounded-[28px] bg-white p-6 text-black shadow-[0_24px_80px_rgba(0,0,0,0.25)]">
+          <div class="text-sm uppercase tracking-[0.14em] text-black/45 mb-2">Get availability</div>
+          <div class="text-xl font-semibold tracking-[-0.02em] text-[#111] mb-1">
+            Interested in {city.name}?
+          </div>
+          <p class="text-sm text-black/55 mb-5">Tell us who you are and we'll respond within 1 business day.</p>
+          <LeadForm compact buttonLabel={`Get ${city.name} availability`} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED IMAGE ===== -->
+  <section class="py-16 lg:py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="overflow-hidden rounded-[34px] border border-black/10 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+        <div class="aspect-[16/7] overflow-hidden lg:aspect-[16/6]">
+          <img src={warehouseImage} alt={`Interior of flex warehouse space in ${city.fullName}`} class="h-full w-full object-cover" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BEST FOR / TENANT PROFILES ===== -->
+  <section class="bg-white/65 py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mb-10 max-w-3xl">
+        <div class="text-sm uppercase tracking-[0.16em] text-black/45">Who it's for</div>
+        <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+          A good fit for {city.name} businesses that need practical flex space.
+        </h2>
+        <p class="mt-4 text-lg leading-8 text-black/64">
+          These suites work well for operators who need functional small bay space with warehouse capability, flexible access, and room to grow.
+        </p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {city.tenantProfiles.map((profile: { title: string; description: string }) => (
+          <div class="rounded-[24px] border border-black/10 bg-white p-6 shadow-[0_10px_24px_rgba(0,0,0,0.03)]">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-[#fbfaf8] mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <div class="text-lg font-semibold tracking-[-0.01em] text-[#111]">{profile.title}</div>
+            <p class="mt-2 leading-7 text-black/62">{profile.description}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Property Features -->
-  <WhyUsSection />
-
-  <!-- Suite Features -->
-  <div id="specs">
-    <section class="section">
-      <div class="container">
-        <h2 class="text-center" style="margin-bottom: var(--space-2);">Suite Features</h2>
-        <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">Built for businesses that need efficient, usable industrial space without the footprint of a larger warehouse.</p>
-        <PropertySpecs specs={city.specs} />
-        <div class="text-center" style="margin-top: var(--space-8);">
-          <a href="#contact-form" class="btn btn-primary btn-lg">Get Availability & Pricing</a>
+  <!-- ===== SUITE SPECS ===== -->
+  <section id="specs" class="py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="rounded-[36px] border border-black/10 bg-white p-8 shadow-[0_18px_50px_rgba(0,0,0,0.05)] lg:p-10">
+        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <div class="text-sm uppercase tracking-[0.16em] text-black/45">Suite specs</div>
+            <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+              Built for businesses that need efficient, usable industrial space.
+            </h2>
+            <p class="mt-5 text-lg leading-8 text-black/64">
+              Hard specs up front so you can evaluate fit before filling out a form.
+            </p>
+            <a href="#lead-form" class="mt-6 inline-flex items-center gap-2 rounded-2xl bg-black px-6 py-3 text-sm font-medium text-white no-underline hover:bg-black/85 transition">
+              Get availability &amp; pricing
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {specItems.map(([label, value]) => (
+              <div class="rounded-[20px] border border-black/10 bg-[#fbfaf8] p-5">
+                <div class="text-xs uppercase tracking-[0.14em] text-black/42">{label}</div>
+                <div class="mt-2 text-xl font-semibold tracking-[-0.01em] text-[#111]">{value}</div>
+              </div>
+            ))}
+            <div class="rounded-[20px] border border-black/10 bg-[#fbfaf8] p-5">
+              <div class="text-xs uppercase tracking-[0.14em] text-black/42">Access</div>
+              <div class="mt-2 text-xl font-semibold tracking-[-0.01em] text-[#111]">24/7/365</div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
-  <!-- Why This Location -->
-  <section class="section why-location">
-    <div class="container">
-      <div class="why-content">
-        <h2>{city.localGuide.heading}</h2>
-        <div class="local-guide-prose"><Content /></div>
-
-        <div class="location-details">
-          <div class="detail-block">
-            <h4>Major Highway Access</h4>
-            <div class="tag-list">
-              {city.localGuide.nearbyHighways.map(hw => (
-                <span class="tag">{hw}</span>
+  <!-- ===== WHY THIS LOCATION ===== -->
+  <section class="bg-[#ece7df] py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
+        <div>
+          <div class="text-sm uppercase tracking-[0.16em] text-black/45">Local market</div>
+          <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+            {city.localGuide.heading}
+          </h2>
+          <div class="mt-6 prose-location">
+            <Content />
+          </div>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <!-- Highways -->
+          <div class="rounded-[24px] border border-black/10 bg-white p-5">
+            <div class="text-xs font-semibold uppercase tracking-[0.14em] text-black/45 mb-3">Major highway access</div>
+            <div class="flex flex-wrap gap-2">
+              {city.localGuide.nearbyHighways.map((hw: string) => (
+                <span class="rounded-full border border-black/10 bg-[#fbfaf8] px-3 py-1 text-sm font-medium text-[#111]">{hw}</span>
               ))}
             </div>
           </div>
-
-          <div class="detail-block">
-            <h4>Nearest Airport</h4>
-            <p>{city.localGuide.airport}</p>
+          <!-- Airport -->
+          <div class="rounded-[24px] border border-black/10 bg-white p-5">
+            <div class="text-xs font-semibold uppercase tracking-[0.14em] text-black/45 mb-3">Nearest airport</div>
+            <div class="text-sm font-medium text-[#111]">{city.localGuide.airport}</div>
           </div>
-
-          <div class="detail-block">
-            <h4>Submarkets Served</h4>
-            <div class="tag-list">
-              {city.localGuide.submarkets.map(sm => (
-                <span class="tag">{sm}</span>
+          <!-- Submarkets -->
+          <div class="rounded-[24px] border border-black/10 bg-white p-5">
+            <div class="text-xs font-semibold uppercase tracking-[0.14em] text-black/45 mb-3">Submarkets served</div>
+            <div class="flex flex-wrap gap-2">
+              {city.localGuide.submarkets.map((sm: string) => (
+                <span class="rounded-full border border-black/10 bg-[#fbfaf8] px-3 py-1 text-sm text-black/70">{sm}</span>
               ))}
             </div>
           </div>
-
-          <div class="detail-block">
-            <h4>Local Demand Drivers</h4>
-            <ul class="demand-list">
-              {city.localGuide.demandDrivers.map(dd => (
-                <li>{dd}</li>
+          <!-- Demand Drivers -->
+          <div class="rounded-[24px] border border-black/10 bg-white p-5">
+            <div class="text-xs font-semibold uppercase tracking-[0.14em] text-black/45 mb-3">Local demand drivers</div>
+            <ul class="space-y-2 list-none p-0 m-0">
+              {city.localGuide.demandDrivers.map((dd: string) => (
+                <li class="flex items-start gap-2 text-sm text-black/70">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-black/40"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                  {dd}
+                </li>
               ))}
             </ul>
           </div>
@@ -171,353 +293,152 @@ const schemaMarkup = JSON.stringify([breadcrumbSchema, localBusinessSchema, faqS
     </div>
   </section>
 
-  <!-- Map -->
-  <section class="section">
-    <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">{city.name} Location</h2>
-      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">Conveniently positioned for businesses serving {city.name} and surrounding markets.</p>
-      <GoogleMap embedUrl={city.mapEmbedUrl} title={`GetFlexSpace ${city.fullName}`} />
+  <!-- ===== MAP ===== -->
+  <section class="py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mb-8 max-w-2xl">
+        <div class="text-sm uppercase tracking-[0.16em] text-black/45">Location</div>
+        <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+          {city.name} area
+        </h2>
+        <p class="mt-4 text-lg leading-8 text-black/64">
+          Conveniently positioned for businesses serving {city.name} and surrounding markets.
+        </p>
+      </div>
+      <div class="overflow-hidden rounded-[28px] border border-black/10 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+        <iframe
+          src={city.mapEmbedUrl}
+          width="100%"
+          height="450"
+          style="border:0; display:block;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title={`Map of GetFlexSpace ${city.fullName}`}
+        ></iframe>
+      </div>
     </div>
   </section>
 
-  <!-- How It Works -->
-  <section class="section process-section">
-    <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">How It Works</h2>
-      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-10);">Three steps to your new space.</p>
-      <div class="process-grid">
-        <div class="process-step">
-          <span class="step-number">1</span>
-          <h3>Tell Us What You Need</h3>
-          <p>Share your business type, size range, and move-in timing.</p>
-        </div>
-        <div class="process-step">
-          <span class="step-number">2</span>
-          <h3>We Match You to Suites</h3>
-          <p>We review your requirements and send current matches and likely upcoming openings.</p>
-        </div>
-        <div class="process-step">
-          <span class="step-number">3</span>
-          <h3>Tour or Apply</h3>
-          <p>If there's a fit, we'll move to the next step quickly.</p>
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="bg-white/65 py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mb-10 max-w-2xl">
+        <div class="text-sm uppercase tracking-[0.16em] text-black/45">How it works</div>
+        <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+          From inquiry to move-in.
+        </h2>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        {[
+          { n: '01', t: 'Tell us what you need', d: 'Share your business type, size range, and move-in timing.' },
+          { n: '02', t: 'We match you to suites', d: 'We review your requirements and send current matches and upcoming openings.' },
+          { n: '03', t: 'Tour or apply', d: 'If there\'s a fit, we\'ll move to the next step quickly.' },
+        ].map(step => (
+          <div class="rounded-[24px] border border-black/10 bg-white p-6 shadow-[0_10px_24px_rgba(0,0,0,0.03)]">
+            <div class="text-sm font-medium text-black/40">{step.n}</div>
+            <div class="mt-3 text-xl font-semibold tracking-[-0.01em] text-[#111]">{step.t}</div>
+            <p class="mt-2 leading-7 text-black/62">{step.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LEAD FORM (main) ===== -->
+  <section id="lead-form" class="py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="rounded-[36px] border border-black/10 bg-[#f3eee7] p-8 shadow-[0_18px_50px_rgba(0,0,0,0.06)] lg:p-10">
+        <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+          <div>
+            <div class="text-sm uppercase tracking-[0.16em] text-black/45">Get availability and pricing</div>
+            <h2 class="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#111]">
+              Interested in flex space in {city.name}?
+            </h2>
+            <p class="mt-4 text-black/62">
+              Tell us who you are and how to reach you. We respond within 1 business day with availability, pricing, and next steps.
+            </p>
+          </div>
+          <div>
+            <LeadForm layout="inline" buttonLabel={`Get ${city.name} availability`} />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Mid-page CTA -->
-  <section class="section mid-cta">
-    <div class="container text-center">
-      <h2 style="margin-bottom: var(--space-3);">Need Flex Space in {city.name} in the Next 30–120 Days?</h2>
-      <p class="text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8); max-width: 560px; margin-left: auto; margin-right: auto;">
-        Tell us your size, use, and timing. We'll send matching current and upcoming suites.
-      </p>
-      <a href="#contact-form" class="btn btn-primary btn-lg">Get Availability & Pricing</a>
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="bg-white/65 py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mb-10 max-w-3xl">
+        <div class="text-sm uppercase tracking-[0.16em] text-black/45">FAQ</div>
+        <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+          {city.name} flex space FAQ
+        </h2>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-2">
+        {city.faq.map((item: { question: string; answer: string }) => (
+          <div class="rounded-[28px] border border-black/10 bg-white p-6 shadow-[0_10px_24px_rgba(0,0,0,0.03)]">
+            <div class="text-lg font-semibold tracking-[-0.01em] text-[#111]">{item.question}</div>
+            <div class="mt-3 leading-7 text-black/62">{item.answer}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <!-- Form -->
-  <ContactForm citySlug={city.slug} cityName={city.name} />
-
-  <!-- FAQ -->
-  <section class="section" id="faq">
-    <div class="container">
-      <h2 class="text-center" style="margin-bottom: var(--space-2);">{city.name} Flex Space FAQ</h2>
-      <p class="text-center text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">Common questions about flex space in {city.name}.</p>
-      <FAQAccordion items={city.faq} />
-    </div>
-  </section>
-
-  <!-- Other Locations -->
-  <section class="section cross-links">
-    <div class="container text-center">
-      <h2 style="margin-bottom: var(--space-2);">Other Locations</h2>
-      <p class="text-slate" style="font-size: var(--font-size-lg); margin-bottom: var(--space-8);">We also have flex space in these markets.</p>
-      <div class="cross-link-cards">
+  <!-- ===== OTHER LOCATIONS ===== -->
+  <section class="py-20 lg:py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mb-8">
+        <div class="text-sm uppercase tracking-[0.16em] text-black/45">Other markets</div>
+        <h2 class="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#111]">
+          Also available in {otherCities.map(c => c.data.fullName).join(' and ')}.
+        </h2>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
         {otherCities.map(c => (
-          <a href={`${base}locations/${c.data.slug}/`} class="cross-link-card">
-            <h3>Flex Space in {c.data.fullName}</h3>
-            <p>{c.data.specs.suiteRange} suites</p>
-            <span class="card-arrow">View Details &rarr;</span>
+          <a href={`${base}locations/${c.data.slug}/`} class="flex items-center justify-between rounded-[24px] border border-black/10 bg-white p-6 shadow-[0_10px_24px_rgba(0,0,0,0.03)] no-underline transition hover:shadow-[0_15px_40px_rgba(0,0,0,0.08)]">
+            <div>
+              <div class="text-xl font-semibold tracking-[-0.02em] text-[#111]">Flex space in {c.data.fullName}</div>
+              <div class="mt-1 text-sm text-black/55">{c.data.specs.suiteRange} suites</div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-black/40"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Final CTA -->
-  <section class="section final-cta">
-    <div class="container text-center">
-      <h2 class="text-white" style="margin-bottom: var(--space-4);">Looking for Small Bay Flex Space in {city.fullName}?</h2>
-      <p style="color: rgba(255,255,255,0.85); font-size: var(--font-size-lg); margin-bottom: var(--space-8); max-width: 560px; margin-left: auto; margin-right: auto;">
-        If your business needs {city.specs.suiteRange} with warehouse functionality, tell us what you need and we'll send matching current and upcoming suites.
-      </p>
-      <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center;">
-        <a href="#contact-form" class="btn btn-primary btn-lg">Get Availability & Pricing</a>
-        <a href={`tel:${city.schema.phone}`} class="btn btn-white btn-lg">Call Leasing</a>
+  <!-- ===== FINAL CTA ===== -->
+  <section class="pb-20 lg:pb-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="rounded-[36px] border border-black/10 bg-black p-8 text-white lg:p-10">
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <div class="text-sm uppercase tracking-[0.16em] text-white/45">Get started</div>
+            <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em] text-white" style="color: white; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+              Looking for flex industrial space in {city.fullName}?
+            </h2>
+            <p class="mt-4 max-w-2xl text-lg leading-8 text-white/72">
+              {city.specs.suiteRange} suites with {city.specs.ceilingHeight.toLowerCase()} ceilings, {city.specs.doorSize.toLowerCase()} doors, and 24/7 access. Submit your details for pricing and next steps.
+            </p>
+          </div>
+          <div class="w-full max-w-sm rounded-[28px] bg-white p-5 text-black">
+            <LeadForm compact buttonLabel="Get availability" />
+          </div>
+        </div>
       </div>
     </div>
   </section>
-</BaseLayout>
+
+</NewLayout>
 
 <style>
-  .best-for {
-    background: var(--light-grey);
-  }
-
-  .tenant-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 640px) {
-    .tenant-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .tenant-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .tenant-card {
-    padding: var(--space-6);
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid #E5E7EB;
-    border-left: 4px solid var(--orange);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-  }
-
-  .tenant-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-  }
-
-  .tenant-title {
-    font-size: var(--font-size-base);
-    font-weight: 700;
-    margin-bottom: var(--space-2);
-    color: var(--navy);
-  }
-
-  .tenant-desc {
-    font-size: var(--font-size-sm);
-    color: var(--slate);
-    line-height: 1.6;
-  }
-
-  .why-location {
-    background: var(--light-grey);
-  }
-
-  .why-content {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .why-content h2 {
-    margin-bottom: var(--space-6);
-  }
-
-  .local-guide-prose :global(p) {
-    color: var(--slate);
-    font-size: var(--font-size-base);
+  .prose-location :global(p) {
+    color: rgba(0, 0, 0, 0.62);
+    font-size: 1rem;
     line-height: 1.8;
-    margin-bottom: var(--space-4);
-  }
-
-  .location-details {
-    margin-top: var(--space-8);
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-  }
-
-  @media (min-width: 640px) {
-    .location-details {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .detail-block h4 {
-    font-size: var(--font-size-sm);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--navy);
-    margin-bottom: var(--space-3);
-  }
-
-  .detail-block p {
-    color: var(--slate);
-    font-size: var(--font-size-base);
-  }
-
-  .tag-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  .tag {
-    display: inline-block;
-    background: var(--white);
-    color: var(--navy);
-    font-size: var(--font-size-xs);
-    font-weight: 700;
-    padding: var(--space-1) var(--space-3);
-    border-radius: 100px;
-    border: 1px solid #E5E7EB;
-  }
-
-  .demand-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .demand-list li {
-    color: var(--slate);
-    font-size: var(--font-size-sm);
-    padding-left: var(--space-4);
-    position: relative;
-  }
-
-  .demand-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    width: 6px;
-    height: 6px;
-    background: var(--orange);
-    border-radius: 50%;
-  }
-
-  .process-section {
-    background: var(--light-grey);
-  }
-
-  .process-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 768px) {
-    .process-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .process-step {
-    text-align: center;
-    padding: var(--space-6);
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid #E5E7EB;
-  }
-
-  .step-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: var(--orange);
-    color: var(--white);
-    font-weight: 800;
-    font-size: var(--font-size-lg);
-    border-radius: 50%;
-    margin-bottom: var(--space-4);
-  }
-
-  .process-step h3 {
-    font-size: var(--font-size-base);
-    margin-bottom: var(--space-2);
-  }
-
-  .process-step p {
-    font-size: var(--font-size-sm);
-    color: var(--slate);
-    line-height: 1.6;
-  }
-
-  .mid-cta {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
-  }
-
-  .mid-cta h2 {
-    color: var(--white);
-  }
-
-  .mid-cta p {
-    color: rgba(255, 255, 255, 0.8) !important;
-  }
-
-  .cross-links {
-    background: var(--light-grey);
-  }
-
-  .cross-link-cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 640px) {
-    .cross-link-cards {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .cross-link-card {
-    display: block;
-    padding: var(--space-6);
-    background: var(--white);
-    border: 2px solid #E5E7EB;
-    border-radius: var(--radius-lg);
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .cross-link-card:hover {
-    border-color: var(--orange);
-    box-shadow: var(--shadow-md);
-  }
-
-  .cross-link-card h3 {
-    font-size: var(--font-size-base);
-    color: var(--navy);
-    margin-bottom: var(--space-1);
-  }
-
-  .cross-link-card p {
-    font-size: var(--font-size-sm);
-    color: var(--slate);
-    margin-bottom: var(--space-3);
-  }
-
-  .card-arrow {
-    font-size: var(--font-size-sm);
-    font-weight: 700;
-    color: var(--orange);
-  }
-
-  .final-cta {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+    margin-bottom: 1rem;
   }
 </style>

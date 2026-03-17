@@ -1,5 +1,7 @@
 ---
 import NewLayout from '../layouts/NewLayout.astro';
+import HeroNew from '../components/HeroNew.astro';
+import HeroFormNew from '../components/HeroFormNew.astro';
 import LeadForm from '../components/LeadForm.astro';
 import { getCollection, getEntry } from 'astro:content';
 
@@ -147,48 +149,20 @@ const faqItems = [
 
 <NewLayout title={cms.seo.title} description={cms.seo.description} schemaMarkup={orgSchema}>
 
-  <!-- ===== HERO ===== -->
-  <section class="relative overflow-hidden border-b border-black/8 bg-black text-white">
-    <div class="absolute inset-0">
-      <img
-        src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=2000&q=80"
-        alt="Industrial flex warehouse exterior with loading access"
-        class="h-full w-full object-cover"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-black/55"></div>
-    </div>
-    <div class="relative mx-auto max-w-7xl px-6 pb-32 pt-16 lg:px-8 lg:pb-40 lg:pt-24">
-      <div class="max-w-4xl">
-        <span class="inline-block rounded-full border border-white/15 bg-white/10 px-3 py-1 text-sm text-white">
-          Small-bay industrial space in NC &amp; SC
-        </span>
-        <h1 class="mt-8 max-w-4xl text-5xl font-semibold leading-[1.01] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl" style="color: white;">
-          Flex warehouse space for contractors, e-commerce, and light industrial users.
-        </h1>
-        <p class="mt-7 max-w-2xl text-lg leading-8 text-white/78 lg:text-xl">
-          Browse small-bay industrial space in Durham, Asheville, and Columbia. See current availability, review hard specs, and submit your details to get pricing and next steps.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-2.5">
-          {heroTags.map((tag) => (
-            <span class="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/88">
-              {tag}
-            </span>
-          ))}
-        </div>
-        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href={`${base}contact/`} class="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-medium text-black no-underline hover:bg-white/90 transition">
-            Get availability
-            <!-- Arrow right -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <a href="#markets" class="inline-flex items-center rounded-2xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white no-underline hover:bg-white/15 transition">
-            View locations
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ===== HERO (split layout with form) ===== -->
+  <HeroNew
+    headline={cms.hero!.headline}
+    subheadline={cms.hero!.subheadline}
+    layout="split"
+    backgroundImage="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=2000&q=80"
+  >
+    <Fragment slot="copy">
+      <ul class="hero-bullets">
+        {cms.bullets?.map((b: string) => <li>{b}</li>)}
+      </ul>
+    </Fragment>
+    <HeroFormNew />
+  </HeroNew>
 
   <!-- ===== FEATURED + FORM + STATS (overlapping hero) ===== -->
   <section class="relative z-10 -mt-20 lg:-mt-24">

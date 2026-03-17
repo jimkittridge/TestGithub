@@ -1,0 +1,171 @@
+---
+interface Props {
+  citySlug?: string;
+  cityName?: string;
+}
+
+const { citySlug = 'general', cityName } = Astro.props;
+---
+
+<div class="hfn-card">
+  <h3 class="hfn-title">Check Availability</h3>
+  <form
+    name={`hero-${citySlug}`}
+    method="POST"
+    data-netlify="true"
+    class="hfn-form"
+  >
+    <input type="hidden" name="form-name" value={`hero-${citySlug}`} />
+    <input type="hidden" name="city" value={citySlug} />
+
+    <div class="hfn-group">
+      <input type="text" name="contact-name" class="hfn-input" placeholder="Your Name *" aria-label="Your name" required />
+    </div>
+
+    <div class="hfn-group">
+      <input type="text" name="business-name" class="hfn-input" placeholder="Business Name *" aria-label="Business name" required />
+    </div>
+
+    <div class="hfn-row">
+      <div class="hfn-group">
+        <input type="email" name="email" class="hfn-input" placeholder="Email *" aria-label="Email address" required />
+      </div>
+      <div class="hfn-group">
+        <input type="tel" name="phone" class="hfn-input" placeholder="Phone *" aria-label="Phone number" required />
+      </div>
+    </div>
+
+    <div class="hfn-row">
+      <div class="hfn-group">
+        <select name="sq-footage" class="hfn-select" aria-label="Square footage needed">
+          <option value="">Size needed...</option>
+          <option value="1000">~1,000 SF</option>
+          <option value="1500">~1,500 SF</option>
+          <option value="2000">~2,000 SF</option>
+          <option value="2500">~2,500 SF</option>
+          <option value="3000">~3,000 SF</option>
+        </select>
+      </div>
+      <div class="hfn-group">
+        <select name="move-in-timing" class="hfn-select" aria-label="Move-in timing">
+          <option value="">Move-in timing...</option>
+          <option value="immediately">Immediately</option>
+          <option value="30-60">30–60 Days</option>
+          <option value="60-120">60–120 Days</option>
+          <option value="120+">120+ Days</option>
+          <option value="exploring">Just Exploring</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="hfn-submit">
+      Get Availability & Pricing
+    </button>
+
+    <p class="hfn-micro">No obligation. Response within 1 business day.</p>
+  </form>
+</div>
+
+<style>
+  .hfn-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 420px;
+    border-top: 3px solid #111;
+  }
+
+  .hfn-title {
+    color: #111;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+
+  .hfn-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hfn-group {
+    margin-bottom: 0.625rem;
+  }
+
+  .hfn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.625rem;
+  }
+
+  .hfn-row .hfn-group {
+    margin-bottom: 0.625rem;
+  }
+
+  .hfn-input,
+  .hfn-select {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.875rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 0.75rem;
+    background: #fbfaf8;
+    color: #111;
+    min-height: 42px;
+    transition: border-color 0.2s ease;
+  }
+
+  .hfn-input:focus,
+  .hfn-select:focus {
+    outline: none;
+    border-color: #111;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .hfn-input::placeholder {
+    color: rgba(0, 0, 0, 0.35);
+  }
+
+  .hfn-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2rem;
+  }
+
+  .hfn-submit {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1;
+    color: white;
+    background: #111;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    min-height: 48px;
+    margin-top: 0.25rem;
+  }
+
+  .hfn-submit:hover {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  .hfn-micro {
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.45);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+</style>
