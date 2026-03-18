@@ -102,6 +102,8 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Description, name: description, widget: text }
+          - { label: Hero Background Image, name: heroBackgroundImage, widget: image, required: false, hint: "Background image for the homepage hero section" }
+          - { label: Logo, name: logo, widget: image, required: false, hint: "Site logo shown in header and footer" }
           - label: Hero
             name: hero
             widget: object

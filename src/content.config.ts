@@ -67,6 +67,8 @@ const pages = defineCollection({
       subheadline: z.string().optional(),
     }).optional(),
     // Homepage fields
+    heroBackgroundImage: z.string().optional(),
+    logo: z.string().optional(),
     bullets: z.array(z.string()).optional(),
     citySection: z.object({
       heading: z.string(),

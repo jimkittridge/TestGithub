@@ -132,7 +132,7 @@ const faqItems = [
     headline={cms.hero!.headline}
     subheadline={cms.hero!.subheadline}
     layout="split"
-    backgroundImage="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=2000&q=80"
+    backgroundImage={cms.heroBackgroundImage || '/images/hero-bg.svg'}
   >
     <Fragment slot="copy">
       <ul class="hero-bullets">
@@ -159,7 +159,7 @@ const faqItems = [
   </HeroNew>
 
   <!-- ===== STATS + FEATURED DURHAM ===== -->
-  <section style="margin-top: 4%;">
+  <section style="margin-top: 4%; margin-bottom: 4%;">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
       <!-- Stats Row -->
