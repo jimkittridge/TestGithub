@@ -5,7 +5,7 @@ seo:
 heroBackgroundImage: /images/Durham Flex Space.png
 logo: /images/getflexspace.png
 hero:
-  headline: Small Bay Flex Space for Lease in the Carolinas
+  headline: Small Bay Flex Space for Lease in the Carolina
   subheadline: 1,000–3,000 SF suites designed for contractors, e-commerce, light industrial, and growing businesses.
 bullets:
   - '3 markets: Asheville, Durham, Columbia'
