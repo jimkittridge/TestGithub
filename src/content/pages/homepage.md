@@ -10,7 +10,7 @@ hero:
 bullets:
   - '3 markets: Asheville, Durham, Columbia'
   - Drive-in doors, high ceilings, 24/7 access
-  - Flexible 1–3 year lease terms
+  - Flexible 1 to 5 year lease terms
   - Response within 1 business day
 citySection:
   heading: Find Space by City
@@ -20,13 +20,13 @@ useCases:
   subheading: Our tenants run real businesses that need real space.
   items:
     - title: Contractors & Trades
-      description: HVAC, plumbing, electrical—store your equipment, stage materials, and run your operation from a professional base.
+      description: HVAC, plumbing, electrical & specialty contractors — store your equipment, stage materials, and run your operation from a professional base.
       icon: hammer
     - title: E-Commerce & Fulfillment
       description: Pack, ship, and store inventory with drive-in access and room to grow your operation.
       icon: package
     - title: Light Manufacturing
-      description: High ceilings and 3-phase power for assembly, fabrication, and production workflows.
+      description: Clean suites, high ceilings and power for assembly, fabrication, and production workflows.
       icon: gear
     - title: Brewery & Food Production
       description: Purpose-built bays with HVAC, plumbing access, and drive-in doors for delivery.
@@ -41,13 +41,13 @@ highlights:
   heading: What You Get
   subheading: Brick-and-metal construction. Individual roll-up doors. Dedicated parking. Built for real operators.
   items:
-    - number: 18–24 ft
+    - number: 14–18 ft
       label: Clear ceiling height
-    - number: 12'–14'
+    - number: 10'–14'
       label: Grade-level drive-in doors
     - number: 24/7
       label: Secure key card access
-    - number: 1–3 yr
+    - number: 1–5 yr
       label: Flexible lease terms
 process:
   heading: How It Works
@@ -66,15 +66,15 @@ faq:
   - question: What size suites do you offer?
     answer: Our suites range from 1,000 to 3,000 square feet depending on location. We specialize in small bay flex space—the right size for businesses that need more room than an office but less than a full warehouse.
   - question: What are the lease terms?
-    answer: We offer 1-year, 2-year, and 3-year lease terms. Longer terms may qualify for reduced rates. Contact us to discuss what works best for your business.
+    answer: We offer 1-year, 2-year, 3-year, and 5-year lease terms. Longer terms may qualify for reduced rates. Contact us to discuss what works best for your business.
   - question: What utilities are included?
-    answer: Water, sewer, and trash are typically included. Electricity is metered individually per suite. HVAC is included in all suites. Specific inclusions vary by location.
+    answer: Utilities are typically metered individually per suite. HVAC is included in some suites. Specific inclusions vary by location.
   - question: Can I customize my suite?
-    answer: Yes. Many tenants add partition walls, mezzanines, specialized lighting, or office space. We work with you on a build-out plan and can offer tenant improvement allowances on longer leases.
+    answer: Yes. Many tenants add epoxy floors, specialized lighting, racking, or accent walls.
   - question: How fast can I move in?
-    answer: Once approved, you can have keys in as little as two weeks. Start by submitting your requirements and we'll guide you through the process.
+    answer: Once approved, you can have keys in as little as one week. Start by submitting your requirements and we'll guide you through the process.
   - question: What if all suites are currently leased?
-    answer: Our spaces fill up fast. Submit your information and we'll match you with current or upcoming openings—often before they hit the market.
+    answer: Our spaces fill up fast but we often know of a unit that is coming available soon. Submit your information and we'll match you with current or upcoming openings—often before they hit the market.
 finalCta:
   heading: Ready to Find Your Space?
   subheading: Our small bays move fast. Get in touch today to check availability and pricing.
