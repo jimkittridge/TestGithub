@@ -44,6 +44,7 @@ const locations = defineCollection({
       power: z.string(),
       door: z.string(),
       lease: z.string(),
+      baseRent: z.string().optional().default(''),
     })).optional().default([]),
     faq: z.array(z.object({
       question: z.string(),

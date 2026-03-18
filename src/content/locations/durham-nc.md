@@ -53,6 +53,7 @@ suites:
     power: 400A 3-phase
     door: 14' × 14' drive-in
     lease: 1–3 years
+    baseRent: "$12.95 / SF NNN"
   - name: Additional Suite Type
     size: "1,500 SF"
     status: waitlist
@@ -61,6 +62,7 @@ suites:
     power: 200A power
     door: 12' drive-in
     lease: 1–3 years
+    baseRent: ""
 tenantProfiles:
   - title: Contractors & Trades
     description: Space for tools, materials, vehicles, and daily dispatch across the Triangle.
