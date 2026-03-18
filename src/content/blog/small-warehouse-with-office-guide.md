@@ -2,7 +2,7 @@
 title: 'Small Warehouse with Office: What to Look for When Leasing Flex Space'
 slug: small-warehouse-with-office-guide
 description: A guide for service businesses and operators looking to lease small warehouse space with office in NC and SC.
-date: 2026-03-05
+date: "2026-03-05"
 categories:
   - NC
   - SC
