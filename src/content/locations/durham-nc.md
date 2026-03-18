@@ -11,8 +11,8 @@ gallery:
   - /images/DJI_0194.JPG
   - /images/DSC00334.JPG
   - /images/DSC00318.JPG
-  - /images/exterior-angle.svg
-  - /images/exterior-closeup.svg
+  - /images/DJI_0210.JPG
+  - /images/IMG_9519.JPG
 tagline: Heart of the Research Triangle, minutes from RTP & RDU.
 seo:
   title: Flex Space for Lease in Durham, NC | 900–3,000 SF | GetFlexSpace
