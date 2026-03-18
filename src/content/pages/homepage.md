@@ -41,7 +41,7 @@ highlights:
   heading: What You Get
   subheading: Brick-and-metal construction. Individual roll-up doors. Dedicated parking. Built for real operators.
   items:
-    - number: 14–18 ft
+    - number: 14–20 ft
       label: Clear ceiling height
     - number: 10'–14'
       label: Grade-level drive-in doors
