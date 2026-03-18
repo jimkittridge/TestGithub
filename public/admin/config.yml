@@ -51,6 +51,7 @@ collections:
           - { label: Door Size, name: doorSize, widget: string }
           - { label: HVAC, name: hvac, widget: string }
           - { label: Suite Range, name: suiteRange, widget: string }
+          - { label: Lease Term, name: lease, widget: string, required: false, default: "1–3 years" }
       - { label: Map Embed URL, name: mapEmbedUrl, widget: string }
       - label: Local Guide
         name: localGuide
@@ -72,11 +73,7 @@ collections:
             widget: select
             options: [available, waitlist]
           - { label: Description, name: description, widget: text }
-          - { label: Ceiling Height, name: ceilingHeight, widget: string }
-          - { label: Power, name: power, widget: string }
-          - { label: Door, name: door, widget: string }
-          - { label: Lease, name: lease, widget: string }
-          - { label: Base Rent, name: baseRent, widget: string, required: false, default: "", hint: "e.g. '$12.95 / SF NNN' — leave blank for waitlist units to show 'Contact for current rate'" }
+          - { label: Base Rent, name: baseRent, widget: string, required: false, default: "", hint: "e.g. '$12.95 / SF NNN' — leave blank to show 'Contact for current rate'" }
       - label: Tenant Profiles
         name: tenantProfiles
         widget: list

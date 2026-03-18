@@ -23,6 +23,7 @@ specs:
   doorSize: 10' × 14' Drive-In
   hvac: HVAC in Office
   suiteRange: 1,000–3,000 sq ft
+  lease: 1–3 years
 mapEmbedUrl: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d104379.1!2d-82.6!3d35.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8859f36e2a989!2sAsheville%2C+NC!5e0!3m2!1sen!2sus!4v1
 localGuide:
   heading: Why Fletcher, NC (Asheville, NC)
@@ -49,26 +50,14 @@ suites:
     size: "1,000 SF"
     status: waitlist
     description: Compact flex space for small operators, storage, and light workspace needs.
-    ceilingHeight: 14–20 ft clear
-    power: 200A
-    door: 10' × 14' drive-in
-    lease: 1–3 years
   - name: Mid-Size Suite
     size: "2,000 SF"
     status: waitlist
     description: Room for equipment, inventory, and combined warehouse plus office operations.
-    ceilingHeight: 14–20 ft clear
-    power: 200A
-    door: 10' × 14' drive-in
-    lease: 1–3 years
   - name: Large Suite
     size: "3,000 SF"
     status: waitlist
     description: Full-size bay for contractors, fulfillment, and light manufacturing operations.
-    ceilingHeight: 14–20 ft clear
-    power: 200A
-    door: 10' × 14' drive-in
-    lease: 1–3 years
 tenantProfiles:
   - title: Contractors & Trades
     description: Space for tools, materials, vehicles, and daily dispatch.

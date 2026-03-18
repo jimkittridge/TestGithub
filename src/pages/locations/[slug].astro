@@ -314,10 +314,10 @@ const specItems = [
                 </p>
                 <div class="mt-6 grid grid-cols-2 gap-3">
                   {[
-                    ['Clear height', suite.ceilingHeight],
-                    ['Power', suite.power],
-                    ['Door', suite.door],
-                    ['Lease', suite.lease],
+                    ['Clear height', city.specs.ceilingHeight],
+                    ['Power', city.specs.power],
+                    ['Door', city.specs.doorSize],
+                    ['Lease', city.specs.lease],
                   ].map(([label, value]) => (
                     <div class="rounded-2xl border border-black/10 bg-[#fbfaf8] px-4 py-4">
                       <div class="text-xs uppercase tracking-[0.14em] text-black/42">{label}</div>

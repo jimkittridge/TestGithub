@@ -23,6 +23,7 @@ specs:
   doorSize: Drive In
   hvac: Office
   suiteRange: 2,000-4,000 SF
+  lease: 1–3 years
 mapEmbedUrl: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106042.4!2d-81.1!3d34.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f8a5b4!2sColumbia%2C+SC!5e0!3m2!1sen!2sus!4v1
 localGuide:
   heading: Why Columbia, SC
@@ -48,18 +49,10 @@ suites:
     size: "2,000 SF"
     status: waitlist
     description: Practical flex space for service businesses, storage, and daily operations.
-    ceilingHeight: 14–18 ft clear
-    power: 200A
-    door: Drive-in
-    lease: 1–3 years
   - name: Large Suite
     size: "4,000 SF"
     status: waitlist
     description: Full-size bay for contractors, distribution, and light manufacturing with room to grow.
-    ceilingHeight: 14–18 ft clear
-    power: 200A
-    door: Drive-in
-    lease: 1–3 years
 tenantProfiles:
   - title: Contractors & Trades
     description: Space for tools, materials, and daily dispatch across the Midlands.

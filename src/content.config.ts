@@ -22,6 +22,7 @@ const locations = defineCollection({
       doorSize: z.string(),
       hvac: z.string(),
       suiteRange: z.string(),
+      lease: z.string().optional().default('1–3 years'),
     }),
     mapEmbedUrl: z.string(),
     localGuide: z.object({
@@ -40,10 +41,6 @@ const locations = defineCollection({
       size: z.string(),
       status: z.enum(['available', 'waitlist']),
       description: z.string(),
-      ceilingHeight: z.string(),
-      power: z.string(),
-      door: z.string(),
-      lease: z.string(),
       baseRent: z.string().optional().default(''),
     })).optional().default([]),
     faq: z.array(z.object({

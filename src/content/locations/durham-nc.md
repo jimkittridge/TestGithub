@@ -23,6 +23,7 @@ specs:
   doorSize: 10'-14' Drive-In
   hvac: HVAC available in some warehouses
   suiteRange: 950–3,000 sq ft
+  lease: 1–5 years
 mapEmbedUrl: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103574.8!2d-78.9!3d35.99!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89ace46d3bdb!2sDurham%2C+NC!5e0!3m2!1sen!2sus!4v1
 localGuide:
   heading: Why Durham, NC
@@ -49,18 +50,11 @@ suites:
     size: 950 SF
     status: available
     description: Great fit for contractors, warehouse users, service businesses, and light industrial operations.
-    ceilingHeight: 14–20 ft clear
-    power: 200 Amps
-    door: Drive-in
-    lease: 1–5 years
+    baseRent: "$12.95 / SF NNN"
   - name: Additional Suite Type
     size: 1,500 SF
     status: waitlist
     description: Good for smaller operators that need storage, workspace, and flexible warehouse plus office use.
-    ceilingHeight: 18–20 ft clear
-    power: 200A power
-    door: 12' drive-in
-    lease: 1–3 years
 tenantProfiles:
   - title: Contractors & Trades
     description: Space for tools, materials, vehicles, and daily dispatch across the Triangle.
