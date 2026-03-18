@@ -8,9 +8,9 @@ availableUnits: 1 Unit Available – 950 sq ft
 image: /images/Durham Flex Space.png
 gallery:
   - /images/Durham Flex Space.png
-  - /images/exterior-front.svg
-  - /images/exterior-full.svg
-  - /images/exterior-wide.svg
+  - /images/DJI_0194.JPG
+  - /images/DSC00334.JPG
+  - /images/DSC00318.JPG
   - /images/exterior-angle.svg
   - /images/exterior-closeup.svg
 tagline: Heart of the Research Triangle, minutes from RTP & RDU.
