@@ -6,6 +6,13 @@ slug: durham-nc
 availability: available
 availableUnits: 1 Unit Available – 2,500 sq ft
 image: /images/Durham Flex Space.png
+gallery:
+  - /images/Durham Flex Space.png
+  - /images/exterior-front.svg
+  - /images/exterior-full.svg
+  - /images/exterior-wide.svg
+  - /images/exterior-angle.svg
+  - /images/exterior-closeup.svg
 tagline: Heart of the Research Triangle. 400A 3-phase power, minutes from RTP & RDU.
 seo:
   title: Flex Space for Lease in Durham, NC | 1,500–3,000 SF | GetFlexSpace

@@ -1,6 +1,10 @@
 ---
+import { getEntry } from 'astro:content';
+
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const currentPath = Astro.url.pathname;
+const homepage = await getEntry('pages', 'homepage');
+const logo = homepage?.data?.logo || `${base}images/logo.png`;
 const navLinks = [
   { href: base, label: 'Home' },
   { href: `${base}locations/`, label: 'Locations' },
@@ -13,7 +17,7 @@ const navLinks = [
 <header class="site-header">
   <div class="container header-inner">
     <a href={base} class="logo" aria-label="GetFlexSpace Home">
-      <img src={`${base}images/logo.png`} alt="GetFlexSpace" class="logo-img" />
+      <img src={logo} alt="GetFlexSpace" class="logo-img" />
     </a>
 
     <nav class="nav-desktop" aria-label="Main navigation">

@@ -6,6 +6,13 @@ slug: columbia-sc
 availability: full
 availableUnits: ''
 image: /images/06a56036-5971-45fb-9354-a60bc1354922 (1).jpeg
+gallery:
+  - /images/06a56036-5971-45fb-9354-a60bc1354922 (1).jpeg
+  - /images/exterior-front.svg
+  - /images/exterior-full.svg
+  - /images/exterior-wide.svg
+  - /images/exterior-angle.svg
+  - /images/exterior-closeup.svg
 tagline: Crossroads of I-26, I-77 & I-20. Southeast distribution made easy.
 seo:
   title: Flex Space for Lease in Columbia, SC | 1,000–2,500 SF | GetFlexSpace

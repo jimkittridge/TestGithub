@@ -1,6 +1,10 @@
 ---
+import { getEntry } from 'astro:content';
+
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const year = new Date().getFullYear();
+const homepage = await getEntry('pages', 'homepage');
+const logo = homepage?.data?.logo || `${base}images/logo.png`;
 ---
 
 <footer class="site-footer">
@@ -8,7 +12,7 @@ const year = new Date().getFullYear();
     <div class="footer-grid">
       <div class="footer-col">
         <a href={base} class="footer-logo" aria-label="GetFlexSpace Home">
-          <img src={`${base}images/logo.png`} alt="GetFlexSpace" class="footer-logo-img" />
+          <img src={logo} alt="GetFlexSpace" class="footer-logo-img" />
         </a>
         <p class="footer-desc">Small bay flex space for lease in the Carolinas. 1,000–3,000 SF suites built for contractors, e-commerce, light industrial, and growing businesses.</p>
       </div>

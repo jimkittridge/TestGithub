@@ -11,6 +11,7 @@ const locations = defineCollection({
     availability: z.enum(['available', 'full']),
     availableUnits: z.string().optional().default(''),
     image: z.string().optional().default(''),
+    gallery: z.array(z.string()).optional().default([]),
     seo: z.object({
       title: z.string(),
       description: z.string(),

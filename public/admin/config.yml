@@ -29,6 +29,12 @@ collections:
         options: [available, full]
       - { label: Available Units, name: availableUnits, widget: string, required: false, default: "" }
       - { label: City Image, name: image, widget: image, required: false, default: "" }
+      - label: Gallery
+        name: gallery
+        widget: list
+        field: { label: Image, name: image, widget: image }
+        required: false
+        hint: "Property photos shown in the gallery section on the location page"
       - { label: Tagline, name: tagline, widget: string, required: false, default: "", hint: "Short tagline shown on city cards" }
       - label: SEO
         name: seo
