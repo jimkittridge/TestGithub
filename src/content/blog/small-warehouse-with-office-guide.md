@@ -1,11 +1,14 @@
 ---
-title: "Small Warehouse with Office: What to Look for When Leasing Flex Space"
+title: 'Small Warehouse with Office: What to Look for When Leasing Flex Space'
 slug: small-warehouse-with-office-guide
-description: "A guide for service businesses and operators looking to lease small warehouse space with office in NC and SC."
-date: "2026-03-05"
+description: A guide for service businesses and operators looking to lease small warehouse space with office in NC and SC.
+date: 2026-03-05
 categories:
   - NC
   - SC
+image: /images/about-hero.svg
+imageAlt: ''
+author: ''
 ---
 
 For many service businesses, the ideal space isn't purely office or purely warehouse — it's both. A small warehouse with office gives you room for inventory, tools, and equipment alongside a front office, back office, or customer-facing area.
