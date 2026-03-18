@@ -46,7 +46,7 @@ suites:
     size: 2,000 SF
     status: available
     description: Practical flex space for service businesses, storage, and daily operations.
-    baseRent: $12/SF NNN
+    baseRent: $15/SF NNN
   - name: Double Suite
     size: 4,000 SF
     status: waitlist
