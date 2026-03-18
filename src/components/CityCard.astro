@@ -1,0 +1,133 @@
+---
+interface Props {
+  name: string;
+  state: string;
+  slug: string;
+  tagline: string;
+  availability: 'available' | 'full';
+  specs?: string;
+  image?: string;
+}
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const { name, state, slug, tagline, availability, specs, image } = Astro.props;
+
+const fallbackImages: Record<string, string> = {
+  'asheville-nc': `${base}images/city-asheville.svg`,
+  'durham-nc': `${base}images/city-durham.svg`,
+  'columbia-sc': `${base}images/city-columbia.svg`,
+};
+
+const imgSrc = image ? `${base}${image.replace(/^\//, '')}` : fallbackImages[slug];
+---
+
+<a href={`${base}locations/${slug}/`} class="city-card">
+  <div class="card-visual">
+    <img src={imgSrc} alt={`${name}, ${state} flex space location`} class="card-img" width="400" height="250" loading="lazy" />
+    <span class:list={['badge', availability === 'available' ? 'badge-available' : 'badge-full']}>
+      {availability === 'available' ? 'Space Available' : 'Fully Leased'}
+    </span>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">{name}, {state}</h3>
+    <p class="card-tagline">{tagline}</p>
+    {specs && <p class="card-specs">{specs}</p>}
+    <span class="card-cta">
+      View Details
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 3l5 5-5 5"/>
+      </svg>
+    </span>
+  </div>
+</a>
+
+<style>
+  .city-card {
+    display: block;
+    background: var(--white);
+    border: 2px solid var(--light-grey);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .city-card:hover {
+    border-color: var(--orange);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .card-visual {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 400 / 250;
+    object-fit: cover;
+  }
+
+  .badge {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    padding: var(--space-1) var(--space-3);
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-available {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10B981;
+  }
+
+  .badge-full {
+    background: rgba(245, 158, 11, 0.15);
+    color: #F59E0B;
+  }
+
+  .card-body {
+    padding: var(--space-6);
+  }
+
+  .card-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-2);
+    color: var(--navy);
+  }
+
+  .card-tagline {
+    font-size: var(--font-size-sm);
+    color: var(--slate);
+    margin-bottom: var(--space-2);
+    line-height: 1.5;
+  }
+
+  .card-specs {
+    font-size: var(--font-size-xs);
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--orange);
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    transition: gap 0.2s ease;
+  }
+
+  .city-card:hover .card-cta {
+    gap: var(--space-2);
+  }
+</style>

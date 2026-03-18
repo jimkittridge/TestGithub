@@ -1,0 +1,76 @@
+---
+interface Props {
+  heading: string;
+  paragraphs: string[];
+  nearbyHighways: string[];
+}
+
+const { heading, paragraphs, nearbyHighways } = Astro.props;
+---
+
+<section class="section local-guide">
+  <div class="container">
+    <div class="guide-content">
+      <h2>{heading}</h2>
+      {paragraphs.map(p => (
+        <p>{p}</p>
+      ))}
+      <div class="highways">
+        <span class="highways-label">Major Highway Access:</span>
+        <div class="highway-tags">
+          {nearbyHighways.map(hw => (
+            <span class="highway-tag">{hw}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .guide-content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .guide-content h2 {
+    margin-bottom: var(--space-6);
+  }
+
+  .guide-content p {
+    color: var(--slate);
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    margin-bottom: var(--space-4);
+  }
+
+  .highways {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .highways-label {
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    color: var(--navy);
+  }
+
+  .highway-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .highway-tag {
+    display: inline-block;
+    background: var(--light-grey);
+    color: var(--navy);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    padding: var(--space-1) var(--space-3);
+    border-radius: 100px;
+  }
+</style>

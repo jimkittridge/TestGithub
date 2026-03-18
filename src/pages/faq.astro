@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import { getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'faq');
+const cms = page!.data;
+const faqItems = cms.items!;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+});
+---
+
+<BaseLayout title={cms.seo.title} description={cms.seo.description} schemaMarkup={faqSchema}>
+  <Hero
+    headline={cms.hero!.headline}
+    subheadline={cms.hero!.subheadline}
+  />
+
+  <section class="section">
+    <div class="container">
+      <FAQAccordion items={faqItems} />
+
+      <div class="faq-cta text-center">
+        <p>Don't see your question? We're happy to help.</p>
+        <a href={`${base}contact/`} class="btn btn-primary btn-lg">Request Info</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .faq-cta {
+    margin-top: var(--space-10);
+  }
+
+  .faq-cta p {
+    color: var(--slate);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-4);
+  }
+</style>

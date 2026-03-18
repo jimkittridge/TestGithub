@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250">
+  <defs>
+    <linearGradient id="avl-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5B86C5"/>
+      <stop offset="100%" stop-color="#8BB8E0"/>
+    </linearGradient>
+    <linearGradient id="mountain1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4A7C59"/>
+      <stop offset="100%" stop-color="#5A8C69"/>
+    </linearGradient>
+    <linearGradient id="mountain2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3D6B4A"/>
+      <stop offset="100%" stop-color="#4E7C5B"/>
+    </linearGradient>
+  </defs>
+  <!-- Sky -->
+  <rect width="400" height="250" fill="url(#avl-sky)"/>
+  <!-- Blue Ridge Mountains layers -->
+  <path d="M0,130 Q50,70 100,95 Q150,55 200,85 Q250,50 300,80 Q350,60 400,90 L400,170 L0,170Z" fill="url(#mountain1)" opacity="0.5"/>
+  <path d="M0,150 Q60,100 120,120 Q180,85 240,115 Q300,90 360,110 Q380,100 400,115 L400,180 L0,180Z" fill="url(#mountain2)" opacity="0.6"/>
+  <path d="M0,165 Q80,135 150,150 Q220,130 280,148 Q340,135 400,145 L400,190 L0,190Z" fill="#2D5A3A" opacity="0.7"/>
+  <!-- Ground -->
+  <rect x="0" y="185" width="400" height="65" fill="#78909C"/>
+  <!-- Flex space building nestled in mountains -->
+  <rect x="50" y="130" width="300" height="58" fill="#C8B898" rx="2"/>
+  <rect x="45" y="125" width="310" height="8" fill="#37474F" rx="2"/>
+  <!-- Roll-up doors -->
+  <rect x="65" y="145" width="45" height="43" fill="#6B7C8C" rx="2"/>
+  <rect x="125" y="145" width="45" height="43" fill="#6B7C8C" rx="2"/>
+  <rect x="230" y="145" width="45" height="43" fill="#6B7C8C" rx="2"/>
+  <rect x="290" y="145" width="45" height="43" fill="#6B7C8C" rx="2"/>
+  <!-- Glass entry center -->
+  <rect x="185" y="148" width="30" height="40" fill="#90C8E0" opacity="0.85" rx="1"/>
+  <!-- Door lines -->
+  <g opacity="0.2">
+    <line x1="65" y1="155" x2="110" y2="155" stroke="#4A5568"/>
+    <line x1="65" y1="165" x2="110" y2="165" stroke="#4A5568"/>
+    <line x1="65" y1="175" x2="110" y2="175" stroke="#4A5568"/>
+    <line x1="125" y1="155" x2="170" y2="155" stroke="#4A5568"/>
+    <line x1="125" y1="165" x2="170" y2="165" stroke="#4A5568"/>
+    <line x1="125" y1="175" x2="170" y2="175" stroke="#4A5568"/>
+    <line x1="230" y1="155" x2="275" y2="155" stroke="#4A5568"/>
+    <line x1="230" y1="165" x2="275" y2="165" stroke="#4A5568"/>
+    <line x1="230" y1="175" x2="275" y2="175" stroke="#4A5568"/>
+    <line x1="290" y1="155" x2="335" y2="155" stroke="#4A5568"/>
+    <line x1="290" y1="165" x2="335" y2="165" stroke="#4A5568"/>
+    <line x1="290" y1="175" x2="335" y2="175" stroke="#4A5568"/>
+  </g>
+  <!-- Trees around building -->
+  <circle cx="40" cy="160" r="15" fill="#388E3C" opacity="0.8"/>
+  <circle cx="35" cy="155" r="12" fill="#4CAF50" opacity="0.7"/>
+  <rect cx="38" x="36" y="168" width="4" height="15" fill="#5D4037"/>
+  <circle cx="365" cy="158" r="14" fill="#388E3C" opacity="0.8"/>
+  <circle cx="360" cy="153" r="11" fill="#4CAF50" opacity="0.7"/>
+  <rect x="363" y="165" width="4" height="15" fill="#5D4037"/>
+  <!-- Parking -->
+  <rect x="80" y="200" width="2" height="25" fill="#A0A8B0"/>
+  <rect x="130" y="200" width="2" height="25" fill="#A0A8B0"/>
+  <rect x="270" y="200" width="2" height="25" fill="#A0A8B0"/>
+  <rect x="320" y="200" width="2" height="25" fill="#A0A8B0"/>
+  <!-- Label -->
+  <rect x="135" y="210" width="130" height="22" fill="#1B2A4A" rx="4" opacity="0.9"/>
+  <text x="200" y="226" font-family="Arial" font-size="12" fill="white" text-anchor="middle" font-weight="bold">ASHEVILLE, NC</text>
+</svg>

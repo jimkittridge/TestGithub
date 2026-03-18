@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600">
+  <defs>
+    <linearGradient id="h-sky" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#1B2A4A" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0F1A2E" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+  <!-- Base dark overlay -->
+  <rect width="1200" height="600" fill="url(#h-sky)"/>
+  <!-- Faint building silhouettes on right side -->
+  <g opacity="0.08">
+    <!-- Buildings cluster -->
+    <rect x="700" y="200" width="120" height="300" fill="white" rx="3"/>
+    <rect x="840" y="180" width="80" height="320" fill="white" rx="3"/>
+    <rect x="940" y="220" width="100" height="280" fill="white" rx="3"/>
+    <rect x="1060" y="250" width="90" height="250" fill="white" rx="3"/>
+    <!-- Roll-up doors -->
+    <rect x="720" y="350" width="40" height="60" fill="white"/>
+    <rect x="770" y="350" width="40" height="60" fill="white"/>
+    <rect x="860" y="340" width="40" height="60" fill="white"/>
+    <rect x="960" y="360" width="40" height="60" fill="white"/>
+    <rect x="1010" y="360" width="40" height="60" fill="white"/>
+    <rect x="1080" y="380" width="40" height="60" fill="white"/>
+  </g>
+  <!-- Subtle grid pattern -->
+  <g opacity="0.03">
+    <line x1="0" y1="100" x2="1200" y2="100" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="300" x2="1200" y2="300" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="400" x2="1200" y2="400" stroke="white" stroke-width="1"/>
+    <line x1="0" y1="500" x2="1200" y2="500" stroke="white" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="600" stroke="white" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="600" stroke="white" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="600" stroke="white" stroke-width="1"/>
+    <line x1="800" y1="0" x2="800" y2="600" stroke="white" stroke-width="1"/>
+    <line x1="1000" y1="0" x2="1000" y2="600" stroke="white" stroke-width="1"/>
+  </g>
+  <!-- Orange accent glow -->
+  <ellipse cx="200" cy="300" rx="300" ry="250" fill="#E8622A" opacity="0.04"/>
+</svg>

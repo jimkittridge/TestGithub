@@ -1,0 +1,463 @@
+---
+import NewLayout from '../layouts/NewLayout.astro';
+import HeroNew from '../components/HeroNew.astro';
+import HeroFormNew from '../components/HeroFormNew.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'homepage');
+const cms = page!.data;
+const allLocations = await getCollection('locations');
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const orgSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'GetFlexSpace',
+  url: 'https://getflexspace.com/',
+  logo: 'https://getflexspace.com/logo.svg',
+  description: cms.seo.description,
+  contactPoint: { '@type': 'ContactPoint', telephone: '+18285551234', contactType: 'leasing' },
+  areaServed: allLocations.map(loc => ({
+    '@type': 'City',
+    name: loc.data.name,
+    containedInPlace: { '@type': 'State', name: loc.data.state === 'NC' ? 'North Carolina' : 'South Carolina' },
+  })),
+});
+
+const stats = [
+  { label: 'Markets', value: '3' },
+  { label: 'Response time', value: '< 1 business day' },
+  { label: 'Typical suites', value: '1,000–3,000 SF' },
+  { label: 'Fast move-in', value: 'As fast as 2 weeks' },
+];
+
+const heroTags = ['3 locations', 'Small-bay industrial', 'NC + SC', 'Fast response'];
+
+const markets = allLocations.map(loc => ({
+  city: loc.data.name,
+  state: loc.data.state,
+  status: loc.data.availability === 'available' ? 'Available now' : 'Waitlist',
+  size: loc.data.specs.suiteRange,
+  detail: loc.data.tagline || '',
+  seo: loc.data.seo.description,
+  image: loc.data.image || '',
+  slug: loc.data.slug,
+}));
+
+// Featured location: first location with an available suite, or first location
+const featuredLocation = allLocations.find(loc => loc.data.availability === 'available') || allLocations[0];
+const featuredSuite = featuredLocation?.data.suites?.find(s => s.status === 'available') || featuredLocation?.data.suites?.[0];
+const featuredSpecs = featuredLocation?.data.specs;
+
+const useCases = [
+  {
+    icon: 'warehouse',
+    title: 'Warehouse space for inventory and operations',
+    text: 'Small-bay industrial space for equipment, product storage, materials, and day-to-day operations.',
+  },
+  {
+    icon: 'door',
+    title: 'Contractor and service business space',
+    text: 'A practical home base for trades, field teams, vans, tools, and material staging.',
+  },
+  {
+    icon: 'zap',
+    title: 'Light industrial and assembly space',
+    text: 'Space with real utility for light manufacturing, assembly, and warehouse-plus-office users.',
+  },
+  {
+    icon: 'building',
+    title: 'Showroom, office, and warehouse flex space',
+    text: 'A more polished front-of-house paired with a functional industrial back-of-house footprint.',
+  },
+];
+
+const reasons = [
+  {
+    icon: 'clock',
+    title: 'Live availability first',
+    text: 'Show active suites and current status before asking for a lead form submission.',
+  },
+  {
+    icon: 'shield',
+    title: 'Hard specs up front',
+    text: 'Clear height, power, access, loading, and suite size are all visible early in the page.',
+  },
+  {
+    icon: 'phone',
+    title: 'Shorter lead form',
+    text: 'Only ask for the information needed to start a leasing conversation: name, website or business name, and cell phone.',
+  },
+];
+
+const steps = [
+  {
+    number: '01',
+    title: 'Browse current flex warehouse availability',
+    text: 'Start with markets, suite sizes, and operational specs for each location.',
+  },
+  {
+    number: '02',
+    title: 'Submit your business details',
+    text: 'Share your name, website or business name, and cell phone so leasing can respond quickly.',
+  },
+  {
+    number: '03',
+    title: 'Tour the right industrial space',
+    text: 'Move straight into the suites that match your business, timing, and use case.',
+  },
+];
+
+const faqItems = [
+  {
+    q: 'What type of warehouse space do you offer?',
+    a: 'Flex industrial and small-bay warehouse space for contractors, e-commerce, service businesses, light manufacturing, and operators who need warehouse plus office functionality.',
+  },
+  {
+    q: 'Where do you have industrial space?',
+    a: 'We operate in Durham, Asheville, and Columbia, with live market status and market-specific availability for each location.',
+  },
+  {
+    q: 'How quickly can I move in?',
+    a: 'For available suites, move-in can happen in as fast as two weeks after lease signing, depending on your buildout needs.',
+  },
+  {
+    q: 'What are typical lease terms?',
+    a: 'We offer 1–3 year lease terms with flexible options depending on your business needs and the specific location.',
+  },
+];
+---
+
+<NewLayout title={cms.seo.title} description={cms.seo.description} schemaMarkup={orgSchema}>
+
+  <!-- ===== HERO (split layout with form) ===== -->
+  <HeroNew
+    headline={cms.hero!.headline}
+    subheadline={cms.hero!.subheadline}
+    layout="split"
+    backgroundImage={cms.heroBackgroundImage || '/images/hero-bg.svg'}
+    overlayColor={cms.heroOverlayColor || '#000000'}
+    overlayOpacity={cms.heroOverlayOpacity ?? 55}
+  >
+    <Fragment slot="copy">
+      <ul class="hero-bullets">
+        {cms.bullets?.map((b: string) => <li>{b}</li>)}
+      </ul>
+    </Fragment>
+    <HeroFormNew />
+    <Fragment slot="bottom">
+      <div class="mt-20 flex flex-wrap items-center justify-center gap-4">
+        {allLocations.map(loc => (
+          <a href={`${base}locations/${loc.data.slug}/`} class="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white no-underline transition hover:bg-white/20">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/50"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            {loc.data.name} Flex Space
+          </a>
+        ))}
+      </div>
+    </Fragment>
+  </HeroNew>
+
+  <!-- ===== STATS + FEATURED DURHAM ===== -->
+  <section class="py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+      <!-- Stats Row -->
+      <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {stats.map((stat) => (
+          <div class="rounded-2xl border border-black/10 bg-white p-4 shadow-[0_10px_24px_rgba(0,0,0,0.03)]">
+            <div class="text-xs uppercase tracking-[0.18em] text-black/42">{stat.label}</div>
+            <div class="mt-2 text-2xl font-semibold tracking-[-0.02em]">{stat.value}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Featured Location Card (auto-selects first location with availability) -->
+      {featuredLocation && featuredSuite && (
+        <div class="mt-8 rounded-[32px] border border-black/10 bg-white p-6 shadow-[0_18px_50px_rgba(0,0,0,0.08)] lg:p-8">
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="text-sm uppercase tracking-[0.16em] text-black/45">Featured availability</div>
+            <span class:list={[
+              'rounded-full px-3 py-1 text-xs font-medium',
+              featuredSuite.status === 'available'
+                ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200'
+                : 'bg-zinc-100 text-zinc-700 ring-1 ring-zinc-200'
+            ]}>
+              {featuredSuite.status === 'available' ? 'Available now' : 'Waitlist'}
+            </span>
+          </div>
+          <div class="mt-3 text-3xl font-semibold tracking-[-0.03em] text-black lg:text-[2rem]">
+            {featuredLocation.data.fullName} — {featuredSuite.size} flex warehouse space
+          </div>
+          <p class="mt-3 max-w-2xl text-black/66">
+            {featuredSuite.description}
+          </p>
+          <div class="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+            {[
+              ['Size', featuredSuite.size],
+              ['Clear height', featuredSpecs!.ceilingHeight],
+              ['Door', featuredSpecs!.doorSize],
+              ['Power', featuredSpecs!.power],
+              ['Lease', featuredSpecs!.lease],
+            ].map(([k, v]) => (
+              <div class="rounded-2xl border border-black/10 bg-[#fbfaf8] px-4 py-4">
+                <div class="text-xs uppercase tracking-[0.14em] text-black/42">{k}</div>
+                <div class="mt-1 text-sm font-medium text-black">{v}</div>
+              </div>
+            ))}
+          </div>
+          {featuredSuite.baseRent && (
+            <div class="mt-3 rounded-2xl border border-black/10 bg-[#fbfaf8] px-4 py-4 inline-block">
+              <div class="text-xs uppercase tracking-[0.14em] text-black/42">Base rent</div>
+              <div class="mt-1 text-sm font-medium text-black">{featuredSuite.baseRent}</div>
+            </div>
+          )}
+          <div class="mt-6 flex flex-wrap items-center gap-5 text-sm font-medium text-black/78">
+            <a href={`${base}locations/${featuredLocation.data.slug}/`} class="inline-flex items-center gap-2 hover:text-black no-underline text-black/78">
+              Rent Flex Space in {featuredLocation.data.name}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href={`${base}contact/`} class="hover:text-black no-underline text-black/78">Schedule a tour</a>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- ===== LOCATIONS ===== -->
+  <section id="markets" class="bg-white/65 py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <div class="text-sm uppercase tracking-[0.16em] text-black/45">Locations</div>
+          <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+            Warehouse space in Durham, Asheville, and Columbia.
+          </h2>
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-black/64">
+            Browse available flex industrial space across three markets in North Carolina and South Carolina.
+          </p>
+        </div>
+        <div class="text-sm text-black/58">
+          Three markets. Small, focused, easy to browse.
+        </div>
+      </div>
+      <div class="grid gap-6 lg:grid-cols-3">
+        {markets.map((item) => (
+          <a href={`${base}locations/${item.slug}/`} class="block overflow-hidden rounded-[30px] border border-black/10 bg-white shadow-[0_15px_40px_rgba(0,0,0,0.05)] no-underline transition hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img
+                src={item.image}
+                alt={`${item.city} warehouse and flex industrial property`}
+                class="h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-2xl font-semibold tracking-[-0.02em] text-[#111]">{item.city}, {item.state}</div>
+                  <div class="mt-2 text-black/52">{item.size}</div>
+                </div>
+                <span class:list={[
+                  'rounded-full px-3 py-1 text-xs font-medium shrink-0',
+                  item.status.toLowerCase().includes('available')
+                    ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200'
+                    : 'bg-zinc-100 text-zinc-700 ring-1 ring-zinc-200'
+                ]}>
+                  {item.status}
+                </span>
+              </div>
+              <p class="mt-5 leading-7 text-black/66">{item.detail}</p>
+              <p class="mt-3 text-sm leading-6 text-black/55">{item.seo}</p>
+              <div class="mt-7 flex items-center justify-between rounded-2xl border border-black/10 bg-[#fbfaf8] px-4 py-3 text-sm text-black/70">
+                <span>Rent Flex Space in {item.city}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== USE CASES ===== -->
+  <section id="use-cases" class="py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div class="overflow-hidden rounded-[34px] border border-black/10 bg-white shadow-[0_18px_50px_rgba(0,0,0,0.05)]">
+          <div class="aspect-[5/4] overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1600&q=80"
+              alt="Warehouse interior with shelving, inventory, and light industrial operations"
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div>
+          <div class="text-sm uppercase tracking-[0.16em] text-black/45">Use cases</div>
+          <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+            Small-bay industrial space built for real operating needs.
+          </h2>
+          <p class="mt-5 max-w-2xl text-lg leading-8 text-black/64">
+            Flex space designed for contractors, e-commerce operators, light manufacturers, and service businesses that need a functional warehouse footprint.
+          </p>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            {useCases.map((item) => (
+              <div class="rounded-[24px] border border-black/10 bg-white p-5 shadow-[0_10px_24px_rgba(0,0,0,0.03)]">
+                <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-[#fbfaf8]">
+                  {item.icon === 'warehouse' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect width="12" height="12" x="6" y="10"/></svg>
+                  )}
+                  {item.icon === 'door' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"/><path d="M2 20h20"/><path d="M14 12v.01"/></svg>
+                  )}
+                  {item.icon === 'zap' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+                  )}
+                  {item.icon === 'building' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+                  )}
+                </div>
+                <div class="mt-4 text-lg font-semibold tracking-[-0.01em] text-[#111]">{item.title}</div>
+                <p class="mt-2 leading-7 text-black/62">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY FLEXSPACE ===== -->
+  <section id="why" class="bg-[#ece7df] py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="rounded-[36px] border border-black/10 bg-white p-8 shadow-[0_18px_50px_rgba(0,0,0,0.05)] lg:p-10">
+        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <div class="text-sm uppercase tracking-[0.16em] text-black/45">Why FlexSpace</div>
+            <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+              Designed to get you into the right space, faster.
+            </h2>
+            <p class="mt-5 text-lg leading-8 text-black/64">
+              Live availability, clear specs, and a short form that gets you a real response — not a drip campaign.
+            </p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-3">
+            {reasons.map((feature) => (
+              <div class="rounded-[24px] border border-black/10 bg-[#fbfaf8] p-5">
+                {feature.icon === 'clock' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16.5 12"/></svg>
+                )}
+                {feature.icon === 'shield' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                )}
+                {feature.icon === 'phone' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                )}
+                <div class="mt-4 text-lg font-semibold tracking-[-0.01em] text-[#111]">{feature.title}</div>
+                <p class="mt-2 leading-7 text-black/60">{feature.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS + FORM ===== -->
+  <section class="py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-[0.88fr_1.12fr]">
+        <div>
+          <div class="text-sm uppercase tracking-[0.16em] text-black/45">How it works</div>
+          <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+            From search to signed lease, with less noise.
+          </h2>
+          <p class="mt-5 text-lg leading-8 text-black/64">
+            Browse, compare, submit a short form, and move toward a tour.
+          </p>
+          <div class="mt-8 space-y-4">
+            {steps.map((step) => (
+              <div class="rounded-[24px] border border-black/10 bg-white p-5 shadow-[0_10px_24px_rgba(0,0,0,0.03)]">
+                <div class="text-sm font-medium text-black/46">{step.number}</div>
+                <div class="mt-2 text-xl font-semibold tracking-[-0.01em] text-[#111]">{step.title}</div>
+                <div class="mt-2 text-black/62">{step.text}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="rounded-[34px] border border-black/10 bg-white shadow-[0_15px_40px_rgba(0,0,0,0.05)]">
+          <div class="p-7 lg:p-8">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <div class="text-sm uppercase tracking-[0.16em] text-black/45">Get availability and pricing</div>
+                <div class="mt-2 text-3xl font-semibold tracking-[-0.03em] text-[#111]">Tell us who you are and how to reach you.</div>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-black"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <p class="mt-4 max-w-xl text-black/62">
+              This lead form is intentionally minimal to improve conversions. It asks for name, website or business name, and cell phone number only.
+            </p>
+            <div class="mt-8">
+              <LeadForm />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="bg-white/65 py-20 lg:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mb-10 max-w-3xl">
+        <div class="text-sm uppercase tracking-[0.16em] text-black/45">FAQ</div>
+        <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+          Frequently asked questions about flex warehouse space.
+        </h2>
+        <p class="mt-4 text-lg leading-8 text-black/64">
+          Common questions about our flex industrial space, lease terms, and availability.
+        </p>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-2">
+        {faqItems.map((faq) => (
+          <div class="rounded-[28px] border border-black/10 bg-white p-6 shadow-[0_10px_24px_rgba(0,0,0,0.03)]">
+            <div class="text-lg font-semibold tracking-[-0.01em] text-[#111]">{faq.q}</div>
+            <div class="mt-3 leading-7 text-black/62">{faq.a}</div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <a href={`${base}faq/`} class="inline-flex items-center gap-2 rounded-2xl border border-black/10 bg-white px-6 py-3 text-sm font-medium text-black/78 no-underline hover:text-black hover:bg-black/5 transition">
+          View all FAQ
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="py-20 lg:py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="rounded-[36px] border border-black/10 bg-black p-8 text-white lg:p-10">
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <div class="text-sm uppercase tracking-[0.16em] text-white/45">Get started</div>
+            <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em] text-white" style="color: white; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
+              Need flex industrial space in NC or SC?
+            </h2>
+            <p class="mt-4 max-w-3xl text-lg leading-8 text-white/72">
+              Submit your name, website or business name, and cell phone number. We will follow up with current availability, pricing, and next steps.
+            </p>
+          </div>
+          <div class="w-full max-w-sm rounded-[28px] bg-white p-5 text-black">
+            <LeadForm compact />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</NewLayout>
