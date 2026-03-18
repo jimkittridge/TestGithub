@@ -73,7 +73,12 @@ collections:
             widget: select
             options: [available, waitlist]
           - { label: Description, name: description, widget: text }
-          - { label: Base Rent, name: baseRent, widget: string, required: false, default: "", hint: "e.g. '$12.95 / SF NNN' — leave blank to show 'Contact for current rate'" }
+          - label: Base Rent
+            name: baseRent
+            widget: string
+            required: false
+            default: ""
+            hint: "e.g. '$12.95 / SF NNN' — leave blank to show 'Contact for current rate'"
       - label: Tenant Profiles
         name: tenantProfiles
         widget: list
