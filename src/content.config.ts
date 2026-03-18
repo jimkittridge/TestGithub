@@ -159,4 +159,18 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { locations, pages };
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    description: z.string(),
+    date: z.string(),
+    categories: z.array(z.string()),
+    image: z.string().optional().default(''),
+    imageAlt: z.string().optional().default(''),
+    author: z.string().optional().default('GetFlexSpace'),
+  }),
+});
+
+export const collections = { locations, pages, blog };

@@ -1,0 +1,156 @@
+---
+import { getCollection } from 'astro:content';
+import NewLayout from '../../../../layouts/NewLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+function slugify(str: string) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  function _slugify(str: string) {
+    return str.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  }
+
+  const allPosts = await getCollection('blog');
+  const sorted = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+  // Collect all unique categories
+  const allCategories = [...new Set(sorted.flatMap(p => p.data.categories))].sort();
+
+  // Generate paginated paths for each category
+  return allCategories.flatMap(cat => {
+    const filtered = sorted.filter(p => p.data.categories.includes(cat));
+    return paginate(filtered, {
+      params: { category: _slugify(cat) },
+      pageSize: 12,
+      props: { categoryName: cat, allCategories },
+    });
+  });
+}
+
+const { page, categoryName, allCategories } = Astro.props;
+const { category } = Astro.params;
+const posts = page.data;
+const currentPage = page.currentPage;
+const totalPages = page.lastPage;
+---
+
+<NewLayout
+  title={currentPage === 1 ? `${categoryName} Flex Space & Warehouse Blog | GetFlexSpace` : `${categoryName} Blog – Page ${currentPage} | GetFlexSpace`}
+  description={`Insights on flex space, small warehouse, and contractor bay space in ${categoryName}. Tips for contractors, service businesses, and light industrial users.`}
+>
+  <!-- Breadcrumb -->
+  <div class="bg-[#f7f5f1] border-b border-black/5">
+    <div class="mx-auto max-w-7xl px-6 py-3 lg:px-8">
+      <nav class="flex items-center gap-2 text-sm text-black/45">
+        <a href={base} class="no-underline text-black/45 hover:text-black transition">Home</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        <a href={`${base}blog/`} class="no-underline text-black/45 hover:text-black transition">Blog</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        <span class="text-black/70 font-medium">{categoryName}</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <section class="pt-14 pb-10 lg:pt-20 lg:pb-14">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl font-semibold tracking-[-0.03em] text-[#111] sm:text-5xl" style="font-size: clamp(2rem, 1.5rem + 2.5vw, 3rem);">
+          {categoryName}: Flex Space & Warehouse Insights
+        </h1>
+        <p class="mt-4 text-lg leading-8 text-black/64">
+          Articles about flex space, small warehouse, and contractor bay space in {categoryName}.
+        </p>
+      </div>
+
+      <!-- Category filters -->
+      <div class="mt-8 flex flex-wrap gap-2">
+        <a
+          href={`${base}blog/`}
+          class="rounded-full px-4 py-2 text-sm font-medium no-underline transition border border-black/15 bg-white text-black/70 hover:bg-black/5 hover:text-black"
+        >
+          All
+        </a>
+        {allCategories.map((cat: string) => (
+          <a
+            href={`${base}blog/category/${slugify(cat)}/`}
+            class:list={[
+              'rounded-full px-4 py-2 text-sm font-medium no-underline transition',
+              cat === categoryName
+                ? 'bg-black text-white'
+                : 'border border-black/15 bg-white text-black/70 hover:bg-black/5 hover:text-black'
+            ]}
+          >
+            {cat}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts grid -->
+  <section class="pb-20 lg:pb-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <a href={`${base}blog/${post.data.slug}/`} class="group rounded-[24px] border border-black/10 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.03)] overflow-hidden no-underline transition hover:shadow-[0_15px_40px_rgba(0,0,0,0.08)]">
+            {post.data.image && (
+              <div class="aspect-[16/9] overflow-hidden">
+                <img src={post.data.image} alt={post.data.imageAlt || post.data.title} class="h-full w-full object-cover transition group-hover:scale-105" loading="lazy" />
+              </div>
+            )}
+            <div class="p-6">
+              <div class="flex flex-wrap gap-2 mb-3">
+                {post.data.categories.map((cat: string) => (
+                  <span class:list={[
+                    'rounded-full border px-2.5 py-0.5 text-xs font-medium',
+                    cat === categoryName
+                      ? 'bg-black/5 border-black/15 text-black/70'
+                      : 'bg-[#fbfaf8] border-black/10 text-black/55'
+                  ]}>{cat}</span>
+                ))}
+              </div>
+              <div class="text-lg font-semibold tracking-[-0.01em] text-[#111] leading-snug group-hover:text-black/80 transition">{post.data.title}</div>
+              <p class="mt-2 text-sm leading-6 text-black/55 line-clamp-3">{post.data.description}</p>
+              <div class="mt-4 text-xs text-black/40">
+                {new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Pagination -->
+      {totalPages > 1 && (
+        <nav class="mt-14 flex items-center justify-center gap-2" aria-label="Blog pagination">
+          {page.url.prev && (
+            <a href={page.url.prev} class="rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm font-medium text-black/70 no-underline transition hover:bg-black/5">
+              Previous
+            </a>
+          )}
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+            <a
+              href={num === 1 ? `${base}blog/category/${category}/` : `${base}blog/category/${category}/${num}/`}
+              class:list={[
+                'rounded-xl px-4 py-2.5 text-sm font-medium no-underline transition',
+                num === currentPage
+                  ? 'bg-black text-white'
+                  : 'border border-black/10 bg-white text-black/70 hover:bg-black/5'
+              ]}
+            >
+              {num}
+            </a>
+          ))}
+          {page.url.next && (
+            <a href={page.url.next} class="rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm font-medium text-black/70 no-underline transition hover:bg-black/5">
+              Next
+            </a>
+          )}
+        </nav>
+      )}
+    </div>
+  </section>
+</NewLayout>
