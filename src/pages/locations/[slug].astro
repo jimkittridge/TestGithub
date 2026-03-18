@@ -88,6 +88,23 @@ const specItems = [
   ['HVAC', city.specs.hvac],
   ['Suites', city.specs.suiteRange],
 ];
+
+/* SEO heading overrides — fall back to defaults */
+const heroH1 = city.heroH1 || `Flex warehouse space in ${city.fullName}`;
+const heroSubtitle = city.heroSubtitle || city.tagline;
+const suitesHeading = city.suitesHeading || `${city.name} warehouse suites and unit sizes`;
+const suitesSubheading = city.suitesSubheading || (suites.length === 1
+  ? `One suite type currently offered at this location.`
+  : `${suites.length} suite types available at this location. Available units are shown first.`);
+const tenantProfilesLabel = city.tenantProfilesLabel || 'Who it\'s for';
+const tenantProfilesHeading = city.tenantProfilesHeading || `A good fit for ${city.name} businesses that need practical flex space.`;
+const tenantProfilesSubheading = city.tenantProfilesSubheading || 'These suites work well for operators who need functional small bay space with warehouse capability, flexible access, and room to grow.';
+const specsHeading = city.specsHeading || 'Built for businesses that need efficient, usable industrial space.';
+const specsSubheading = city.specsSubheading || 'Hard specs up front so you can evaluate fit before filling out a form.';
+const faqHeading = city.faqHeading || `${city.name} flex space FAQ`;
+const ctaHeading = city.ctaHeading || `Looking for flex industrial space in ${city.fullName}?`;
+const ctaSubheading = city.ctaSubheading || `${city.specs.suiteRange} suites with ${city.specs.ceilingHeight.toLowerCase()} ceilings, ${city.specs.doorSize.toLowerCase()} doors, and 24/7 access. Submit your details for pricing and next steps.`;
+const galleryAltTexts = city.galleryAltTexts || [];
 ---
 
 <NewLayout title={city.seo.title} description={city.seo.description} schemaMarkup={schemaMarkup}>
@@ -128,10 +145,10 @@ const specItems = [
             )}
           </div>
           <h1 class="text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl" style="color: white;">
-            Flex warehouse space in {city.fullName}
+            {heroH1}
           </h1>
           <p class="mt-6 max-w-xl text-lg leading-8 text-white/75">
-            {city.tagline}
+            {heroSubtitle}
           </p>
           <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {specItems.map(([label, value]) => (
@@ -172,7 +189,7 @@ const specItems = [
         <div class="gallery-grid">
           {gallery.slice(0, 3).map((img, i) => (
             <button type="button" class="gallery-thumb" data-gallery-open={String(i)} aria-label={i === 0 ? 'Open photo gallery' : `View photo ${i + 1}`}>
-              <img src={img} alt={i === 0 ? `Flex warehouse space in ${city.fullName}` : `Property photo ${i + 1}`} class="h-full w-full object-cover object-center" loading={i === 0 ? 'eager' : 'lazy'} />
+              <img src={img} alt={galleryAltTexts[i] || `Flex warehouse space in ${city.fullName}`} class="h-full w-full object-cover object-center" loading={i === 0 ? 'eager' : 'lazy'} />
               {i === 2 && gallery.length > 3 && (
                 <div class="gallery-thumb-more">+{gallery.length - 3} more</div>
               )}
@@ -280,12 +297,10 @@ const specItems = [
         <div class="mb-10 max-w-3xl">
           <div class="text-sm uppercase tracking-[0.16em] text-black/45">Availability</div>
           <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
-            {city.name} warehouse suites and unit sizes
+            {suitesHeading}
           </h2>
           <p class="mt-4 text-lg leading-8 text-black/64">
-            {suites.length === 1
-              ? `One suite type currently offered at this location.`
-              : `${suites.length} suite types available at this location. Available units are shown first.`}
+            {suitesSubheading}
           </p>
         </div>
         <div class="grid gap-6 lg:grid-cols-2">
@@ -348,12 +363,12 @@ const specItems = [
   <section class="bg-white/65 py-20 lg:py-28">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="mb-10 max-w-3xl">
-        <div class="text-sm uppercase tracking-[0.16em] text-black/45">Who it's for</div>
+        <div class="text-sm uppercase tracking-[0.16em] text-black/45">{tenantProfilesLabel}</div>
         <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
-          A good fit for {city.name} businesses that need practical flex space.
+          {tenantProfilesHeading}
         </h2>
         <p class="mt-4 text-lg leading-8 text-black/64">
-          These suites work well for operators who need functional small bay space with warehouse capability, flexible access, and room to grow.
+          {tenantProfilesSubheading}
         </p>
       </div>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -378,10 +393,10 @@ const specItems = [
           <div>
             <div class="text-sm uppercase tracking-[0.16em] text-black/45">Suite specs</div>
             <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
-              Built for businesses that need efficient, usable industrial space.
+              {specsHeading}
             </h2>
             <p class="mt-5 text-lg leading-8 text-black/64">
-              Hard specs up front so you can evaluate fit before filling out a form.
+              {specsSubheading}
             </p>
             <a href="#lead-form" class="mt-6 inline-flex items-center gap-2 rounded-2xl bg-black px-6 py-3 text-sm font-medium text-white no-underline hover:bg-black/85 transition">
               Get availability &amp; pricing
@@ -571,7 +586,7 @@ const specItems = [
       <div class="mb-10 max-w-3xl">
         <div class="text-sm uppercase tracking-[0.16em] text-black/45">FAQ</div>
         <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em]" style="color: #111; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
-          {city.name} flex space FAQ
+          {faqHeading}
         </h2>
       </div>
       <div class="grid gap-5 lg:grid-cols-2">
@@ -616,10 +631,10 @@ const specItems = [
           <div>
             <div class="text-sm uppercase tracking-[0.16em] text-white/45">Get started</div>
             <h2 class="mt-3 text-4xl font-semibold tracking-[-0.03em] text-white" style="color: white; font-size: clamp(1.75rem, 1.3rem + 2.25vw, 2.5rem);">
-              Looking for flex industrial space in {city.fullName}?
+              {ctaHeading}
             </h2>
             <p class="mt-4 max-w-2xl text-lg leading-8 text-white/72">
-              {city.specs.suiteRange} suites with {city.specs.ceilingHeight.toLowerCase()} ceilings, {city.specs.doorSize.toLowerCase()} doors, and 24/7 access. Submit your details for pricing and next steps.
+              {ctaSubheading}
             </p>
           </div>
           <div class="w-full max-w-sm rounded-[28px] bg-white p-5 text-black">
