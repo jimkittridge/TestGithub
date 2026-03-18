@@ -38,6 +38,9 @@ const isSplit = layout === 'split';
     )}
     {!isSplit && <slot />}
   </div>
+  <div class="hero-new__bottom">
+    <slot name="bottom" />
+  </div>
 </section>
 
 <style>
@@ -158,5 +161,23 @@ const isSplit = layout === 'split';
   .hero-new__form-col {
     display: flex;
     justify-content: center;
+  }
+
+  .hero-new__bottom {
+    position: relative;
+    z-index: 1;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-new__bottom {
+      padding: 0 2rem;
+    }
+  }
+
+  .hero-new__bottom:empty {
+    display: none;
   }
 </style>
