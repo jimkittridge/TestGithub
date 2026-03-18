@@ -1,13 +1,14 @@
 ---
 title: "Contractor Bay Space vs. Storage Units: What's the Difference?"
 slug: contractor-bay-vs-storage-unit
-description: "Comparing contractor bay space and storage units for trades, service businesses, and small operators who need more than just storage."
-date: "2026-03-10"
+description: Comparing contractor bay space and storage units for trades, service businesses, and small operators who need more than just storage.
+date: 2026-03-10
 categories:
   - NC
   - SC
-image: ""
-imageAlt: ""
+image: /images/exterior-wide.svg
+imageAlt: ''
+author: ''
 ---
 
 If you're a contractor or trades business looking for space, you've probably considered both storage units and contractor bay space. They sound similar, but they serve very different needs.
