@@ -6,7 +6,7 @@ date: "2026-03-26"
 categories:
   - category: "NC"
   - category: "Asheville"
-image: "/images/exterior-wide.svg"
+image: "/images/DJI_0194.JPG"
 imageAlt: "Contractor garage bay with drive-in door in Fletcher, NC near Asheville"
 author: ""
 ---

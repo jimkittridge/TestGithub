@@ -6,7 +6,7 @@ description: "Columbia vs Charlotte industrial space. Columbia: 30-40% cheaper, 
 categories:
   - category: "SC"
   - category: "Columbia"
-image: "/images/exterior-wide.svg"
+image: "/images/DJI_0194.JPG"
 imageAlt: "Comparison of warehouse locations between Columbia SC and Charlotte NC"
 author: ""
 ---

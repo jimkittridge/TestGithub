@@ -6,7 +6,7 @@ description: "Columbia industrial corridors: I-20 East (newest, $16-20/SF), I-77
 categories:
   - category: "SC"
   - category: "Columbia"
-image: "/images/exterior-wide.svg"
+image: "/images/DJI_0210.JPG"
 imageAlt: "Map of Columbia SC industrial corridors along I-20, I-26, and I-77"
 author: ""
 ---

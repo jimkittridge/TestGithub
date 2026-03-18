@@ -6,7 +6,7 @@ description: "Warehouse loading access in Columbia SC. Drive-in doors, dock-high
 categories:
   - category: "SC"
   - category: "Columbia"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-front.svg"
 imageAlt: "Warehouse drive-in door with open bay and loading area in Columbia"
 author: ""
 ---

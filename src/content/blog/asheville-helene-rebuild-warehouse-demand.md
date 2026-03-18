@@ -6,7 +6,7 @@ date: "2026-03-30"
 categories:
   - category: "NC"
   - category: "Asheville"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-angle.svg"
 imageAlt: "Asheville warehouse space available for post-hurricane rebuild operations"
 author: ""
 ---

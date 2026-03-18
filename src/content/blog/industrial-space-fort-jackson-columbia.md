@@ -6,7 +6,7 @@ description: "Fort Jackson drives industrial demand in Columbia. $6.6B annual ec
 categories:
   - category: "SC"
   - category: "Columbia"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-angle.svg"
 imageAlt: "Industrial space in Columbia SC supporting Fort Jackson military operations"
 author: ""
 ---

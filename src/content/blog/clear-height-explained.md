@@ -6,7 +6,7 @@ date: "2026-03-28"
 categories:
   - category: "NC"
   - category: "SC"
-image: "/images/exterior-wide.svg"
+image: "/images/DSC00318.JPG"
 imageAlt: "Warehouse interior showing clear height measurement from floor to ceiling with racking systems"
 author: ""
 ---

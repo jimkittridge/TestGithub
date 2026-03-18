@@ -6,7 +6,7 @@ date: "2026-03-20"
 categories:
   - category: "NC"
   - category: "Durham"
-image: "/images/exterior-wide.svg"
+image: "/images/DJI_0194.JPG"
 imageAlt: "Modern industrial flex warehouse with drive-in door and clear height"
 author: ""
 ---

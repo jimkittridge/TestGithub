@@ -6,7 +6,7 @@ description: "E-commerce in Durham needs racking-friendly clear height, power fo
 categories:
   - category: "NC"
   - category: "Durham"
-image: "/images/exterior-wide.svg"
+image: "/images/IMG_9519.JPG"
 imageAlt: "E-commerce warehouse with packing stations, shelving, and shipping area"
 author: ""
 ---

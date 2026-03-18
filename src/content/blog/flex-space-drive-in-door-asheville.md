@@ -6,7 +6,7 @@ date: "2026-04-27"
 categories:
   - category: "NC"
   - category: "Asheville"
-image: "/images/exterior-wide.svg"
+image: "/images/IMG_9519.JPG"
 imageAlt: "Flex space warehouse with drive-in door opening to loaded truck"
 author: ""
 ---

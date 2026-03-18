@@ -6,7 +6,7 @@ date: "2026-04-01"
 categories:
   - category: "NC"
   - category: "SC"
-image: "/images/exterior-wide.svg"
+image: "/images/DSC00334.JPG"
 imageAlt: "Lease document showing rental rate breakdown and NNN charges"
 author: ""
 ---

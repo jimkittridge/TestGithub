@@ -6,7 +6,7 @@ description: "Small industrial units in Columbia SC under 3,000 SF. Gap in marke
 categories:
   - category: "SC"
   - category: "Columbia"
-image: "/images/exterior-wide.svg"
+image: "/images/DSC00334.JPG"
 imageAlt: "Small multi-tenant industrial building with flex space units in Columbia"
 author: ""
 ---

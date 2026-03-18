@@ -6,7 +6,7 @@ description: "Columbia three-interstate advantage: I-20 to Atlanta/coast, I-77 t
 categories:
   - category: "SC"
   - category: "Columbia"
-image: "/images/exterior-wide.svg"
+image: "/images/DSC00318.JPG"
 imageAlt: "Map showing Columbia SC at the intersection of I-20, I-26, and I-77 interstates"
 author: ""
 ---

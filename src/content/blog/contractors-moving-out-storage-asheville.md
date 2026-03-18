@@ -6,7 +6,7 @@ date: "2026-04-11"
 categories:
   - category: "NC"
   - category: "Asheville"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-closeup.svg"
 imageAlt: "Contractor flex space garage with drive-in door, better than storage units"
 author: ""
 ---

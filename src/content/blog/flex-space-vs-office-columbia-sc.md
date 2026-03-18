@@ -6,7 +6,7 @@ description: "Flex space vs office in Columbia SC. Flex $14-18/SF with warehouse
 categories:
   - category: "SC"
   - category: "Columbia"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-full.svg"
 imageAlt: "Comparison of office space downtown versus flex space with warehouse in Columbia"
 author: ""
 ---

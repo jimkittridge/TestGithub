@@ -6,7 +6,7 @@ date: "2026-04-09"
 categories:
   - category: "NC"
   - category: "Durham"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-angle.svg"
 imageAlt: "Warehouse office combination space with desk area overlooking bay"
 author: ""
 ---

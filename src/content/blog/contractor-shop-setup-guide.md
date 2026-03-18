@@ -6,7 +6,7 @@ description: "Contractor shop needs 100-200 amp electrical, drive-in door, parts
 categories:
   - category: "NC"
   - category: "SC"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-front.svg"
 imageAlt: "Contractor shop interior with vehicle bay, workbench, tool storage, and office desk"
 author: ""
 ---

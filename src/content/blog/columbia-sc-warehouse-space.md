@@ -6,7 +6,7 @@ date: "2026-03-25"
 categories:
   - category: "SC"
   - category: "Columbia"
-image: "/images/exterior-wide.svg"
+image: "/images/129-131-Calvin-Dr-Columbia-SC-Building-Photo-1-LargeHighDefinition.jpg"
 imageAlt: "Small industrial warehouse with drive-in door and loading access in Columbia"
 author: ""
 ---

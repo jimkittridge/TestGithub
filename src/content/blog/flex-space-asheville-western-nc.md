@@ -6,7 +6,7 @@ date: "2026-03-22"
 categories:
   - category: "NC"
   - category: "Asheville"
-image: "/images/exterior-wide.svg"
+image: "/images/city-asheville-photo.jpeg"
 imageAlt: "Flex space warehouse with drive-in door near Asheville, NC"
 author: ""
 ---

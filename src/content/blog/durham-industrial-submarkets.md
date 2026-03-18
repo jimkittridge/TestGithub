@@ -6,7 +6,7 @@ date: "2026-04-05"
 categories:
   - category: "NC"
   - category: "Durham"
-image: "/images/exterior-wide.svg"
+image: "/images/Durham Flex Space.png"
 imageAlt: "Aerial view of Durham industrial parks showing warehouse buildings and interstate access"
 author: ""
 ---

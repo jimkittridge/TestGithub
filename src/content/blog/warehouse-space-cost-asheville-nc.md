@@ -6,7 +6,7 @@ date: "2026-04-07"
 categories:
   - category: "NC"
   - category: "Asheville"
-image: "/images/exterior-wide.svg"
+image: "/images/DJI_0210.JPG"
 imageAlt: "Flexible warehouse space for lease in Fletcher, NC near Asheville"
 author: ""
 ---

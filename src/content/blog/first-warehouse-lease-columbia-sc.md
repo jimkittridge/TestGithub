@@ -6,7 +6,7 @@ description: "Guide to leasing your first warehouse in Columbia SC. Determine si
 categories:
   - category: "SC"
   - category: "Columbia"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-closeup.svg"
 imageAlt: "First-time warehouse tenant touring a Columbia industrial space"
 author: ""
 ---

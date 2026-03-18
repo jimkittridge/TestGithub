@@ -6,7 +6,7 @@ date: "2026-04-19"
 categories:
   - category: "NC"
   - category: "Asheville"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-full.svg"
 imageAlt: "Warehouse flex space with integrated office in Fletcher, North Carolina"
 author: ""
 ---

@@ -6,7 +6,7 @@ date: "2026-04-03"
 categories:
   - category: "NC"
   - category: "Asheville"
-image: "/images/exterior-wide.svg"
+image: "/images/DSC00318.JPG"
 imageAlt: "Industrial park in Fletcher, NC with flex space and modern warehouse buildings"
 author: ""
 ---

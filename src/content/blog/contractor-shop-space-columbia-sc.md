@@ -6,7 +6,7 @@ description: "Contractor shop space in Columbia SC. Fort Jackson maintenance, US
 categories:
   - category: "SC"
   - category: "Columbia"
-image: "/images/exterior-wide.svg"
+image: "/images/129-131-Calvin-Dr-Columbia-SC-Building-Photo-3-LargeHighDefinition.jpg"
 imageAlt: "Industrial contractor bay with overhead door and work space in Columbia"
 author: ""
 ---

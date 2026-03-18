@@ -6,7 +6,7 @@ date: "2026-03-24"
 categories:
   - category: "NC"
   - category: "SC"
-image: "/images/exterior-wide.svg"
+image: "/images/DJI_0210.JPG"
 imageAlt: "Contractor work bay with drive-in door, workbench, and equipment storage"
 author: ""
 ---

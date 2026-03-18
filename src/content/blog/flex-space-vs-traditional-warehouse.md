@@ -6,7 +6,7 @@ description: "Flex space: 950-3,000 SF, office included, 1-5 year leases, $20-25
 categories:
   - category: "NC"
   - category: "SC"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-full.svg"
 imageAlt: "Comparison view showing modern flex warehouse and traditional distribution center"
 author: ""
 ---

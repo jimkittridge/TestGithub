@@ -6,7 +6,7 @@ date: "2026-04-23"
 categories:
   - category: "NC"
   - category: "Asheville"
-image: "/images/exterior-wide.svg"
+image: "/images/DSC00334.JPG"
 imageAlt: "Small warehouse space for rent in Hendersonville, North Carolina"
 author: ""
 ---

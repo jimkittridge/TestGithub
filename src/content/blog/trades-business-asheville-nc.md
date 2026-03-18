@@ -6,7 +6,7 @@ date: "2026-04-15"
 categories:
   - category: "NC"
   - category: "Asheville"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-front.svg"
 imageAlt: "Trades business operating from flex space in Fletcher near Asheville"
 author: ""
 ---

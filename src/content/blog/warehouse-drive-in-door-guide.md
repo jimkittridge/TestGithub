@@ -6,7 +6,7 @@ date: "2026-04-13"
 categories:
   - category: "NC"
   - category: "SC"
-image: "/images/exterior-wide.svg"
+image: "/images/exterior-closeup.svg"
 imageAlt: "Warehouse drive-in door with box truck entering bay"
 author: ""
 ---
