@@ -110,7 +110,51 @@ collections:
               - { label: Latitude, name: lat, widget: number, value_type: float }
               - { label: Longitude, name: lng, widget: number, value_type: float }
           - { label: Phone, name: phone, widget: string }
+      # ─── SEO Heading Overrides ───
+      - { label: Hero H1, name: heroH1, widget: string, required: false, default: "", hint: "Custom H1 for this location page (leave blank for default)" }
+      - { label: Hero Subtitle, name: heroSubtitle, widget: text, required: false, default: "", hint: "Custom subtitle below H1 (leave blank to use tagline)" }
+      - { label: Suites Section Heading, name: suitesHeading, widget: string, required: false, default: "" }
+      - { label: Suites Section Subheading, name: suitesSubheading, widget: string, required: false, default: "" }
+      - { label: Tenant Profiles Label, name: tenantProfilesLabel, widget: string, required: false, default: "" }
+      - { label: Tenant Profiles Heading, name: tenantProfilesHeading, widget: string, required: false, default: "" }
+      - { label: Tenant Profiles Subheading, name: tenantProfilesSubheading, widget: text, required: false, default: "" }
+      - { label: Specs Section Heading, name: specsHeading, widget: string, required: false, default: "" }
+      - { label: Specs Section Subheading, name: specsSubheading, widget: string, required: false, default: "" }
+      - { label: FAQ Heading, name: faqHeading, widget: string, required: false, default: "" }
+      - { label: CTA Heading, name: ctaHeading, widget: string, required: false, default: "" }
+      - { label: CTA Subheading, name: ctaSubheading, widget: text, required: false, default: "" }
+      - label: Gallery Alt Texts
+        name: galleryAltTexts
+        widget: list
+        required: false
+        field: { label: Alt Text, name: alt, widget: string }
+        hint: "SEO alt text for each gallery image (in order)"
       - { label: "Location Description (markdown)", name: body, widget: markdown, hint: "The 'Why this city' paragraphs shown on the location page" }
+
+  # ─── Blog ───
+  - name: blog
+    label: Blog
+    label_singular: Blog Post
+    folder: src/content/blog
+    create: true
+    format: frontmatter
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: [title, date]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string, hint: "URL slug (e.g. why-durham-flex-space)" }
+      - { label: Description, name: description, widget: text, hint: "Short summary for SEO and blog cards" }
+      - { label: Date, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - label: Categories
+        name: categories
+        widget: list
+        field: { label: Category, name: category, widget: string }
+        hint: "e.g. NC, SC, Durham, Asheville, Columbia"
+      - { label: Featured Image, name: image, widget: image, required: false, default: "" }
+      - { label: Image Alt Text, name: imageAlt, widget: string, required: false, default: "" }
+      - { label: Author, name: author, widget: string, required: false, default: "GetFlexSpace" }
+      - { label: "Post Content", name: body, widget: markdown }
 
   # ─── Homepage ───
   - name: pages
