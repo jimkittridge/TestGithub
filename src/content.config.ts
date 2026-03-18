@@ -79,6 +79,8 @@ const pages = defineCollection({
     }).optional(),
     // Homepage fields
     heroBackgroundImage: z.string().optional(),
+    heroOverlayColor: z.string().optional().default('#000000'),
+    heroOverlayOpacity: z.number().optional().default(55),
     logo: z.string().optional(),
     bullets: z.array(z.string()).optional(),
     citySection: z.object({

@@ -166,7 +166,7 @@ const specItems = [
 
   <!-- ===== PHOTO GALLERY ===== -->
   {hasGallery && (
-    <section class="py-16 lg:py-20">
+    <section class="pt-12 pb-6 lg:pt-16 lg:pb-8">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <!-- Gallery grid: large hero + small thumbnails -->
         <div class="gallery-grid">
@@ -334,12 +334,12 @@ const specItems = [
                     </div>
                   ))}
                 </div>
-                <div class="mt-6 flex flex-wrap items-center gap-5 text-sm font-medium text-black/78">
-                  <a href="#lead-form" class="inline-flex items-center gap-2 hover:text-black no-underline text-black/78">
+                <div class="mt-6 flex flex-wrap items-center gap-3 text-sm font-semibold">
+                  <a href="#lead-form" class={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 no-underline transition ${isAvail ? 'bg-[#111] text-white hover:bg-black' : 'bg-[#111] text-white hover:bg-black'}`}>
                     {isAvail ? 'Request pricing' : 'Join waitlist'}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                   </a>
-                  <a href={`${base}contact/`} class="hover:text-black no-underline text-black/78">Schedule a tour</a>
+                  <a href={`${base}contact/`} class="inline-flex items-center rounded-full border border-black/15 bg-white px-5 py-2.5 text-[#111] no-underline transition hover:bg-black/5">Schedule a tour</a>
                 </div>
               </div>
             );
@@ -648,6 +648,7 @@ const specItems = [
 
   .gallery-main img {
     transition: transform 0.4s ease;
+    object-position: center;
   }
 
   .gallery-main:hover img {
@@ -702,6 +703,7 @@ const specItems = [
 
   .gallery-thumb img {
     transition: transform 0.3s ease;
+    object-position: center;
   }
 
   .gallery-thumb:hover img {

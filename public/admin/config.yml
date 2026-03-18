@@ -124,6 +124,8 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: Description, name: description, widget: text }
           - { label: Hero Background Image, name: heroBackgroundImage, widget: image, required: false, hint: "Background image for the homepage hero section" }
+          - { label: Hero Overlay Color, name: heroOverlayColor, widget: color, required: false, default: "#000000", hint: "Color of the overlay on top of the hero background image" }
+          - { label: Hero Overlay Opacity, name: heroOverlayOpacity, widget: number, required: false, default: 55, min: 0, max: 100, value_type: int, hint: "Opacity of the hero overlay (0 = transparent, 100 = solid)" }
           - { label: Logo, name: logo, widget: image, required: false, hint: "Site logo shown in header and footer" }
           - label: Hero
             name: hero
