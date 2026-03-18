@@ -2,6 +2,12 @@
   command = "npm run build"
   publish = "dist"
 
+[[redirects]]
+  from = "/oldoxford"
+  to = "https://app.hellosign.com/s/BhQr52dI"
+  status = 302
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
