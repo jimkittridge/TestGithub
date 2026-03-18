@@ -37,6 +37,31 @@ localGuide:
     - Well positioned for Western NC service area
     - Strong fit for contractor, service, and light industrial users
     - Ideal for businesses needing 1,000–3,000 SF
+suites:
+  - name: Standard Suite
+    size: "1,000 SF"
+    status: waitlist
+    description: Compact flex space for small operators, storage, and light workspace needs.
+    ceilingHeight: 14–20 ft clear
+    power: 200A
+    door: 10' × 14' drive-in
+    lease: 1–3 years
+  - name: Mid-Size Suite
+    size: "2,000 SF"
+    status: waitlist
+    description: Room for equipment, inventory, and combined warehouse plus office operations.
+    ceilingHeight: 14–20 ft clear
+    power: 200A
+    door: 10' × 14' drive-in
+    lease: 1–3 years
+  - name: Large Suite
+    size: "3,000 SF"
+    status: waitlist
+    description: Full-size bay for contractors, fulfillment, and light manufacturing operations.
+    ceilingHeight: 14–20 ft clear
+    power: 200A
+    door: 10' × 14' drive-in
+    lease: 1–3 years
 tenantProfiles:
   - title: Contractors & Trades
     description: Space for tools, materials, vehicles, and daily dispatch.

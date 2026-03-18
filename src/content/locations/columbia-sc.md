@@ -36,6 +36,23 @@ localGuide:
     - State government & university
     - Fort Jackson military base
     - Southeast distribution corridor
+suites:
+  - name: Standard Suite
+    size: "2,000 SF"
+    status: waitlist
+    description: Practical flex space for service businesses, storage, and daily operations.
+    ceilingHeight: 14–18 ft clear
+    power: 200A
+    door: Drive-in
+    lease: 1–3 years
+  - name: Large Suite
+    size: "4,000 SF"
+    status: waitlist
+    description: Full-size bay for contractors, distribution, and light manufacturing with room to grow.
+    ceilingHeight: 14–18 ft clear
+    power: 200A
+    door: Drive-in
+    lease: 1–3 years
 tenantProfiles:
   - title: Contractors & Trades
     description: Space for tools, materials, and daily dispatch across the Midlands.

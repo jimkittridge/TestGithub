@@ -37,6 +37,23 @@ localGuide:
     - Tech & biotech growth corridor
     - Residential construction surge
     - RDU airport logistics
+suites:
+  - name: Available Suite
+    size: "2,500 SF"
+    status: available
+    description: Great fit for contractors, warehouse users, service businesses, and light industrial operations.
+    ceilingHeight: 20–24 ft clear
+    power: 400A 3-phase
+    door: 14' × 14' drive-in
+    lease: 1–3 years
+  - name: Additional Suite Type
+    size: "1,500 SF"
+    status: waitlist
+    description: Good for smaller operators that need storage, workspace, and flexible warehouse plus office use.
+    ceilingHeight: 18–20 ft clear
+    power: 200A power
+    door: 12' drive-in
+    lease: 1–3 years
 tenantProfiles:
   - title: Contractors & Trades
     description: Space for tools, materials, vehicles, and daily dispatch across the Triangle.

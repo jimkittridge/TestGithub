@@ -55,6 +55,21 @@ collections:
           - { label: Airport, name: airport, widget: string }
           - { label: Submarkets, name: submarkets, widget: list }
           - { label: Demand Drivers, name: demandDrivers, widget: list }
+      - label: Suites
+        name: suites
+        widget: list
+        fields:
+          - { label: Name, name: name, widget: string, hint: "e.g. Available Suite, Standard Suite" }
+          - { label: Size, name: size, widget: string, hint: "e.g. 2,500 SF" }
+          - label: Status
+            name: status
+            widget: select
+            options: [available, waitlist]
+          - { label: Description, name: description, widget: text }
+          - { label: Ceiling Height, name: ceilingHeight, widget: string }
+          - { label: Power, name: power, widget: string }
+          - { label: Door, name: door, widget: string }
+          - { label: Lease, name: lease, widget: string }
       - label: Tenant Profiles
         name: tenantProfiles
         widget: list

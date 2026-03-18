@@ -34,6 +34,16 @@ const locations = defineCollection({
       title: z.string(),
       description: z.string(),
     })),
+    suites: z.array(z.object({
+      name: z.string(),
+      size: z.string(),
+      status: z.enum(['available', 'waitlist']),
+      description: z.string(),
+      ceilingHeight: z.string(),
+      power: z.string(),
+      door: z.string(),
+      lease: z.string(),
+    })).optional().default([]),
     faq: z.array(z.object({
       question: z.string(),
       answer: z.string(),
