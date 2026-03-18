@@ -3,7 +3,7 @@ seo:
   title: Small Bay Flex Space for Lease in NC & SC | GetFlexSpace
   description: Flexible 1,000–3,000 SF industrial and flex space suites in Asheville, Durham, and Columbia. Check availability, pricing, and upcoming openings.
 heroBackgroundImage: /images/Durham Flex Space.png
-logo: /images/Screenshot 2026-03-17 at 10.03.28 PM.png
+logo: /images/Screenshot 2026-03-17 at 10.03.28 PM-1.png
 hero:
   headline: Small Bay Flex Space for Lease in the Carolina
   subheadline: 1,000–3,000 SF suites designed for contractors, e-commerce, light industrial, and growing businesses.
