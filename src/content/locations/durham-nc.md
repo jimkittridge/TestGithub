@@ -50,7 +50,7 @@ suites:
     size: 950 SF
     status: available
     description: Great fit for contractors, warehouse users, service businesses, and light industrial operations.
-    baseRent: "$12.95 / SF NNN"
+    baseRent: $20.00 / SF NNN
   - name: Additional Suite Type
     size: 1,500 SF
     status: waitlist
