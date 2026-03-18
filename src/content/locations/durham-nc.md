@@ -4,7 +4,7 @@ state: NC
 fullName: Durham, NC
 slug: durham-nc
 availability: available
-availableUnits: 1 Unit Available – 2,500 sq ft
+availableUnits: 1 Unit Available – 950 sq ft
 image: /images/Durham Flex Space.png
 gallery:
   - /images/Durham Flex Space.png
@@ -13,16 +13,16 @@ gallery:
   - /images/exterior-wide.svg
   - /images/exterior-angle.svg
   - /images/exterior-closeup.svg
-tagline: Heart of the Research Triangle. 400A 3-phase power, minutes from RTP & RDU.
+tagline: Heart of the Research Triangle, minutes from RTP & RDU.
 seo:
-  title: Flex Space for Lease in Durham, NC | 1,500–3,000 SF | GetFlexSpace
-  description: Lease small bay flex space in Durham, NC. 1,500–3,000 SF suites with drive-in doors, 400A 3-phase power, and 24/7 access. Minutes from RTP. Get availability and pricing.
+  title: Flex Space for Lease in Durham, NC | 900–3,000 SF | GetFlexSpace
+  description: Lease small bay flex space in Durham, NC. 9000–3,000 SF suites with drive-in doors, and 24/7 access. Minutes from RTP. Get availability and pricing.
 specs:
-  ceilingHeight: 20–24 ft clear
-  power: 400A 3-Phase
-  doorSize: 14' × 14' Drive-In
-  hvac: Full HVAC
-  suiteRange: 1,500–3,000 sq ft
+  ceilingHeight: 14–20 ft clear
+  power: 100-200amps
+  doorSize: 10'-14' Drive-In
+  hvac: HVAC available in some warehouses
+  suiteRange: 950–3,000 sq ft
 mapEmbedUrl: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103574.8!2d-78.9!3d35.99!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89ace46d3bdb!2sDurham%2C+NC!5e0!3m2!1sen!2sus!4v1
 localGuide:
   heading: Why Durham, NC
@@ -46,23 +46,21 @@ localGuide:
     - RDU airport logistics
 suites:
   - name: Available Suite
-    size: "2,500 SF"
+    size: 950 SF
     status: available
     description: Great fit for contractors, warehouse users, service businesses, and light industrial operations.
-    ceilingHeight: 20–24 ft clear
-    power: 400A 3-phase
-    door: 14' × 14' drive-in
-    lease: 1–3 years
-    baseRent: "$12.95 / SF NNN"
+    ceilingHeight: 14–20 ft clear
+    power: 200 Amps
+    door: Drive-in
+    lease: 1–5 years
   - name: Additional Suite Type
-    size: "1,500 SF"
+    size: 1,500 SF
     status: waitlist
     description: Good for smaller operators that need storage, workspace, and flexible warehouse plus office use.
     ceilingHeight: 18–20 ft clear
     power: 200A power
     door: 12' drive-in
     lease: 1–3 years
-    baseRent: ""
 tenantProfiles:
   - title: Contractors & Trades
     description: Space for tools, materials, vehicles, and daily dispatch across the Triangle.
