@@ -14,6 +14,15 @@ bullets:
   - Drive-in doors, 14–20 ft clear height, 24/7 access
   - Flexible 1 to 5 year lease terms
   - Response within 1 business day
+stats:
+  - label: Markets
+    value: "3"
+  - label: Response time
+    value: "< 1 business day"
+  - label: Typical suites
+    value: "1,000–3,000 SF"
+  - label: Fast move-in
+    value: "As fast as 2 weeks"
 citySection:
   heading: Find Flex Space or a Small Warehouse by City
   subheading: Three markets across the Carolinas. Contractor bay space, small warehouse units, and flex industrial suites built for real operators.

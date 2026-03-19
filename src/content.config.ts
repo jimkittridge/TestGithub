@@ -94,6 +94,10 @@ const pages = defineCollection({
     heroOverlayOpacity: z.number().optional().default(55),
     logo: z.string().optional(),
     bullets: z.array(z.string()).optional(),
+    stats: z.array(z.object({
+      label: z.string(),
+      value: z.string(),
+    })).optional(),
     citySection: z.object({
       heading: z.string(),
       subheading: z.string(),
