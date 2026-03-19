@@ -4,7 +4,7 @@ seo:
   description: Lease flex space, small warehouse units, and contractor bay space in Asheville NC, Durham NC, and Columbia SC. 950–4,000 SF suites with drive-in doors, clear height, 24/7 access, and office-ready layouts for contractors, service businesses, e-commerce, and light industrial users.
 heroBackgroundImage: /images/Durham Flex Space.png
 heroOverlayColor: '#303030'
-heroOverlayOpacity: 30
+heroOverlayOpacity: 10
 logo: /images/Screenshot 2026-03-17 at 10.03.28 PM-1.png
 hero:
   headline: Small Warehouse, Flex Space & Contractor Bay Space for Lease in the Carolinas
