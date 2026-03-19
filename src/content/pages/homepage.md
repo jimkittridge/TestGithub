@@ -3,8 +3,8 @@ seo:
   title: Small Warehouse & Flex Space for Lease in NC & SC | GetFlexSpace
   description: Lease flex space, small warehouse units, and contractor bay space in Asheville NC, Durham NC, and Columbia SC. 950–4,000 SF suites with drive-in doors, clear height, 24/7 access, and office-ready layouts for contractors, service businesses, e-commerce, and light industrial users.
 heroBackgroundImage: /images/Durham Flex Space.png
-heroOverlayColor: '#303030'
-heroOverlayOpacity: 10
+heroOverlayColor: ''
+heroOverlayOpacity: null
 logo: /images/Screenshot 2026-03-17 at 10.03.28 PM-1.png
 hero:
   headline: Small Warehouse, Flex Space & Contractor Bay Space for Lease in the Carolinas
@@ -14,15 +14,6 @@ bullets:
   - Drive-in doors, 14–20 ft clear height, 24/7 access
   - Flexible 1 to 5 year lease terms
   - Response within 1 business day
-stats:
-  - label: Markets
-    value: "3"
-  - label: Response time
-    value: "< 1 business day"
-  - label: Typical suites
-    value: "1,000–3,000 SF"
-  - label: Fast move-in
-    value: "As fast as 2 weeks"
 citySection:
   heading: Find Flex Space or a Small Warehouse by City
   subheading: Three markets across the Carolinas. Contractor bay space, small warehouse units, and flex industrial suites built for real operators.
@@ -69,7 +60,7 @@ process:
     - title: Get Matched
       description: We'll send you current and upcoming openings that fit your business. No obligation.
     - title: Tour & Apply
-      description: Walk the space, review the lease, and get your keys. Move-in can happen in as little as two weeks.
+      description: Walk the space, review the lease, and get your keys. Move-in can happen in as fast as the same week.
 leadStrip:
   heading: Tell Us What You Need
   subheading: We'll match you with current and upcoming openings across all three markets. No obligation.
