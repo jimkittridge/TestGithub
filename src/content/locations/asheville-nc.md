@@ -9,6 +9,8 @@ image: /images/city-asheville-photo.jpeg
 gallery:
   - /images/city-asheville-photo.jpeg
   - /images/452-Butler-Bridge-Rd-Fletcher-NC-Primary-Photo-1-LargeHighDefinition.jpg
+  - /images/73432740dd982fe95b619642f6d06306.jpg
+  - /images/e8a120867c40bdeb5553d09f278eac37.jpg
 tagline: Small warehouse and flex space for lease near Asheville, NC. 1,000–3,000 SF suites with drive-in doors, 14–20 ft clear height, and 24/7 access off I-26 and I-40.
 seo:
   title: Small Warehouse & Flex Space for Lease in Asheville, NC | GetFlexSpace
